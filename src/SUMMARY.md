@@ -1,6 +1,6 @@
 # Spis treści
 
-## Teoria
+- [Teoria](wyklady/02-Podstawy_filogenetyki.md)
 
   * [Wstęp do filogenetyki molekularnej i tworzenia drzew filogenetycznych](wyklady/02-Podstawy_filogenetyki.md)
   * [Dopasowanie sekwencji](wyklady/03-Dopasowanie_sekwencji.md)
@@ -8,7 +8,7 @@
   * [Drzewa filogenetyczne](wyklady/05-Drzewa_filogenetyczne.md)
   * [Horyzontalny transfer genów (HGT)](wyklady/06-HGT.md)
 
-## Ćwiczenia
+- [Ćwiczenia](cwiczenia/11-praca_w_linuksie.md)
 
   * [Podstawy pracy w systemie Linux](cwiczenia/11-praca_w_linuksie.md)
   * [Praca z plikami tekstowymi w linii komend](cwiczenia/12-pliki_tekstowe.md)
