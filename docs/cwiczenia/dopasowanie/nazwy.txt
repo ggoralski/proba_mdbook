@@ -1,0 +1,12 @@
+AY007817 Daucus carota
+AY847285 Brassica juncea
+AY961627 Oryza sativa
+EU882268 Sapria himalayana
+FJ595983 Helianthus annuus
+GU075810 Zea mays
+HQ593780 Ajuga reptans
+HQ593782 Mimulus guttatus
+KC825300 Fragaria virginiana
+KC879635 Magnolia stellata
+KU180476 Centaurea scabiosa
+KX524674 Lindenbergia siniaca

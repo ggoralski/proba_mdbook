@@ -1,0 +1,345 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Modele ewolucji molekularnej - Filogenetyka roślin</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="../wyklady/02-Podstawy_filogenetyki.html"><strong aria-hidden="true">1.</strong> Wstęp do filogenetyki molekularnej i tworzenia drzew filogenetycznych</a></li><li><a href="../wyklady/03-Dopasowanie_sekwencji.html"><strong aria-hidden="true">2.</strong> Dopasowanie sekwencji</a></li><li><a href="../wyklady/04-Modele_ewolucji_molekularnej.html" class="active"><strong aria-hidden="true">3.</strong> Modele ewolucji molekularnej</a></li><li><a href="../wyklady/05-Drzewa_filogenetyczne.html"><strong aria-hidden="true">4.</strong> Drzewa filogenetyczne</a></li><li><a href="../wyklady/06-HGT.html"><strong aria-hidden="true">5.</strong> Horyzontalny transfer genów (HGT)</a></li><li><a href="../cwiczenia/11-praca_w_linuksie.html"><strong aria-hidden="true">6.</strong> Podstawy pracy w systemie Linux</a></li><li><a href="../cwiczenia/12-pliki_tekstowe.html"><strong aria-hidden="true">7.</strong> Praca z plikami tekstowymi w linii komend</a></li><li><a href="../cwiczenia/13-edytory_tekstu.html"><strong aria-hidden="true">8.</strong> Edytory tekstu</a></li><li><a href="../cwiczenia/14-skrypty.html"><strong aria-hidden="true">9.</strong> Skrypty powłoki</a></li><li><a href="../cwiczenia/15-warsztat.html"><strong aria-hidden="true">10.</strong> Warsztat pracy</a></li><li><a href="../cwiczenia/16-genbank-www.html"><strong aria-hidden="true">11.</strong> Bazy sekwencji DNA, GenBank</a></li><li><a href="../cwiczenia/17-genbank-cli.html"><strong aria-hidden="true">12.</strong> Pobieranie sekwencji z bazy GenBank i praca w plikami FASTA przy pomocy linii komend</a></li><li><a href="../cwiczenia/18-blast.html"><strong aria-hidden="true">13.</strong> BLAST - wyszukiwanie podobnych sekwencji</a></li><li><a href="../cwiczenia/19-dopasowanie_sekwencji.html"><strong aria-hidden="true">14.</strong> Dopasowanie sekwencji</a></li><li><a href="../cwiczenia/20-dopasowanie_modelu.html"><strong aria-hidden="true">15.</strong> Dopasowanie modelu substytucji</a></li><li><a href="../cwiczenia/21-konstruowanie-drzew.html"><strong aria-hidden="true">16.</strong> Konstruowanie drzew</a></li><li><a href="../cwiczenia/22-wizualizacja-drzew.html"><strong aria-hidden="true">17.</strong> Wizualizacja drzew</a></li><li><a href="../cwiczenia/23-zegar-molekularny.html"><strong aria-hidden="true">18.</strong> Drzewa filogenetyczne i zegar molekularny</a></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Filogenetyka roślin</h1> 
+
+                        <div class="right-buttons">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="#modele-ewolucji-molekularnej" id="modele-ewolucji-molekularnej"><h1>Modele ewolucji molekularnej</h1></a>
+<a class="header" href="#do-czego-służą-modele-ewolucji-molekularnej" id="do-czego-służą-modele-ewolucji-molekularnej"><h2>Do czego służą modele ewolucji molekularnej?</h2></a>
+<p>Jeśli chcemy rozwikłać pokrewieństwa ewolucyjne między badanymi organizmami, co jest zasadniczym celem badań filogenetycznym, powinniśmy dysponować jakąś metodą oceny odległości ewolucyjnych między nimi. Organizmy o mniejszej odległości będą uważane za bliżej spokrewnione między sobą niż taksony bardziej od siebie oddalone. Najprostszym sposobem, który przychodzi do głowy jest proste porównanie sekwencji i wyliczenie w ilu miejscach się one różnią - im więcej różnic tym większa odległość ewolucyjna. Tak obliczoną odległość możemy określić jako <em>p</em> i wyrazić ją w procentach lub w proporcji, wtedy mieszczą się w wartościach między 0 a 1. Na przykład jeśli dwie sekwencje o długości 100 miejsc będą się różnić w 17 miejscach, to <em>p</em>=17% lub <em>p</em>=0,17.
+Takie podejście co prawda pozwala ocenić różnice między sekwencjami ale niekoniecznie odzwierciedla rzeczywiste odległości ewolucyjne, zwłaszcza jeśli porównywane są sekwencje z dużą liczbą różnic. Niekoniecznie jest to intuicyjnie oczywiste ale wynika to ze sposobu w jaki zmieniają się nici DNA w czasie.</p>
+<p>Rozważmy hipotetyczną ewolucję dwu sekwencji, przedstawioną na poniższym rysunku:</p>
+<p><img src="pics-modele/ewolucja-dwu-sekwencji.png" alt="Ewolucja sekwencji" /></p>
+<p>Początkowo wygląda ona tak <code>ATACCTGCATG</code>.</p>
+<p>(1) - Dochodzi do specjacji, powstają dwa gatunki, sekwencje są na początku identyczne, ale dalej ewoluują niezależnie od siebie</p>
+<p>(2) - W obu sekwencjach dochodzi do mutacji (C-&gt;A, A-T).</p>
+<p>(3) - W lewej sekwencji ostatni nukleotyd mutuje (G-&gt;C).</p>
+<p>(4) - W lewej sekwencji piąty nukleotyd, który już wcześniej mutował, ponownie zmienia się (A-&gt;T), w prawej sekwencji w drugiej pozycji także dochodzi do substytucji (T-&gt;G).</p>
+<p>(5) - W prawej sekwencji doszło do substytucji (T-&gt;A).</p>
+<p>(6) - W obu sekwencjach dochodzi do substytucji (T-&gt;G, C-&gt;A), zauważ, że w lewej mutacji doszło do zmiany analogicznej do tej, która wydarzyła się w sekwencji prawej w kroku 4.</p>
+<p>W sumie w obu sekwencjach doszło do ośmiu substytucji. Dopasujmy teraz obie sekwencje do siebie:</p>
+<p><img src="pics-modele/ewolucja-dwu-sekwencji-dopasowanie.png" alt="Porównanie sekwencji" /></p>
+<p>Jak widać mutacje są widoczne w czterech pozycjach i sześciu nukleotydach z czego dwa mutowały dwukrotnie. Zaznaczmy teraz miejsca gdzie widoczne są różnice:</p>
+<p><img src="pics-modele/ewolucja-dwu-sekwencji-roznice.png" alt="Porównanie sekwencji" /></p>
+<p>Okazuje się, że sekwencje różnią się tylko w dwu miejscach, mimo że w sumie wydarzyło się w nich osiem mutacji. Powyższy przykład pokazuje mechanizm ,,ukrywania się'' mutacji. Porównując dwie sekwencje, jeśli widzimy różnicę między nukleotydami w danym miejscu, nie jesteśmy w stanie stwierdzić, czy jest ona wynikiem jednej czy wielu mutacji. Co więcej, następujące po sobie mutacje mogą najpierw sprawić, że nukleotydy będą się różnić a później, że będą takie same (choć niekoniecznie takie jak na początku). Im więcej czasu upływa i im więcej zachodzi mutacji w badanych sekwencjach, tym większy odsetek zmian zostaje ,,zatarty''. O ile możemy przyjąć, że liczba mutacji w czasie rośnie w sposób liniowy, to liczba obserwowanych różnic rośnie liniowo tylko na początku (dla małej liczby różnic) a później coraz wolniej, ponieważ coraz więcej zmian wydarza się w tych samych miejscach. Liczba różnic zmienia się, dla sekwencji o równych proporcjach rodzajów nukleotydów, do wartości 3/4 liczby nukleotydów, przy czym zmierza do tej granicy coraz wolniej. Trzeba też pamiętać o tym, że zasady prawdopodobieństwa wskazują, że dla dwu losowo wybranych sekwencji DNA o tej samej długości 1/4 miejsc powinna być zgodna.</p>
+<p>[TODO: zrobić symulację mutacji i różnic między sekwencjami]</p>
+<p>Jak widać, prosta metoda obliczania różnic między sekwencjami jest zawodna. Konieczne zatem okazało się stworzenie modeli, które w bardziej realistyczny sposób pozwalałyby oszacować odległości ewolucyjne.
+Poniżej znajduje się opis kilku, najpopularniejszych o różnym stopniu skomplikowania.</p>
+<!---
+your comment goes here
+and here
+-->
+<a class="header" href="#model-junkes-cantor-jc-jc69" id="model-junkes-cantor-jc-jc69"><h2>Model Junkes-Cantor (JC, JC69)</h2></a>
+<p>Najprostszy model, nazwany od nazwisk autorów <strong>modelem Junkesa-Cantora</strong> (w skrócie <strong>JC</strong>, lub <strong>JC69</strong> uwzględniając rok publikacji: 1969) oparty jest na założeniu, że nukleotydy mogą ulegać podmianie każdy z każdym z takim samym prawdopodobieństwem. Można to przedstawić za pomocą macierzy:</p>
+<table><thead><tr></tr></thead><tbody>
+<tr><td align="center">     </td><td align="center">  T             </td><td align="center">  C             </td><td align="center">           A    </td><td align="center">           G    </td></tr>
+<tr><td align="center">  T  </td><td align="center"> $$     -    $$ </td><td align="center"> $$ \alpha $$   </td><td align="center"> $$ \alpha $$   </td><td align="center"> $$ \alpha $$   </td></tr>
+<tr><td align="center">  C  </td><td align="center"> $$ \alpha $$   </td><td align="center"> $$     -    $$ </td><td align="center"> $$ \alpha $$   </td><td align="center"> $$ \alpha $$   </td></tr>
+<tr><td align="center">  A  </td><td align="center"> $$ \alpha $$   </td><td align="center"> $$ \alpha $$   </td><td align="center"> $$     -    $$ </td><td align="center"> $$ \alpha $$   </td></tr>
+<tr><td align="center">  G  </td><td align="center"> $$ \alpha $$   </td><td align="center"> $$ \alpha $$   </td><td align="center"> $$ \alpha $$   </td><td align="center"> $$     -    $$ </td></tr>
+</tbody></table>
+<p>Wartość $$ \alpha $$ oznacza prawdopodobieństwo zmiany jednego nukleotydu w drugi w określonej jednostce czasu na przykład na rok. Wynika z tego, że prawdopodobieństwo zmiany danego nukleotydu w jakikolwiek inny nukleotyd w danym okresie czasu wynosi:</p>
+<p>$$ r=3\alpha $$</p>
+<p>Z kolei odległość między dwoma sekwencjami po czasie $$ t $$ będzie wynosić:</p>
+<p>$$ d=3\alpha t$$</p>
+<p>Wartości, tu oznaczone znakiem <code>-</code>, na przekątnych wynoszą ujemną sumę wartości w rzędach. W powyższym przypadku będzie to  $$-3\alpha$$ a np. dla modelu
+K80 (poniżej) jest to $$ -\alpha -2\beta $$ itd.</p>
+<!--
+Rozważmy teraz dwie sekwencje, które początkowo są identyczne ale później ewoluują niezależnie gromadząc różnice. Proporcję identycznych nukleotydów (w tych samych miejscach) w danym momencie oznaczmy jako $$ q_{t} $$. Proporcja miejsc z różnymi nukleotydami wyniesie zatem $$ p_{t}=1-q_{t} $$.
+Skoro szansa, że dany nukleotyd zmutuje po upływie kolejnej jednostki czasu ($$ t+1 $$) wynosi $$ r^2 $$, zatem prawdopodobieństwo, że się nie zmieni równe jest: 
+<p>$$ (1-r)^2 = 1^2 + 2r + r^2 $$</p>
+<p>Ponieważ wartość $$ r $$ jest mała, można $$ r^2 $$ pominąć i uprościć wzór do postaci:</p>
+<p>$$ 1-2r $$.</p>
+<p>Jakie z kolei jest prawdopodobieństwo, że dwa różne nukleotydy (np. <code>A</code> i <code>T</code>) w obu sekwencjach staną się takie same? Może się to zdarzyć na dwa sposoby:</p>
+<ol>
+<li><code>A</code> zmienia się w <code>T</code> a <code>T</code> się nie zmienia</li>
+<li><code>T</code> zmienia się w <code>A</code> a <code>A</code> się nie zmienia</li>
+</ol>
+<p>Ignorujemy tu możliwość, że oba nukleotydy mutują w taki sam trzeci nukleotyd. Szansa każdego z dwu przypadków jest taka sama i jest ona iloczynem dwu wydarzeń: zmiany jednego nukleotydu i braku tej zmiany w drugim. Możemy ją wyrazić wzorem: $$ \alpha (1-r) $$.</p>
+<p>Ponieważ $$ r=3\alpha $$ to $$ \alpha (1-r) = \frac{r(1-r)}{3} $$.</p>
+<p>Po dodaniu obu prawdopodobieństw otrzymujemy: $$ \frac{2r(1-r)}{3} = \frac{2r - 2r^2}{3} $$.</p>
+<p>Jeśli zignorujemy $$ r^2 $$ wzór na ujednolicenie pozycji w obu sekwencjach wyniesie (w przybliżeniu): $$ \frac{2}{3}r $$</p>
+<p>Wzór na udział takich samych nukleotydów w poszczególnych pozycjach obu sekwencji po upływie jednostki czasu powinien równać się sumie prawdopodobieństwa braku zmiany pomnożonej przez udział nukleotydów identycznych oraz prawdopodobieństwa ujednolicenia nukleotydów pomnożonych przez udział miejsc z różnymi nukleotydami:</p>
+<p>$$ p_{t+1}=(1-2r)q_{t} + \frac{2}{3}r(1-q_{t}) $$</p>
+<p>Przekształćmy to równanie tak, aby otrzymać wzór na zmianę wartości $$ q $$ w odcinku czasu:</p>
+<p>$$ p_{t+1}=q_{t} - 2r q_{t} + \frac{2}{3}r - \frac{2}{3}rq_{t} $$</p>
+<p>$$ p_{t+1}=q_{t} - \frac{6}{3}r q_{t} - \frac{2}{3}r q_{t} + \frac{2}{3}r  $$</p>
+<p>$$ p_{t+1}=q_{t} - \frac{8}{3}r q_{t} + \frac{2}{3}r  $$</p>
+<p>$$ p_{t+1} - q_{t} = \frac{2r}{3}- \frac{8r}{3}q_{t} $$</p>
+<p>Otrzymany wzór możemy przekształcić w równanie różniczkowe:</p>
+<p>$$ \frac{dq}{dt} = \frac{2r}{3} - \frac{8r}{3}q $$</p>
+<p>Dla wartości początkowych <em>q</em> = 1 i <em>t</em>=0 rozwiązaniem tego równania będzie:</p>
+<p>$$ q = 1 - \frac{3}{4}(1 - e^{\frac{-8rt}{3}}) $$</p>
+<p>$$ 2rt $$ jest spodziewaną liczbą mutacji dla dwu sekwencji. Po oznaczeniu jej literą  $$d $$ i przekształceniu wzoru tak aby móc ją wyliczyć z wartości $$ p $$ otrzymamy równanie:</p>
+<p>$$ d = -\frac{3}{4}ln (1 - \frac{4}{3} p) $$</p>
+<p>Teraz można wzór zmodyfikować dla obserwowanej wartości $$ p $$ ($$ p = 1 -q $$), którą oznaczymy jako $$ \hat{p} $$ otrzymując wzór na spodziewany dystans między sekwencjami ($$ \hat{d} $$)</p>
+<p>$$ \hat{d} = -\frac{3}{4}ln (1 - \frac{4}{3} \hat{p}) $$
+--&gt;</p>
+<a class="header" href="#model-kimura-k80" id="model-kimura-k80"><h2>Model Kimura (K80)</h2></a>
+<p>Model Kimury zakłada, że prawdopodobieństwo wystąpienia tranzycji i transwersji jest różne. Tranzycje to zmiana puryny w inną purynę (<code>A</code> ↔ <code>G</code>) lub pirymidyny w pirymidynę (<code>T</code> ↔ <code>C</code>), transwersje polegają na zmianie puryny w pirymidynę lub odwrotnie (<code>A</code> ↔ <code>C</code>, <code>T</code> ↔ <code>G</code>, <code>A</code> ↔ <code>T</code>, <code>C</code> ↔ <code>G</code>).</p>
+<p>Na poniższej ilustracji tranzycje zaznaczono zielonymi strzałkami a transwersje czerwonymi:</p>
+<p><img src="pics-modele/substytucje.png" alt="Tranzycje i transwersje" /></p>
+<p>Macierz prawdopodobieństw substytucji dla modelu Kimury wygląda następująco:</p>
+<table><thead><tr></tr></thead><tbody>
+<tr><td align="center">     </td><td align="center">  T             </td><td align="center">  C             </td><td align="center">           A    </td><td align="center">           G    </td></tr>
+<tr><td align="center">  T  </td><td align="center"> $$     -    $$ </td><td align="center"> $$ \alpha $$   </td><td align="center"> $$ \beta $$    </td><td align="center"> $$ \beta $$    </td></tr>
+<tr><td align="center">  C  </td><td align="center"> $$ \alpha $$   </td><td align="center"> $$     -    $$ </td><td align="center"> $$ \beta $$    </td><td align="center"> $$ \beta $$    </td></tr>
+<tr><td align="center">  A  </td><td align="center"> $$ \beta $$    </td><td align="center"> $$ \beta $$    </td><td align="center"> $$     -    $$ </td><td align="center"> $$ \alpha $$   </td></tr>
+<tr><td align="center">  G  </td><td align="center"> $$ \beta $$    </td><td align="center"> $$ \beta $$    </td><td align="center"> $$ \alpha $$   </td><td align="center"> $$     -    $$ </td></tr>
+</tbody></table>
+<p>Prawdopodobieństwo tranzycji oznaczono jako $$ \alpha $$ a transwersji literą $$ \beta $$</p>
+<p>Ponieważ badania rzeczywistych częstości substytucji wskazują, że zwykle tranzycje są częstsze niż transwersje, $$ \alpha $$ przyjmuje zazwyczaj większą wartość niż $$ \beta $$.</p>
+<p>W powyższym modelu spodziewana liczba tranzycji przypadających na miejsce w sekwencji wynosi $$ \alpha t $$, natomiast transwersji równe jest  $$ 2\beta $$, toteż dystans miedzy sekwencjami po czasie $$ t $$ wyniesie $$ d=(\alpha + 2\beta)t $$.</p>
+<a class="header" href="#model-felenstein-f81" id="model-felenstein-f81"><h2>Model Felenstein (F81)</h2></a>
+<p>Ten model jest rozwinięciem modelu JC, uwzględnia jednak fakt, że w realnie występujących sekwencjach poszczególne rodzaje nukleotydów występują w różnych częstościach, które oznaczymy tu jako: $$ \pi_{T} $$, $$ \pi_{C} $$, $$ \pi_{A} $$ oraz $$ \pi_{G} $$, prawdopodobieństwo zmian pozostaje stałe:</p>
+<table><thead><tr></tr></thead><tbody>
+<tr><td align="center">     </td><td align="center">  T             </td><td align="center">  C             </td><td align="center">           A    </td><td align="center">           G    </td></tr>
+<tr><td align="center">  T  </td><td align="center"> $$     -    $$ </td><td align="center"> $$ \alpha\pi_{C} $$   </td><td align="center"> $$ \alpha\pi_{A} $$    </td><td align="center"> $$ \alpha\pi_{G} $$    </td></tr>
+<tr><td align="center">  C  </td><td align="center"> $$ \alpha\pi_{T} $$   </td><td align="center"> $$     -    $$ </td><td align="center"> $$ \alpha\pi_{A} $$    </td><td align="center"> $$ \alpha\pi_{G} $$    </td></tr>
+<tr><td align="center">  A  </td><td align="center"> $$ \alpha\pi_{T} $$    </td><td align="center"> $$ \alpha\pi_{C} $$    </td><td align="center"> $$     -    $$ </td><td align="center"> $$ \alpha\pi_{G} $$   </td></tr>
+<tr><td align="center">  G  </td><td align="center"> $$ \alpha\pi_{T} $$    </td><td align="center"> $$ \alpha\pi_{C} $$    </td><td align="center"> $$ \alpha\pi_{A} $$   </td><td align="center"> $$     -    $$ </td></tr>
+</tbody></table>
+<a class="header" href="#model-hasegawa-kishino-i-yano-hky-hky85" id="model-hasegawa-kishino-i-yano-hky-hky85"><h2>Model Hasegawa, Kishino i Yano (HKY, HKY85)</h2></a>
+<p>Kolejny model z przedstawionych, uwzględnia zarówno różnice występowania poszczególnych rodzajów nukleotydów jak i różnice prawdopodobieństw tranzycji i transwersji:</p>
+<table><thead><tr></tr></thead><tbody>
+<tr><td align="center">     </td><td align="center">  T             </td><td align="center">  C             </td><td align="center">           A    </td><td align="center">           G    </td></tr>
+<tr><td align="center">  T  </td><td align="center"> $$     -    $$ </td><td align="center"> $$ \alpha\pi_{C} $$   </td><td align="center"> $$ \beta\pi_{A} $$    </td><td align="center"> $$ \beta\pi_{G} $$    </td></tr>
+<tr><td align="center">  C  </td><td align="center"> $$ \alpha\pi_{T} $$   </td><td align="center"> $$     -    $$ </td><td align="center"> $$ \beta\pi_{A} $$    </td><td align="center"> $$ \beta\pi_{G} $$    </td></tr>
+<tr><td align="center">  A  </td><td align="center"> $$ \beta\pi_{T} $$    </td><td align="center"> $$ \beta\pi_{C} $$    </td><td align="center"> $$     -    $$ </td><td align="center"> $$ \alpha\pi_{G} $$   </td></tr>
+<tr><td align="center">  G  </td><td align="center"> $$ \beta\pi_{T} $$    </td><td align="center"> $$ \beta\pi_{C} $$    </td><td align="center"> $$ \alpha\pi_{A} $$   </td><td align="center"> $$     -    $$ </td></tr>
+</tbody></table>
+<a class="header" href="#model-tamura-i-nei-tn93" id="model-tamura-i-nei-tn93"><h2>Model Tamura i Nei (TN93)</h2></a>
+<p>Model TN93 jest podobny do modelu HKY ale rozróżnia częstość występowania tranzycji <code>T</code> ↔ <code>C</code> oraz <code>A</code> ↔ <code>G</code>.</p>
+<table><thead><tr></tr></thead><tbody>
+<tr><td align="center">     </td><td align="center">  T             </td><td align="center">  C             </td><td align="center">           A    </td><td align="center">           G    </td></tr>
+<tr><td align="center">  T  </td><td align="center"> $$     -    $$ </td><td align="center"> $$ \alpha_{1}\pi_{C} $$   </td><td align="center"> $$ \beta\pi_{A} $$    </td><td align="center"> $$ \beta\pi_{G} $$    </td></tr>
+<tr><td align="center">  C  </td><td align="center"> $$ \alpha_{1}\pi_{T} $$   </td><td align="center"> $$     -    $$ </td><td align="center"> $$ \beta\pi_{A} $$    </td><td align="center"> $$ \beta\pi_{G} $$    </td></tr>
+<tr><td align="center">  A  </td><td align="center"> $$ \beta\pi_{T} $$    </td><td align="center"> $$ \beta\pi_{C} $$    </td><td align="center"> $$     -    $$ </td><td align="center"> $$ \alpha_{2}\pi_{G} $$   </td></tr>
+<tr><td align="center">  G  </td><td align="center"> $$ \beta\pi_{T} $$    </td><td align="center"> $$ \beta\pi_{C} $$    </td><td align="center"> $$ \alpha_{2}\pi_{A} $$   </td><td align="center"> $$     -    $$ </td></tr>
+</tbody></table>
+<a class="header" href="#model-general-time-reversible-gtr" id="model-general-time-reversible-gtr"><h2>Model <em>General Time Reversible</em> (GTR)</h2></a>
+<p>Nazwa tego modelu wskazuje, że ma on charakter ogólny i zakłada odwracalność (substytucji) w czasie. Odwracalność w tym przypadku oznacza, że substytucje dla danej pary nukleotydów wydarzają się z takim samym prawdopodobieństwem w obie strony. A więc np. szansa, że <code>A</code> zmieni się w <code>T</code> jest taka sama jak mutacja <code>T</code> w <code>A</code>. Natomiast ogólność oznacza, że model uwzględnia indywidualne wartości frekwencji poszczególnych nukleotydów a także prawdopodobieństw mutacji pomiędzy parami zasad. Macierz dla modelu GTR wygląda zatem tak:</p>
+<table><thead><tr></tr></thead><tbody>
+<tr><td align="center">     </td><td align="center">  T             </td><td align="center">  C             </td><td align="center">           A    </td><td align="center">           G    </td></tr>
+<tr><td align="center">  T  </td><td align="center"> $$     -    $$ </td><td align="center"> $$ \alpha\pi_{C} $$   </td><td align="center"> $$ \beta\pi_{A} $$    </td><td align="center"> $$ \gamma\pi_{G} $$    </td></tr>
+<tr><td align="center">  C  </td><td align="center"> $$ \alpha\pi_{T} $$   </td><td align="center"> $$     -    $$ </td><td align="center"> $$ \delta\pi_{A} $$    </td><td align="center"> $$ \epsilon\pi_{G} $$    </td></tr>
+<tr><td align="center">  A  </td><td align="center"> $$ \beta\pi_{T} $$    </td><td align="center"> $$ \delta\pi_{C} $$    </td><td align="center"> $$     -    $$ </td><td align="center"> $$ \eta\pi_{G} $$   </td></tr>
+<tr><td align="center">  G  </td><td align="center"> $$ \gamma\pi_{T} $$    </td><td align="center"> $$ \epsilon\pi_{C} $$    </td><td align="center"> $$ \eta\pi_{A} $$   </td><td align="center"> $$     -    $$ </td></tr>
+</tbody></table>
+<p>Można powiedzieć, że model GTR jest najbardziej uniwersalny z przedstawionych i pozwala na opis ewolucji najbardziej zbliżony do rzeczywistego.</p>
+<a class="header" href="#zróżnicowane-tempo-substytucji-w-różnych-odcinkach-sekwencji-g-gamma----gamma--oraz-i" id="zróżnicowane-tempo-substytucji-w-różnych-odcinkach-sekwencji-g-gamma----gamma--oraz-i"><h2>Zróżnicowane tempo substytucji w różnych odcinkach sekwencji (G (gamma - $$ \Gamma $$) oraz I)</h2></a>
+<p>Większość z powyższych modeli pozwala zróżnicować tempo ewolucji w poszczególnych miejscach sekwencji DNA ze względu na rodzaj substytucji ale nie uwzględnia ich położenia. W rzeczywistości badana sekwencja, zwłaszcza jeśli zawiera kodujące obszary, może ewoluować z różną szybkością w poszczególnych odcinkach. Może to wynikać z tego, że mutacje zdarzają się z różną częstotliwością w różnych odcinkach DNA ale także z działania doboru naturalnego. Mutacje, które wydarzą się w miejscach kodujących kluczowe fragmenty białka, często powodują jego inaktywację lub nieprawidłowe funkcjonowanie, w związku z czym nosiciele takich mutacji giną lub zostawiają mniej potomstwa niż konkurenci. W konsekwencji mutacje w tych miejscach zostają usunięte z populacji i nie pozostawiają śladów w DNA następnych pokoleń. Tak więc, porównując homologiczne sekwencje różnych organizmów, zazwyczaj stwierdzimy, że niektóre odcinki będą bardziej zmienne, inne mniej.</p>
+<p>Co więcej, może się okazać, że w badanych sekwencjach niektóre pozycje w ogóle nie będą wykazywały zmienności. Można to zauważyć na poniższej ilustracji pokazującej fragment sekwencji mitochondrialnego genu <em>atp6</em> badanych gatunków roślin.</p>
+<p><img src="pics-modele/zmiennosc.png" alt="Zmienne tempo ewolucji" /></p>
+<p>Zwłaszcza dotyczy to sekwencji kodujących, co wynika z właściwości kodu genetycznego. Jak wiadomo, zmiany w kodonach na 1, 2 i 3 miejscu mają różny wpływ na ich znaczenie. Na przykład prolinę kodują cztery kodony różniące się w trzeciej pozycji. Zatem każda zmiana 1 i 2 pozycji kodonu powoduje zmianę jego znaczenia, natomiast żadna zmiana na ostatnim miejscu nie ma na niego wpływu. Jeśli zatem od obecności proliny w konkretnym miejscu zależy prawidłowe działanie jakiegoś kluczowego dla organizmu białka, możemy się spodziewać, że w kodującym ją kodonie na 1 i 2 miejscu nie znajdziemy zmienności, natomiast może być ona widoczna na 3 miejscu.</p>
+<p>Uwzględnienie powyższych zjawisk pozwala na bardziej realistyczne oszacowanie odległości ewolucyjnych. Jeśli w badanych sekwencjach występują fragmenty o zróżnicowanym tempie zmian lub w ogóle nie ewoluujące i nie uwzględnimy tego w obliczeniach, otrzymamy niedoszacowane wartości odległości ewolucyjnych. Jest ono tym większe, im większe są odległości. Dlatego w analizach filogenetycznch oprócz dobrania odpowiedniego modelu substytucji, uwzględnia się także rozkład gamma (G, $$ \Gamma $$) pozwalający uwzględnić zmienne tempo ewolucji oraz parametr I opisujący udział miejsc niezmiennych. O ile oczywiście badane sekwencje tego wymagają. Jeśli w publikacji znajdziemy opis stosowanego modelu, który będzie wyglądał np. tak: <code>GTR+G+I</code> albo: <code>GTR+InvGamma</code> będzie to oznaczało, że zastosowano model <code>GTR</code> z uwzględnieniem zmiennego tempa ewolucji w sekwencji oraz miejsc niezmiennych.</p>
+<a class="header" href="#rozkład-gamma-g--gamma-" id="rozkład-gamma-g--gamma-"><h3>Rozkład gamma (G, $$ \Gamma $$)</h3></a>
+<p>Parametr gamma oznaczany łacińską literą G lub grecką $$ \Gamma $$ pozwala uwzględnić zmienne tempo ewolucji w różnych fragmentach badanych nici DNA. Stosuje się w tym celu rozkład gamma opisany wzorem:</p>
+<p>$$ f(r,a) = const \cdot r^{\alpha - 1} e^{-\alpha r} $$</p>
+<p>Gdzie $$ r $$ - tempo podstawień względem średniego dla całej sekwencji, $$ \alpha $$ - parametr określający kształt krzywej (rozkładu).</p>
+<p>Poniższa ilustracja pokazuje kilka wykresów rozkładu gamma dla różnych wartości $$ \alpha $$.</p>
+<p><img src="pics-modele/wartosci-alfa-gamma.png" alt="Rozkład gamma" /></p>
+<p>Można na nim zauważyć jaki wpływ mają jej różne wartości na kształt krzywej a co za tym idzie na charakterystkę zmienności ewolucyjnej różnych pozycji w sekwencji DNA:</p>
+<p>$$ \alpha $$ &lt; 1 - wartości rozkładu są tym większe im znajdują się bliżej $$ r $$ = 0, co wskazuje na duży udział pozycji mało zmiennych i niezmiennych</p>
+<p>$$ \alpha $$ = 1 - krzywa równoważna wykładniczej</p>
+<p>$$ \alpha $$ &gt; 1 - wykresy przyjmują kształt ,,dzwonowaty''- widać maksimum które wraz z rosnącymi wartościami $$ \alpha $$, znajduje coraz bliżej  $$ r $$ = 1, przyjmuje coraz wyższe wartości a także ,,pik'' się zwęża. Oznacza to, że wysokie wartości $$ \alpha $$ wskazują na bardzo małe zróżnicowanie tempa ewolucji dla różnych pozycji sekwencji.</p>
+<p>Co prawda nie ma biologicznego powodu dla którego zmienność tempa ewolucji miałaby akurat pasować do rozkładu gamma, jednak jego zastosowanie pozwala na wygodne, bo wymagające sprecyzowania jednego parametru ($$ \alpha $$), przybliżenie rzeczywistości.</p>
+<a class="header" href="#parametr-i-invariable-sites" id="parametr-i-invariable-sites"><h3>Parametr I (Invariable sites)</h3></a>
+<p>Jak sama nazwa wskazuje, parametr I określa udział miejsc, które nie wykazują zmienności. Należy przy tym pamiętać, że niekoniecznie rzeczywiście nie podlegają one ewolucji. Jeśli będziemy badać taksony blisko ze sobą spokrewnione a dane miejsce w sekwencji DNA ewoluuje powoli, to może nie wykazywać zmienności, ponieważ ,,nie zdążyło'' jeszcze zmutować.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../wyklady/03-Dopasowanie_sekwencji.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../wyklady/05-Drzewa_filogenetyczne.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="../wyklady/03-Dopasowanie_sekwencji.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="../wyklady/05-Drzewa_filogenetyczne.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

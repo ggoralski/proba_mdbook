@@ -1,0 +1,365 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Dopasowanie modelu substytucji - Filogenetyka roślin</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="../wyklady/02-Podstawy_filogenetyki.html"><strong aria-hidden="true">1.</strong> Wstęp do filogenetyki molekularnej i tworzenia drzew filogenetycznych</a></li><li><a href="../wyklady/03-Dopasowanie_sekwencji.html"><strong aria-hidden="true">2.</strong> Dopasowanie sekwencji</a></li><li><a href="../wyklady/04-Modele_ewolucji_molekularnej.html"><strong aria-hidden="true">3.</strong> Modele ewolucji molekularnej</a></li><li><a href="../wyklady/05-Drzewa_filogenetyczne.html"><strong aria-hidden="true">4.</strong> Drzewa filogenetyczne</a></li><li><a href="../wyklady/06-HGT.html"><strong aria-hidden="true">5.</strong> Horyzontalny transfer genów (HGT)</a></li><li><a href="../cwiczenia/11-praca_w_linuksie.html"><strong aria-hidden="true">6.</strong> Podstawy pracy w systemie Linux</a></li><li><a href="../cwiczenia/12-pliki_tekstowe.html"><strong aria-hidden="true">7.</strong> Praca z plikami tekstowymi w linii komend</a></li><li><a href="../cwiczenia/13-edytory_tekstu.html"><strong aria-hidden="true">8.</strong> Edytory tekstu</a></li><li><a href="../cwiczenia/14-skrypty.html"><strong aria-hidden="true">9.</strong> Skrypty powłoki</a></li><li><a href="../cwiczenia/15-warsztat.html"><strong aria-hidden="true">10.</strong> Warsztat pracy</a></li><li><a href="../cwiczenia/16-genbank-www.html"><strong aria-hidden="true">11.</strong> Bazy sekwencji DNA, GenBank</a></li><li><a href="../cwiczenia/17-genbank-cli.html"><strong aria-hidden="true">12.</strong> Pobieranie sekwencji z bazy GenBank i praca w plikami FASTA przy pomocy linii komend</a></li><li><a href="../cwiczenia/18-blast.html"><strong aria-hidden="true">13.</strong> BLAST - wyszukiwanie podobnych sekwencji</a></li><li><a href="../cwiczenia/19-dopasowanie_sekwencji.html"><strong aria-hidden="true">14.</strong> Dopasowanie sekwencji</a></li><li><a href="../cwiczenia/20-dopasowanie_modelu.html" class="active"><strong aria-hidden="true">15.</strong> Dopasowanie modelu substytucji</a></li><li><a href="../cwiczenia/21-konstruowanie-drzew.html"><strong aria-hidden="true">16.</strong> Konstruowanie drzew</a></li><li><a href="../cwiczenia/22-wizualizacja-drzew.html"><strong aria-hidden="true">17.</strong> Wizualizacja drzew</a></li><li><a href="../cwiczenia/23-zegar-molekularny.html"><strong aria-hidden="true">18.</strong> Drzewa filogenetyczne i zegar molekularny</a></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Filogenetyka roślin</h1> 
+
+                        <div class="right-buttons">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="#dopasowanie-modelu-ewolucji-molekularnej" id="dopasowanie-modelu-ewolucji-molekularnej"><h1>Dopasowanie modelu ewolucji molekularnej</h1></a>
+<p>Mając dopasowane zestawy sekwencji powoli dochodzimy do etapu konstruowania drzew filogenetycznych. Najpierw jednak należy do naszego zestawu sekwencji dopasować odpowiedni model ewolucji molekularnej (substytucji).</p>
+<a class="header" href="#dopasowanie-modelu-ewolucji-molekularnej-jmodeltest-2---gui" id="dopasowanie-modelu-ewolucji-molekularnej-jmodeltest-2---gui"><h2>Dopasowanie modelu ewolucji molekularnej: jModelTest 2 - GUI</h2></a>
+<p>Niektóre programy konstruujące drzewa filogenetyczne, jak na przykład omawiany dalej <code>iqtree</code> potrafią same oszacować, który model jest odpowiedni dla danego zestawu sekwencji.  W innych przypadkach powinniśmy wcześniej go znaleźć. Jednym z programów, które dobrze się do tego nadają jest <code>jModelTest 2</code>. Można go uruchomić z linii komend ale posiada też interfejs graficzny.</p>
+<p>Program można pobrać ze strony <a href="https://github.com/ddarriba/jmodeltest2/releases">https://github.com/ddarriba/jmodeltest2/releases</a>.</p>
+<p>Pobrany plik należy rozpakować. W powstałym katalogu znajdziemy m. in. pliki uruchamiające program. Warto też pobrać obszerny manual. Czynności te można oczywiście wykonać z linii komend:</p>
+<pre><code>cd ~
+wget https://github.com/ddarriba/jmodeltest2/files/157117/jmodeltest-2.1.10.tar.gz
+# rozpakowanie pliku
+tar -xvzf jmodeltest-2.1.10.tar.gz
+# zmiana nazwy katalogu na bardziej przyjazny i uniwersalny
+mv jmodeltest-2.1.10 jmodeltest
+# pobranie manuala do katalogu programu
+cd jmodeltest
+wget https://github.com/ddarriba/jmodeltest2/files/157130/manual.pdf
+</code></pre>
+<p>Powyższe linki kierują do najnowszej wersji programu w chwili pisania tego skryptu. Warto najpierw sprawdzić czy w międzyczasie nie ukazała się kolejna wersja i w takim wypadku zaktualizować adresy do plików.</p>
+<p>Teraz wejdźmy do katalogu programu:</p>
+<pre><code>$: cd jmodeltest
+$: ls
+CHANGELOG     INSTALL         resources
+conf          jModelTest.jar  runjmodeltest-cluster.sh
+COPYING       lib             runjmodeltest-gui.bat
+example-data  log             runjmodeltest-gui.sh
+exe           manual.pdf      THIRDPARTYLICENSES
+extra         README          trees
+</code></pre>
+<p>Uruchamiany plik programu to <code>jModelTest.jar</code>. Jest to program napisany w języku Java i uruchamiamy go wydając komendę:</p>
+<pre><code>java -jar jModelTest.jar
+</code></pre>
+<p>Nie jest to zbyt wygodne, dlatego użyjemy dostarczonego skryptu <code>runjmodeltest-gui.sh</code> (sprawdź jego zawartość).</p>
+<pre><code>./runjmodeltest-gui.sh
+</code></pre>
+<p>Możesz oczywiście zmienić jego nazwę na jeszcze wygodniejszą, np <code>run.sh</code>.</p>
+<p>Po uruchomieniu programu pojawia się okno:</p>
+<p><img src="dopasowanie_modelu/jmodeltest2-01.png" alt="jModelTest - okno główne" /></p>
+<p>Teraz trzeba wybrać zestaw dopasowanych (!) sekwencji. Wybieramy z menu <code>Load DNA alignment</code> (lub używamy skrótu <code>&lt;Ctrl&gt;+O</code>).</p>
+<p><img src="dopasowanie_modelu/jmodeltest2-02.png" alt="jModelTest - wybieranie zestawu dopasowanych sekwencji" /></p>
+<p>Przejdź do katalogu, w którym zostały zapisane dopasowane sekwencje z poprzedniej lekcji.
+Niestety, okienko służące do wybierania plików domyślnie wyświetla tylko pliki o nazwach  <code>*.phy, *.fas, *.nex</code>, jeśli więc nasze zestawienie zostało zapisane z przedłużeniem <code>fasta</code> to nie będzie widoczne.</p>
+<p><img src="dopasowanie_modelu/jmodeltest2-03.png" alt="jModelTest - wybieranie pliku" /></p>
+<p>Nie jest to duży problem, wystarczy zmienić opcję na <code>All files</code>:</p>
+<p><img src="dopasowanie_modelu/jmodeltest2-04.png" alt="jModelTest - widoczne pliki *.fasta" /></p>
+<p>Wybierz plik w którym znajdują się dopasowane i przycięte sekwencje <code>atp6</code> tu: <code>atp6-dopasowane.fasta</code>.</p>
+<p>Po otwarciu pliku a dole okna głównego pojawia się informacja dotycząca liczby sekwencji i miejsc:</p>
+<p><img src="dopasowanie_modelu/jmodeltest2-05.png" alt="jModelTest - Załadowany zestaw sekwencji" /></p>
+<p>Przy okazji zwróć uwagę na komunikat na dole ekranu w czerwonym kolorze. Zanim znajdziemy model ewolucji musimy obliczyć ,,Likelihood scores'' co można przetłumaczyć jako ,,Wyniki wiarygodności''.</p>
+<p><img src="dopasowanie_modelu/jmodeltest2-06.png" alt="jModelTest - Obliczanie wyników wiarygodności" /></p>
+<p>Pokazuje się okno w którym można ustawić parametry:</p>
+<p><img src="dopasowanie_modelu/jmodeltest2-07.png" alt="jModelTest - Ustawianie parametrów wiarygodności" /></p>
+<p>Oczywiście wartość ,,Number of processors requested'' odpowiadająca liczbie rdzeni procesora(ów), które mogą być użyte w obliczeniach zależy od parametrów komputera na którym uruchamiamy obliczenia. Nie będę omawiał wszystkich sekcji, zwrócę jedynie uwagę na ,,Number of substitution schemes'' gdzie wybieramy liczbę testowanych schematów substytucji. Nie jest to liczba testowanych modeli, ponieważ dany schemat podstawień może uwzględniać lub nie zmienną frekwencję nukleotydów. Na przykład modele JC i F81, mają taki sam schemat substytucji, zakładają takie same prawdopodobieństwo zmiany każdej zasady w inną ale w F81 poszczególne zasady mogą mieć różne frekwencje, czego nie uwzględnia JC. Tak więc wybierając wartość 11 tak naprawdę testowanych jest 14 modeli (o ile zaznaczona jest opcja ,,Base frequences''). Dodatkowo domyślnie badane są parametry G i I (sekcja ,,Rate variation'') oraz ich kombinacja, co daje w tym przypadku 88 możliwości.</p>
+<p>Mogło by się wydawać, że im większą wartość zaznaczymy, tym lepiej. Jednak niekoniecznie jest to prawda. Jednym z powodów ograniczenia testowanej liczby modeli jest czas obliczeń. Czasem jednak po prostu program, który będziemy później używać do wyliczania drzew, przyjmuje ograniczony zestaw modeli (np. <code>mrBayes</code>).</p>
+<p>Dokładniejszy opis poszczególnych opcji można znaleźć w manualu jModelTest, przy opisie parametrów podawanych przy uruchamianiu programu z linii komend.</p>
+<p>Po ustaleniu opcji, klikamy ,,Compute Likelih...''</p>
+<p>Pokazuje się okno pokazujące postęp obliczeń:</p>
+<p><img src="dopasowanie_modelu/jmodeltest2-08.png" alt="jModelTest - postęp obliczeń" /></p>
+<p>Po zakończeniu obliczeń w oknie głównym pokazują się wyniki dla poszczególnych modeli i ich parametrów.
+Nie będziemy ich tu omawiać, ale przejrzyj je i spróbuj z nich jak najwięcej odczytać.</p>
+<p>Wyniki dla poszczególnych modeli można wygenerować w wersji tabelarycznej wybierając w menu:</p>
+<p><code>Results-&gt;Show results table</code></p>
+<p><img src="dopasowanie_modelu/jmodeltest2-09.png" alt="jModelTest - tabela z wynikami" /></p>
+<p>Sprawdź teraz pozycję ,,Analysis'' w menu. Kilka opcji wcześniej nieaktywnych teraz jest odblokowanych.
+Teraz będą nas interesowały dwie: <code>Do AIC calculations...</code> oraz <code>Do BIC calculations...</code>.</p>
+<p><code>AIC</code> (<em>Akaike Information Criterion</em>) oraz <code>BIC</code> (<em>Bayesian Information Criterion</em>) to kryteria wyboru modelu z dostępnych oparte na zasadzie znalezienia tak złożonego modelu jak to potrzebne, ale nie bardziej. Czyli ,,karane'' są modele zbyt złożone, przy czym <code>BIC</code> jest pod tym względem bardziej restrykcyjny. Jak zwykle, na pytanie ,,który jest lepszy'' nie podam jednoznacznej odpowiedzi. Rozważania na ten temat można znaleźć na przykład <a href="https://stats.stackexchange.com/questions/577/is-there-any-reason-to-prefer-the-aic-or-bic-over-the-other">tu</a>.</p>
+<p>Najpierw wybierz <code>Analysis-&gt;Do AIC calculations...</code>.</p>
+<p><img src="dopasowanie_modelu/jmodeltest2-11.png" alt="jModelTest - parametry obliczenia AIC" /></p>
+<p>Pozostawiamy ustawienia domyślne i klikamy `Do AIC calculations``.
+Wynik pojawia się w oknie głównym programu.
+Na górze widać wybrany model i dopasowane do niego parametry:</p>
+<pre><code> Model selected: 
+   Model = GTR+G
+   partition = 012345
+   -lnL = 2120.8289
+   K = 31
+   freqA = 0.2348 
+   freqC = 0.2056 
+   freqG = 0.1950 
+   freqT = 0.3646 
+   R(a) [AC] =  2.2923
+   R(b) [AG] =  1.9116
+   R(c) [AT] =  0.3302
+   R(d) [CG] =  1.2019
+   R(e) [CT] =  4.6955
+   R(f) [GT] =  1.0000
+   gamma shape = 0.3990 
+</code></pre>
+<p>Jak widać, jest to model <code>GTR+G</code></p>
+<p>Poniżej znajduje się coś co wygląda znajomo:</p>
+<pre><code>Tree for the best AIC model = 
+(AY961627_Oryza_sativa:0.02366168,GU075810_Zea_mays:0.01789166,(AY847285_Brassica_juncea:0.02137636,(HQ593780_Ajuga_reptans:0.22926226,((FJ595983_Helianthus_annuus:0.00917802,KU180476_Centaurea_scabiosa:0.00000013):0.00768867,(EU882268_Sapria_himalayana:0.04572619,((HQ593782_Mimulus_guttatus:0.00495932,KX524674_Lindenbergia_siniaca:0.00186868):0.01282359,(AY007817_Daucus_carota:0.02199468,(KC825300_Fragaria_virginiana:0.03215909,KC879635_Magnolia_stellata:0.01610002):0.00190086):0.01009171):0.00901775):0.03013788):0.00218864):0.00652333):0.06453377);
+</code></pre>
+<p>Tak to drzewo zapisane w formacie <code>Newick</code>. Można szybko podejrzeć jego topologię np. na stronie <a href="http://www.trex.uqam.ca/index.php?action=newick">Trex-online</a>.</p>
+<p>Dalej znajduje się tabela z wynikami dla poszczególnych modeli:</p>
+<pre><code>* AIC MODEL SELECTION : Selection uncertainty
+ 
+Model             -lnL    K      AIC       delta       weight   cumWeight
+------------------------------------------------------------------------- 
+GTR+G       2120.82891   31  4303.657820   0.000000    0.427531   0.427531 
+GTR+I+G     2120.16864   32  4304.337280   0.679460    0.304386   0.731916 
+TIM1+G      2124.06649   29  4306.132980   2.475160    0.124020   0.855937 
+TIM1+I+G    2123.49268   30  4306.985360   3.327540    0.080984   0.936921 
+GTR+I       2123.25396   31  4308.507920   4.850100    0.037825   0.974746 
+...
+</code></pre>
+<p>Zwróć uwagę na kolumnę <code>AIC</code>. Wybrany model to ten, który ma najniższą wartość.</p>
+<p>Przejdźmy teraz na koniec wygenerowanych informacji.</p>
+<pre><code>* AIC MODEL SELECTION : Best Model's command line
+ 
+phyml  -i /tmp/jmodeltest1199799651667664719.phy -d nt -n 1 -b 0 --run_id GTR+G -m 012345 -f m -c 4 -a e --no_memory_check -o tlr -s NNI
+</code></pre>
+<p>Tak, to jest podana komenda uruchomienia programu <code>phyml</code>, który generuje drzewa filogenetyczne, wraz z potrzebnymi parametrami.
+Sprawdź zawartość podanego przy parametrze <code>-i</code> pliku. Zapewne u Ciebie będzie miał inną nazwę niż w podanym przykładzie. Zachowaj jego kopię w dogodnym miejscu na później. Teraz możesz wypróbować zaproponowaną komendę i podejrzeć wynik na podanej powyżej stronie internetowej wizualizującej drzewa.</p>
+<p>Sprawdźmy teraz jaki wynik da nam kryterium <code>BIC</code>. Okienko z opcjami również pozostawiamy bez zmian:</p>
+<p><img src="dopasowanie_modelu/jmodeltest2-12.png" alt="jModelTest - parametry BIC" /></p>
+<p>Format wyników jest podobny jak poprzednio, choć wynik inny. W tym przypadku najmniejszą wartość <code>BIC</code> otrzymał model TIM1+G.</p>
+<p>Wejdź teraz w menu do opcji <code>Results-&gt;Show results table</code>. Zauważ, że teraz aktywne stały się zakładki z wynikami <code>AIC</code> i <code>BIC</code>.
+Kliknij w zakładkę <code>AIC</code>. Jak można było przypuszczać, znajdują się tam wyniki w formie tabelarycznej. Model o najlepszym wyniku, czyli najniższej wartości <code>AIC</code> jest zaznaczony na czerwono. Klikając w nagłówek kolumny <code>AIC</code> tabela zostanie posortowana wg. tej wartości, więc ,,zwycięzca'' znajdzie się na szczycie.</p>
+<p><img src="dopasowanie_modelu/jmodeltest2-13.png" alt="jModelTest - tabela z wynikami" /></p>
+<p>Teraz w menu wybierz <code>Results-&gt;Build HTML log</code>.
+Wygenerowany plik zapisz w miejscu domyślnym, czyli w katalogu programu <code>jModelTest 2</code>.
+Otwórz go w przeglądarce internetowej i sprawdź co potrafisz z niego odczytać.
+Można również skorzystać z linków pozwalających podejrzeć wizualizację drzew. Przy czym w zależności od systemu operacyjnego, przeglądarki i ustawień może się ta sztuka nie udać ze względu na zablokowanie apletu Javy.</p>
+<a class="header" href="#dopasowanie-modelu-ewolucji-molekularnej-jmodeltest-2---linia-poleceń" id="dopasowanie-modelu-ewolucji-molekularnej-jmodeltest-2---linia-poleceń"><h2>Dopasowanie modelu ewolucji molekularnej: jModelTest 2 - linia poleceń</h2></a>
+<p>Na razie używaliśmy programu <code>jModelTest 2</code> przez interfejs graficzny. Teraz sprawdźmy jak można uzuskać wyniki przez linię poleceń.</p>
+<p>Uruchom polecenie (dopasuj ścieżki jeśli to konieczne):</p>
+<pre><code>java -jar ~/jmodeltest/jModelTest.jar -d atp6-dopasowane.fasta -g 4 -i -f -AIC -BIC -o atp6-jmodeltest-results.txt
+</code></pre>
+<p>Użyte opcje oznaczają:</p>
+<ul>
+<li><code>-d atp6-dopasowane.fasta</code> - plik wejściowy</li>
+<li><code>-g 4</code> - sprawdź cztery kategorie gamma. <sup id="a1"><a href="#f1">1</a></sup></li>
+<li><code>-i</code> - sprawdź modele z parametrem <code>I</code> (<em>Invariable sites</em>)</li>
+<li><code>-f</code> - sprawdź modele z nierównym udziałem różnych zasad</li>
+<li><code>-AIC</code> - oblicz kryterium <code>AIC</code></li>
+<li><code>-BIC</code> - oblicz kryterium <code>BIC</code></li>
+<li><code>-o atp6-jmodeltest-results.txt</code> - plik w którym zostaną zapisane wyniki.</li>
+</ul>
+<p>Domyślnie program sprawdza trzy pary (-f) modeli, co w raz z parametrami <code>G</code> oraz <code>I</code> daje w sumie 24 testowane modele. Można zwiększyć ich liczbę używając parametru <code>-s</code> i jednej z liczb z zestawu (3, 5, 7, 11, 203). Więcej szczegółów można znaleźć w manualu programu.</p>
+<p>Zgodnie z powyższymi ustawieniami wyniki obliczeń zapisane zostały w pliku <code>atp6-jmodeltest-results.txt</code>. Jeśli chcesz przejść od razu do podsumowania użyj polecenia <code>tail</code>. Z kolei polecenie <code>grep 'phyml'</code> pozwoli znaleźć ustawienia dla programu <code>phyml</code>.</p>
+<p>Programu można użyć także do konwersji pliku z dopasowanymi sekwencjami do formatu <code>PHYLIP</code>, wymaganego przez niektóre programy wyliczające drzewa filogenetyczne (np. <code>phyml</code>). Służy do tego opcja <code>-getPhylip</code>:</p>
+<pre><code>java -jar ~/jmodeltest/jModelTest.jar -d atp6-dopasowane.fasta -getPhylip
+</code></pre>
+<p>Nazwa pliku wynikowego będzie miała przedłużenie <code>.phy</code></p>
+<p>Program posiada jeszcze wiele innych parametrów, warto zajrzeć do manuala.</p>
+<a class="header" href="#dopasowanie-modelu-ewolucji-molekularnej-za-pomocą-programu-iqtree" id="dopasowanie-modelu-ewolucji-molekularnej-za-pomocą-programu-iqtree"><h2>Dopasowanie modelu ewolucji molekularnej za pomocą programu <code>iqtree</code></h2></a>
+<p>Program <a href="http://www.iqtree.org"><code>iqtree</code></a>, będziemy niebawem używać do konstruowania drzew filogenetycznych metodą <em>Maximum Likelihood</em>. Można jednak zastosować go do znalezienia optymanego modelu ewolucji molekularnej. Prosty przykład wygląda tak:</p>
+<pre><code>iqtree -m TESTONLY -nt AUTO -s atp6-dopasowane.fasta
+</code></pre>
+<p>Program wygeneruje kilka plików z wynikami, wśród których znajdziesz także drzewo filogenetyczne.</p>
+<p>Znaczenie użytych opcji:</p>
+<ul>
+<li><code>-m TESTONLY</code> - znajdź model i wyjdź</li>
+<li><code>-nt AUTO</code> - automatycznie dopasuj liczbę użytych wątków podczas obliczeń</li>
+</ul>
+<p>Inną pożyteczną opcją jest <code>-mset</code>, która pozwala m. in. dopasować listę badanych modeli do tych, które są obsługiwane przez niektóre programy.</p>
+<p>Na przykład poniższe polecenie wyszuka model dla programu <code>mrBayes</code>:</p>
+<pre><code>iqtree -m TESTONLY -nt AUTO -mset mrbayes -s atp6-dopasowane.fasta
+</code></pre>
+<p>Jeśli używamy <code>iqtree</code> do wygenerowania drzewa filogenetycznego, znaleziony model zostanie automatycznie użyty w dalszych etapach obliczeń, o czym więcej w następnej części.</p>
+<hr />
+<p><sup><b id="f1">1</b></sup> Ciekawą dyskusję na temat liczby kategorii gamma przy konstruowaniu drzew filogenetycznych można przeczytać <a href="https://www.researchgate.net/post/How_do_you_establish_the_number_of_discrete_gamma_categories_in_ML_tree_construction">tu</a>.
+<a href="#a1">↩</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../cwiczenia/19-dopasowanie_sekwencji.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../cwiczenia/21-konstruowanie-drzew.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="../cwiczenia/19-dopasowanie_sekwencji.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="../cwiczenia/21-konstruowanie-drzew.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

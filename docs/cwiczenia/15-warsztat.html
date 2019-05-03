@@ -1,0 +1,318 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Warsztat pracy - Filogenetyka roślin</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="../wyklady/02-Podstawy_filogenetyki.html"><strong aria-hidden="true">1.</strong> Wstęp do filogenetyki molekularnej i tworzenia drzew filogenetycznych</a></li><li><a href="../wyklady/03-Dopasowanie_sekwencji.html"><strong aria-hidden="true">2.</strong> Dopasowanie sekwencji</a></li><li><a href="../wyklady/04-Modele_ewolucji_molekularnej.html"><strong aria-hidden="true">3.</strong> Modele ewolucji molekularnej</a></li><li><a href="../wyklady/05-Drzewa_filogenetyczne.html"><strong aria-hidden="true">4.</strong> Drzewa filogenetyczne</a></li><li><a href="../wyklady/06-HGT.html"><strong aria-hidden="true">5.</strong> Horyzontalny transfer genów (HGT)</a></li><li><a href="../cwiczenia/11-praca_w_linuksie.html"><strong aria-hidden="true">6.</strong> Podstawy pracy w systemie Linux</a></li><li><a href="../cwiczenia/12-pliki_tekstowe.html"><strong aria-hidden="true">7.</strong> Praca z plikami tekstowymi w linii komend</a></li><li><a href="../cwiczenia/13-edytory_tekstu.html"><strong aria-hidden="true">8.</strong> Edytory tekstu</a></li><li><a href="../cwiczenia/14-skrypty.html"><strong aria-hidden="true">9.</strong> Skrypty powłoki</a></li><li><a href="../cwiczenia/15-warsztat.html" class="active"><strong aria-hidden="true">10.</strong> Warsztat pracy</a></li><li><a href="../cwiczenia/16-genbank-www.html"><strong aria-hidden="true">11.</strong> Bazy sekwencji DNA, GenBank</a></li><li><a href="../cwiczenia/17-genbank-cli.html"><strong aria-hidden="true">12.</strong> Pobieranie sekwencji z bazy GenBank i praca w plikami FASTA przy pomocy linii komend</a></li><li><a href="../cwiczenia/18-blast.html"><strong aria-hidden="true">13.</strong> BLAST - wyszukiwanie podobnych sekwencji</a></li><li><a href="../cwiczenia/19-dopasowanie_sekwencji.html"><strong aria-hidden="true">14.</strong> Dopasowanie sekwencji</a></li><li><a href="../cwiczenia/20-dopasowanie_modelu.html"><strong aria-hidden="true">15.</strong> Dopasowanie modelu substytucji</a></li><li><a href="../cwiczenia/21-konstruowanie-drzew.html"><strong aria-hidden="true">16.</strong> Konstruowanie drzew</a></li><li><a href="../cwiczenia/22-wizualizacja-drzew.html"><strong aria-hidden="true">17.</strong> Wizualizacja drzew</a></li><li><a href="../cwiczenia/23-zegar-molekularny.html"><strong aria-hidden="true">18.</strong> Drzewa filogenetyczne i zegar molekularny</a></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Filogenetyka roślin</h1> 
+
+                        <div class="right-buttons">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="#warsztat-pracy" id="warsztat-pracy"><h1>Warsztat pracy</h1></a>
+<p>Praca bioinformatyczna wymaga dobrej organizacji, a także dokumentacji prowadzonych badań. Warto przy tym trzymać się pewnych schematów i zasad.
+Poniżej przedstawię kilka sugestii opartych na własnych doświadczeniach a także bardzo dobrej książce <a href="http://shop.oreilly.com/product/0636920030157.do">Bioinformatics Data Skills</a>
+autorstwa Vince Bufallo, która zajmuje się między innymi warsztatowymi aspektami pracy bioinformatycznej. Oczywiście nie trzeba się ich sztywno trzymać a raczej traktować je jako wskazówki, które pozwolą wypracować własny, przystosowany do osobistych upodobań warsztat pracy.</p>
+<a class="header" href="#badania-powinny-być-powtarzalne" id="badania-powinny-być-powtarzalne"><h2>Badania powinny być powtarzalne</h2></a>
+<p>Sposób pracy powinien być taki aby można było ją odtworzyć od początku do końca, co zresztą jest uniwersalnym zaleceniem do (prawie) każdej pracy naukowej. Z jednej strony chodzi o to by mogli to zrobić inni badacze ale znacznie częściej to my będziemy je powtarzać (i to wielokrotnie) na przykład w przypadku uzyskania nowych danych czy wykrycia błędów w analizie.  Dwa podstawowe aspekty powtarzalności badań to zachowywanie danych i dokumentacja pracy.</p>
+<a class="header" href="#pliki-i-katalogi" id="pliki-i-katalogi"><h2>Pliki i katalogi</h2></a>
+<p>Kluczową sprawą dobrej organizacji pracy jest porządek w katalogach i plikach. Dobrze jest ustalić sobie pewien standardowy układ katalogów a co za tym idzie miejsc przechowywania plików o konkretnym przeznaczeniu. Całość badań nad danym tematem dobrze jest trzymać w jednym głównym dla projektu katalogu, o nazwie wskazującej na temat, a w nim utworzyć szereg katalogów i podkatalogów.  Oddzielnie należy przechowywać surowe dane, skrypty, dokumentację badań i inne informacje a jeszcze gdzie indziej wyniki badań.</p>
+<p>Na przykład taki schemat może wyglądać tak:</p>
+<pre><code>Katalog_glowny 
+├── DANE
+├── DANE-SUROWE
+├── INFORMACJE
+├── README.md (plik)
+├── SKRYPTY
+└── WYNIKI
+</code></pre>
+<ul>
+<li><code>Katalog_glowny</code> - Główny katalog obejmujący dany projekt. Nazwa powinna wskazywać na jego temat, np. <code>Filogenetka_Rumex</code></li>
+<li><code>DANE</code> - Tu możemy trzymać dane nad którymi pracujemy, na różnych etapach ich obróbki.</li>
+<li><code>DANE-SUROWE</code> - Miejsce przechowywania danych surowych, od których zaczynamy pracę. Traktujemy je jako nienaruszalne, nie modyfikujemy ich w żaden sposób. Pozwala to zawsze zacząć analizy od początku.</li>
+<li><code>INFORMACJE</code> - Różne dodatkowe informacje potrzebne przy pracy, np. publikacje, instrukcje, wskazówki współpracowników, tabele itp.</li>
+<li><code>README.md</code> - Plik, w którym notujemy przebieg prac (dalej więcej na ten temat)</li>
+<li><code>SKRYPTY</code> - Jak nazwa wskazuje, jest to miejsce przechowywania skryptów.</li>
+<li><code>WYNIKI</code> - Katalog w którym będą znajdować się podkatalogi z wynikami prac. Każda analiza w oddzielnym katalogu (zob.dalej).</li>
+</ul>
+<p>Zauważ, że całość można przygotować za pomocą dwu komend:</p>
+<pre><code>mkdir -p Katalog_glowny/{DANE-SUROWE,DANE,INFORMACJE,SKRYPTY,WYNIKI}
+touch Katalog_glowny/README.md
+</code></pre>
+<a class="header" href="#dokumentacja-prac" id="dokumentacja-prac"><h2>Dokumentacja prac</h2></a>
+<p>Jak wspomniałem powyżej, należy dokumentować poszczególne etapy pracy z danymi, w taki sposób aby móc je powtórzyć, kiedy zajdzie potrzeba. Czyli prowadzić bioinformatyczną wersję dziennika laboratoryjnego.  Wymaga to zapisywania wszelkich czynności, które wykonujemy z danymi. Część z nich wykonujemy ręcznie, inne używając programów komputerowych. Tutaj widać kolejną przewagę narzędzi obsługiwanych z linii komend. Znacznie łatwiej zapisać polecenie, które uruchomiliśmy w terminalu wraz z parametrami niż opisywać stosowane ustawienia w ,,klikanej'' aplikacji. Oczywiście łatwiej jest dokumentować pracę na komputerze używając plików, m. in. dzięki możliwości kopiowania i wklejania poleceń, niż zapisywać je w papierowym dzienniku.</p>
+<p>Ze względu na uniwersalność plików tekstowych, dobrze jest używać ich także przy prowadzeniu dokumentacji. ,,Goły'' tekst niekoniecznie jednak jest przejrzysty, zwłaszcza gdy chcemy go podzielić na sekcje, odpowiadające np. poszczególnym dniom pracy albo wyróżnić polecenia w terminalu. Dlatego dobrze jest użyć usystematyzowanego zestawu znaczników, który pozwala na formatowanie tekstu, przy zachowaniu jednak tekstowego charakteru pliku. Do najpopularniejszych należy <a href="https://pl.wikipedia.org/wiki/Markdown">Markdown</a>. Stosując określone znaki lub ich zestawy, można oznaczać m. in. nagłówki, listy, linki, pogrubienia,  fragmenty kodu itp.</p>
+<p>Przykładowe znaczniki to:</p>
+<p>Nagłówki:</p>
+<pre><code># Nagłówek 1
+## Nagłówek 2
+### Nagłówek 3
+</code></pre>
+<p>Lista:</p>
+<pre><code>  * pozycja 1
+  * pozycja 2
+  * pozycja 3
+</code></pre>
+<p>Zamiast gwiazdki można używać znaków - lub +</p>
+<p>Lista numerowana:</p>
+<pre><code>1. Pierwszy punkt
+2. Drugi punkt
+3. Trzeci punkt
+</code></pre>
+<p>Linki:</p>
+<pre><code>[Tekst linku](Adres)
+</code></pre>
+<p>Obrazek:</p>
+<pre><code>![Podps obrazka](ścieżka do obrazka)
+</code></pre>
+<p>Kod:
+kod w linii</p>
+<pre><code>tekst `kod` tekst
+</code></pre>
+<p>lub:</p>
+<pre><code>```
+ kod 
+ kod 
+ kod
+```
+</code></pre>
+<p>Pogrubienie</p>
+<pre><code>**pogrubiony tekst**
+</code></pre>
+<p>Italik:</p>
+<pre><code>_Pochylony tekst_
+</code></pre>
+<p>Wiecej znaczników i przykładów można znaleźć w internecie na przykład <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">tu</a>.
+Format markdown jest dość czytelny ale można go również łatwo przeformatować w <code>.html</code> i wiele innych formatów włączając w to <code>.doc</code> czy <code>.pdf</code>. Do konwersji można wykorzystać na przykład narzędzie <a href="https://pandoc.org/">Pandoc</a>, choć niektóre serwisy (np. GitLab, GitHub, GitBook) automatycznie dokonują przekształcenia plików na format <code>html</code> i wyświetlają je jak zwykłe strony internetowe z odpowiedim formatowaniem. Przykładem jest niniejszy skrypt, który został napisany właśnie w markdownie.</p>
+<p>Pliki w formacie markdown zwykle mają nazwy z przedłużeniem <code>.md</code>. Stąd takie przedłużenie w nazwie pliku <code>README.md</code>. Czemu jednak <code>README</code>? Wrócę do tego przy omawianiu narzędzia <code>Git</code>.</p>
+<p>Jak wspomniałem, w naszym ,,dzienniku'' zapisujemy polecenia, które wydajemy przy pracy z danymi. Aby uniknąć pomyłki i zaoszczędzić czas lepiej to robić przez kopiowanie i wklejanie między edytorem tekstu i terminalem. Przy czym w zależności od sytuacji czasem wygodnie jest wydawać polecenia w terminalu i kopiować je do edytora, w innych przypadkach, zwłaszcza gdy wydajemy serię poleceń, możemy najpierw je wyedytować w naszym ,,dzienniku'' a potem przekopiować całość do terminala i uruchomić. Oczywiście w przypadku powtarzalnych sekwencji poleceń warto rozważyć zapisanie ich do osobnego skryptu (który też należy zachować).</p>
+<a class="header" href="#zapisywanie-wyników" id="zapisywanie-wyników"><h2>Zapisywanie wyników</h2></a>
+<p>W katalogu <code>WYNIKI</code> należy zapisywać rezultaty badań, zwykle generowane przez polecenia i skrypty. Każdy katalog może odpowiadać np. jednemu ciągowi operacji wykonywanemu w danym dniu, lub przez pojedyncze uruchmieniu skryptu czy serii poleceń. Oprócz plików z wynikami, można tam takze umieścić pliki z danymi wejściowymi, zwłaszcza jeśli nie są zbyt duże. Nazwa takiego katalogu powinna objaśniać czego badania dotyczą, dobrze jest jeśli przy tym zawiera datę i czas.  Można to oczywiście zautomatyzować dzięki odpowiednim poleceniom.</p>
+<p>Na przykład sprawdź wynik działania komend:</p>
+<pre><code>sekwencja=atp6
+res=&quot;$sekwencja-$(date +\%F_\%H-\%M-\%S)&quot;
+mkdir $res
+</code></pre>
+<p>Tego typu polecenia być standardowym fragmentem skryptu generującego wyniki badań.</p>
+<p>Przy okazji sprawdź manual polecenia <code>date</code>.</p>
+<a class="header" href="#kontrola-wersji-git" id="kontrola-wersji-git"><h2>Kontrola wersji (Git)</h2></a>
+<p>Git to jeden z systemu kontroli wersji. Nie wchodząc w szczegóły, oznacza to, że można dzięki niemu zachowywać historię zmian projektu i w razie potrzeby przywracać starsze wersje. Umożliwia także pracę wielu osób nad jednym projektem, umiejętnie łącząc zmiany dokonywane przez wiele osób. Wykorzystuje się go głównie przy tworzeniu programowania, ale doskonale także sprawdza się przy archiwizowaniu pracy bioinformatycznej czy... pisaniu skryptu do kursu filogenetyki.</p>
+<p>Nauka Git-a wykracza poza zakres tego kursu, dlatego tylko przedstawię bardzo podstawowe informacje. Zachęcam jednak do samodzielnego zgłębiania tematu.</p>
+<p>Jednym z możliwych scenariuszy jest stworzenie konta na jednym z serwisów, które oferują taką możliwość (np. GitHub, BitBucket, GitLab) a następnie utworzenie projektów i ich synchronizacja z lokalnymi katalogami, które im odpowiadają.</p>
+<p>Jeśli chcesz spróbować, utwórz konto na stronie <a href="https://gitlab.com/">gitlab.com</a>, zaloguj się i kliknij na ,,New project''. Pokaże się strona na której nadajesz nazwę swojemu projektowi i dostosowujesz inne parametry, na przykład to czy projekt jest dostępny publicznie czy nie.</p>
+<p>Po zatwierdzeniu pojawia się strona na której znajdziesz dalsze instrukcje w jaki sposób skonfigurować <code>git</code>-a u siebie (najpierw oczywiście musisz go zainstalować):</p>
+<pre><code>git config --global user.name &quot;Imie&quot;
+git config --global user.email &quot;Twoj@email&quot;
+</code></pre>
+<p>i jak utworzyć repozytorium projektu na swoim komputerze:</p>
+<pre><code>git clone git@gitlab.com:twoje_konto/nazwa_projektu.git
+cd probny-projekt
+touch README.md
+git add README.md
+git commit -m &quot;add README&quot;
+git push -u origin master
+</code></pre>
+<p>Zauważ, że najpierw ,,sklonowałeś'' projekt na swój komputer a potem utworzyłeś w nim plik o nazwie <code>README.md</code>. Brzmi znajomo? Plik o takiej nazwie domyślnie zostaje wyświetlony, jako strona internetowa na stronie Twojego projektu. Na końcu zmiany zostały wysłane w trzech krokach na serwer.</p>
+<p>Teraz spróbuj coś dopisać do tego pliku, używając formatowania markdown. Następnie wykonaj w głównym katalogu projektu komendy aktualizujące go na serwerze:</p>
+<pre><code>git add -A
+git commit -a -m &quot;Modyfikacja pliku README.md&quot;
+git push 
+</code></pre>
+<p>Ten zestaw komend wykonuj po zakończeniu dnia lub etapu pracy. Oczywiście komentarz w cudzysłowach dostosuj tak aby opisywały wykonane zmiany w projekcie.</p>
+<p>Teraz obejrzyj na swoim koncie stronę utworzonego projektu.</p>
+<p>Projekt można sklonować na innych komputerach i także na nich prowadzić badania. Nie zapominaj tylko aby po skończonej pracy dokonać ,,commitu'' projektu i przed rozpoczęciem kontynuacji pracy wykonać w katalogu głównym projektu komendę:</p>
+<pre><code>git pull
+</code></pre>
+<p>Pobiera ona zmiany z serwera do lokalnego katalogu.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../cwiczenia/14-skrypty.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../cwiczenia/16-genbank-www.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="../cwiczenia/14-skrypty.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="../cwiczenia/16-genbank-www.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
