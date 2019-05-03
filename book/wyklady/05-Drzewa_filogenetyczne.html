@@ -1,0 +1,394 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Drzewa filogenetyczne - Próba mdbook</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="../wyklady/02-Podstawy_filogenetyki.html"><strong aria-hidden="true">1.</strong> Wstęp do filogenetyki molekularnej i tworzenia drzew filogenetycznych</a></li><li><a href="../wyklady/03-Dopasowanie_sekwencji.html"><strong aria-hidden="true">2.</strong> Dopasowanie sekwencji</a></li><li><a href="../wyklady/04-Modele_ewolucji_molekularnej.html"><strong aria-hidden="true">3.</strong> Modele ewolucji molekularnej</a></li><li><a href="../wyklady/05-Drzewa_filogenetyczne.html" class="active"><strong aria-hidden="true">4.</strong> Drzewa filogenetyczne</a></li><li><a href="../wyklady/06-HGT.html"><strong aria-hidden="true">5.</strong> Horyzontalny transfer genów (HGT)</a></li><li><a href="../cwiczenia/11-praca_w_linuksie.html"><strong aria-hidden="true">6.</strong> Podstawy pracy w systemie Linux</a></li><li><a href="../cwiczenia/12-pliki_tekstowe.html"><strong aria-hidden="true">7.</strong> Praca z plikami tekstowymi w linii komend</a></li><li><a href="../cwiczenia/13-edytory_tekstu.html"><strong aria-hidden="true">8.</strong> Edytory tekstu</a></li><li><a href="../cwiczenia/14-skrypty.html"><strong aria-hidden="true">9.</strong> Skrypty powłoki</a></li><li><a href="../cwiczenia/15-warsztat.html"><strong aria-hidden="true">10.</strong> Warsztat pracy</a></li><li><a href="../cwiczenia/16-genbank-www.html"><strong aria-hidden="true">11.</strong> Bazy sekwencji DNA, GenBank</a></li><li><a href="../cwiczenia/17-genbank-cli.html"><strong aria-hidden="true">12.</strong> Pobieranie sekwencji z bazy GenBank i praca w plikami FASTA przy pomocy linii komend</a></li><li><a href="../cwiczenia/18-blast.html"><strong aria-hidden="true">13.</strong> BLAST - wyszukiwanie podobnych sekwencji</a></li><li><a href="../cwiczenia/19-dopasowanie_sekwencji.html"><strong aria-hidden="true">14.</strong> Dopasowanie sekwencji</a></li><li><a href="../cwiczenia/20-dopasowanie_modelu.html"><strong aria-hidden="true">15.</strong> Dopasowanie modelu substytucji</a></li><li><a href="../cwiczenia/21-konstruowanie-drzew.html"><strong aria-hidden="true">16.</strong> Konstruowanie drzew</a></li><li><a href="../cwiczenia/22-wizualizacja-drzew.html"><strong aria-hidden="true">17.</strong> Wizualizacja drzew</a></li><li><a href="../cwiczenia/23-zegar-molekularny.html"><strong aria-hidden="true">18.</strong> Drzewa filogenetyczne i zegar molekularny</a></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Próba mdbook</h1> 
+
+                        <div class="right-buttons">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="#drzewa-filogenetyczne" id="drzewa-filogenetyczne"><h1>Drzewa filogenetyczne</h1></a>
+<a class="header" href="#odległości-ewolucyjne-i-macierze-odległości" id="odległości-ewolucyjne-i-macierze-odległości"><h2>Odległości ewolucyjne i macierze odległości</h2></a>
+<p>Dla dopasowanych sekwencji można wyliczyć macierze zawierające odległości pomiędzy wszystkimi badanymi sekwencjami. W najprostszym przypadku mogą to być liczby różnic pomiędzy nimi:</p>
+<pre><code>      A      B      C      D      E      F      G      H      I      
+A	
+B    112      
+C    105     33      
+D    102     38     9      
+E    99      30     18     21      
+F    97      31     19     20     9      
+G    96      41     30     35     27     25      
+H    96      126    116    113    113    113    108      
+I    121     138    134    128    132    135    130    39      
+</code></pre>
+<p>Można też je przedstawić w formie różnic przypadających na jedną zasadę:</p>
+<pre><code>    A       B       C       D       E       F       G       H      I      
+A	
+B   0,141   
+C   0,133   0,039   
+D   0,129   0,045   0,011   
+E   0,126   0,036   0,021   0,025   
+F   0,124   0,037   0,022   0,024   0,011   
+G   0,119   0,049   0,036   0,042   0,033   0,030   
+H   0,160   0,203   0,188   0,183   0,183   0,183   0,177   
+I   0,182   0,208   0,202   0,193   0,199   0,202   0,193   0,068   
+
+</code></pre>
+<p>Bardziej realistyczne macierze odzwierciedlające odległości ewolucyjne uwzględniają modele ewolucyjne. Na przykład macierz odległości liczona z użyciem modelu JC (Jukes-Cantor) może wyglądać tak:</p>
+<pre><code>    A       B       C       D       E       F       G       H       I       
+A
+B   0,157   
+C   0,147   0,040	
+D   0,142   0,046   0,011	
+E   0,138   0,037   0,022   0,025	
+F   0,135   0,038   0,023   0,024   0,011	
+G   0,129   0,051   0,037   0,043   0,033   0,031   
+H   0,180   0,237   0,216   0,210   0,210   0,209   0,202   
+I   0,208   0,244   0,236   0,224   0,232   0,236   0,223   0,071   
+    
+</code></pre>
+<p>Obliczanie macierzy odległości ewolucyjnych jest kluczowym krokiem przy konstruowaniu drzew filogenetycznych.</p>
+<a class="header" href="#struktura-drzewa-filogenetycznego" id="struktura-drzewa-filogenetycznego"><h2>Struktura drzewa filogenetycznego</h2></a>
+<p>Zanim przejdziemy do algorytmów wykorzystywanych przy konstruowaniu drzew filogenetycznych, zwanych też <strong>dendrogramami</strong>, przyjrzyjmy się pokrótce ich podstawowym formom i strukturze.</p>
+<p>Drzewa filogenetyczne najczęściej przedstawiane są w dwu formach: Ukośnej i prostokątnej.</p>
+<p><img src="pics-drzewa/drzewo-formy.png" alt="Formy drzewa filogenetycznego" /></p>
+<p>Podstawowe elementy drzewa filogenetycznego to: liście, gałęzie i węzły.</p>
+<p><img src="pics-drzewa/drzewo-struktura.png" alt="Struktura drzewa filogenetycznego" /></p>
+<ul>
+<li><strong>Gałęzie</strong> pokazują związki pomiędzy nimi. Ich długość może (w zależności od rodzaju drzewa) odpowiadać zmianom w sekwencjach nagromadzonych podczas ewolucji. Można wyróżnić gałęzie wewnętrzne prowadzące do węzłów i gałęzie zewnętrzne zakończone liśćmi.</li>
+<li><strong>Węzły</strong> to miejsca łączenia się gałęzi - reprezentują jednostki taksonomiczne (gatunki, osobniki, odmiany itd.). Węzły wewnętrzne (nie będące liśćmi) reprezentują hipotetycznego wspólnego przodka kladu (zob. niżej)</li>
+<li><strong>Liście</strong> są końcowymi (terminalnymi) węzłami, odpowiadają badanym sekwencjom/taksonom</li>
+</ul>
+<p>Grupa taksonów pochodzących od wspólnego przodka nazywana jest <strong>kladem</strong>. Niekoniecznie poszczególne klady wyróżnia się wizualnie na drzewie, ale jest to termin stosowany w opisie zależności filogenetycznych.</p>
+<p>Wzorzec rozgałęzienia drzewa nazywany jest <strong>topologią drzewa</strong>. Drzewa o takiej samej topologii mogą mieć inną reprezentację graficzną, wynikającą np. z obracania gałęzi względem węzła. Przykładowo poniższe dwa drzewa mają taką samą topologię mimo innego wyglądu:</p>
+<p><img src="pics-drzewa/topologie.png" alt="Drzewa o takiej samej topologii" /></p>
+<p><strong>Drzewa nieukorzenione</strong> przedstawiają wzajemne podobieństwa ale nie pozwalają określić w jakiej kolejności poszczególne taksony się od siebie oddzielały. <strong>Drzewa ukorzenione</strong> posiadają węzeł, który odpowiada ostatniemu wspólnemu przodkowi badanych taksonów. Często wyznacza się go (jest to tzw. ,,ukorzenianie drzewa'') wskazując na <strong>grupę zewnętrzną</strong>, zwaną także <strong>outgrupą</strong> (ang. <em>outgroup</em>). Jest to takson (lub grupa taksonów), który jest dalej spokrewniony z pozostałymi badanymi, niż one między sobą. Innymi słowy, oddzielił się on najwcześniej podczas ewolucji. Przykładowo, gdybyśmy badali genetycznie gatunki <em>Homo</em>, grupą zewnętrzną mógłby być szympans.</p>
+<p>Ukorzenianie drzewa pozwala ustalić kolejność oddzielania się poszczególnych kladów i liści w toku ewolucji. Grupa zewnętrzna może być wyznaczona przez niektóre algorytmy budujące drzewo ale nie zawsze jest ona zgodna z rzeczywistym przebiegiem ewolucji. Dlatego, jeśli zależy nam na prawidłowym ukorzenieniu drzewa należy do zestawu badanych sekwencji dodać także należącą do taksonu o którym z góry wiemy, że jest outgrupą. Później, gdy otrzymamy drzewo nieukorzenione, lub ukorzenione niewłaściwie, wskazujemy w odpowiednim programie grupę zewnętrzną, dzięki czemu możemy drzewo prawidłowo ukorzenić.</p>
+<p>Jeśli nie mamy określonej outgrupy ale wiemy, gdzie na drzewie powinien znajdować się wspólny przodek, można ukorzenić drzew wskazując to miejsce. Na przykład jeśli drzewo zawiera sekwencje grzybów i roślin, wiemy że wspólny przodek powinien znajdować się pomiędzy tymi dwoma kladami. Ukorzeniamy zatem drzewo tam, gdzie rozdzielają się te dwie grupy organizmów.</p>
+<p><img src="pics-drzewa/drzewo-ukorzenianie.png" alt="Drzewo nieukorzenione i ukorzenione" /></p>
+<p>Jak wcześniej wspomniałem, długość gałęzi drzewa może odzwierciedlać odległość ewolucyjną badanych sekwencji, wtedy drzewo nazywamy <strong>filogramem</strong>. <strong>Kladogram</strong> natomiast pokazuje jedynie pokrewieństwa między badanymi taksonami. Wizualnie można go poznać po tym, że wszystkie gałęzie kończą się wzdłuż jednej linii (pionowej lub poziomej).</p>
+<p><img src="pics-drzewa/drzewo-filogram-kladogram.png" alt="Filogram i kladogram" /></p>
+<p>Niektóre metody konstruowania drzew generują nie jedno, ale wiele drzew o takiej samej, lub podobnej jakości (prawdopodobieństwie). Zwykle w takich przypadkach tworzy się <strong>drzewo konsensusowe</strong> (uzgodnione). Jest to drzewo, które powinno odzwierciedlać wspólne cechy grupy drzew, które służą do jego tworzenia.  Do konstrukcji takiego drzewa można podejść w różny sposób. Pierwszy z nich zakłada, że rozgałęzienia dychotomiczne na drzewie konsensusowym pojawiają się wtedy, gdy znajdują się na wszystkich wyjściowych drzewach, w innym wypadku tworzone są wielokrotne rozgałęzienia. Nieco mniej rygorystyczne podejście polega na przyjęciu pewnego progu - np. jeśli dane dychotomiczne rozgałęzienie pojawi się u przynajmniej 50% drzew to jest ono umieszczane na drzewie konsensusowym..</p>
+<a class="header" href="#konstruowanie-drzew" id="konstruowanie-drzew"><h2>Konstruowanie drzew</h2></a>
+<p>Konstruowanie drzew polega na znalezieniu, na podstawie podobieństw i różnic sekwencji nukleotydów, aminokwasów czy innych cech, najbardziej prawdopodobnych pokrewieństw badanych organizmów, a także  kolejności wyodrębniania się w toku ewolucji poszczególnych taksonów.  Znanych jest szereg algorytmów wykorzystywanych w tym celu. Poniżej znajduje się krótka charakterystyka kilku z nich.</p>
+<a class="header" href="#upgma-unweighted-pair-group-method-using-arithmetic-averages" id="upgma-unweighted-pair-group-method-using-arithmetic-averages"><h3>UPGMA (Unweighted Pair-Group Method using arithmetic Averages)</h3></a>
+<p>Najpierw obliczana jest macierz odległości ewolucyjnych między badanymi sekwencjami. Następnie wybierane są dwie sekwencje o najmniejszej odległości od siebie i tworzony jest między nimi węzeł a obie sekwencje traktuje się jako nową jednostkę (klaster) dla której oblicza się odległości do wszystkich pozostałych sekwencji. Najbliższą sekwencję znów łączy się z poprzednio wydzielonym klastrem i w ten sposób postępuje się aż wszystkie badane taksony zostaną połączone w drzewo. Ostatnią przyłączoną do drzewa sekwencję traktuje się jako grupę zewnętrzną.</p>
+<!--
+  * Metoda minimalnej ewolucji (ME - Minimum Evolution)
+-->
+<a class="header" href="#metoda-najbliższego-sąsiada-nj---neighbor-joining" id="metoda-najbliższego-sąsiada-nj---neighbor-joining"><h3>Metoda najbliższego sąsiada (NJ - Neighbor Joining)</h3></a>
+<p>Metoda polega na znalezieniu drzewa, które ma najmniejszą sumaryczną długość.</p>
+<p>Najpierw obliczana jest macierz odległości między sekwencjami. Następnie obliczane są wartości $$ Q  $$ dla każdej pary sekwencji.</p>
+<p>Wartość $$ Q  $$ wynosi:</p>
+<p>$$ Q(i,j)=(n-2)d(i,j)-\sum_{k=1}^n d(i,k) - \sum_{k=1}^n d(j,k)  $$</p>
+<p>Gdzie $$ n  $$ jest liczbą sekwencji, $$ d(i,j)  $$ jest odległością pomiędzy sekwencjami $$ i  $$ oraz $$ j  $$.</p>
+<p>Zostaje też utworzone początkowe ,,drzewo'', w którym wszystkie sekwencje połączone są z jednym węzłem - ma więc formę gwiazdy.</p>
+<p>W kolejnym kroku znajdywane są sekwencje pomiędzy którymi wartość $$ Q  $$ jest najmniejsza. Zostaje utworzony między nimi nowy węzeł (ancestralny) odpowiadający hipotetycznemu przodkowi. Obliczane są odległości pomiędzy połączonymi liśćmi a węzłem ancestralnym a także pomiędzy nim a pozostałymi sekwencjami.</p>
+<p>Znów poszukiwane są sekwencje o najmniejszych odległościach i łączone ze sobą. Operacje są powtarzane aż do utworzenia drzewa o najmniejszej długości. Nie jest ono ukorzenione.</p>
+<a class="header" href="#metoda-największej-oszczędności-mp---maximum-parsimony" id="metoda-największej-oszczędności-mp---maximum-parsimony"><h3>Metoda największej oszczędności (MP - Maximum Parsimony)</h3></a>
+<p>W metodzie największej oszczędności poszukiwane jest drzewo, którego powstanie wymagałoby najmniejszej liczby zmian w sekwencjach (brzytwa Ockhama). Czyli poszukiwane jest jak najkrótsze drzewo, które wyjaśniałoby różnice między badanymi sekwencjami.</p>
+<!---
+Według zasady MP, jeśli np. w danym miejscu `A` występuje w taksonach A i B, natomiast `T` znajdujemy u C i D to przyjmuje się, że A i B są ze sobą bliżej spokrewnione niż z C i D, które mają swojego wspólnego przodka.
+-->
+Metoda ta ma także także zastosowanie w budowaniu drzew na postawie cech morfologicznych, które można przedstawić jako 1 (obecna) i 0 (nieobecna).
+<p>Poszczególne kolumny w dopasowanych sekwencjach odpowiadają stanowi danej cechy. Przyjmuje się, że jeżeli w danej kolumnie występują przynajmniej dwa rodzaje nukleotydów (lub innych stanów) a każdy z nich jest obecny co najmniej dwa razy to niesie ona przydatną dla analizy informację, czyli  jest <strong>informatywna</strong>. W innym przypadku uznaje się ją za <strong>nieinformatywną</strong> i nie jest brana pod uwagę w dalszych analizach. Po zebraniu informatywnych kolumn analizuje się drzewa pod kątem znalezienia takiego, którego utworzenie można wyjaśnić zakładając jak najmniejszą liczbę zmian (mutacji).</p>
+<p>W przeciwieństwie do poprzednio omawianych algorytmów, w tym przypadku drzewo jest nie tyle generowane co raczej wyszukiwane spośród wszystkich możliwych drzew dla danego zestawu danych. Jeśli liczba badanych sekwencji jest niewielka, można utworzyć wszystkie możliwe drzewa i obliczyć ich parametry. Dla dużych zestawów sekwencji, liczba kombinacji rośnie drastycznie, toteż wykorzystuje się różne metody heurystyczne pozwalające ograniczyć wymagane obliczenia.</p>
+<a class="header" href="#metoda-największej-wiarygodności-ml---maximum-likelihood" id="metoda-największej-wiarygodności-ml---maximum-likelihood"><h3>Metoda największej wiarygodności (ML - Maximum Likelihood)</h3></a>
+<p>Celem metody największej wiarygodności jest znalezienie najbardziej prawdopodobnego drzewa - czyli takiego, które jest najbardziej prawdopodobne dla danego zestawu sekwencji, przy uwzględnieniu przyjętego modelu ewolucji molekularnej. Podobnie jak w przypadku metody MP, generowanych jest wiele drzew z pośród których, szuka się tego, które najlepiej spełnia przyjęte założenia.</p>
+<p>Ocena drzewa polega w skrócie na tym, że oblicza się dla niego prawdopodobieństwa wystąpienia danego zestawu nukleotydów dla kolejnych kolumn a następnie mnoży się je (albo po transformacji logarytmicznej sumuje) uzyskując prawdopodobieństwo dla całego drzewa. Drzewo, dla którego jest ono największe, jest uznane za drzewo o największej wiarygodności.</p>
+<p>Metoda ta jest dość wymagająca pod względem obliczeniowym, zwłaszcza, że uwzględnia model ewolucji molekularnej. W związku z szybkim rozwojem technologii komputerowych, ta wada jest jednak z czasem coraz mniej istotna. Uwzględnianie modeli ewolucji, jest dodatkowym elementem pozwalającym na zwiększenie wiarygodności otrzymanych drzew, należy przy tym pamiętać, że przyjęcie różnych modeli może skutkować otrzymaniem różnych wyników.</p>
+<a class="header" href="#metody-bayesowskie-bayesian-methods" id="metody-bayesowskie-bayesian-methods"><h3>Metody bayesowskie (Bayesian Methods)</h3></a>
+<p>Kluczowym elementem metod bayesowskich jest liczenie prawdopodobieństwa <em>a posteriori</em>, uwzględniającego posiadane dane. Dla dwóch różnych wydarzeń dla których szukamy związku można przedstawić je wzorem:</p>
+<p>$$  P(B|A)={\frac {P(A|B)P(B)}{P(A|B)P(B)+P(A|B')P(B')}}={\frac {P(A|B)P(B)}{P(A)}}  $$</p>
+<p>Gdzie:</p>
+<ul>
+<li>$$ A  $$ i $$ B  $$ - dwa różne wydarzenia</li>
+<li>$$ B'  $$ - wydarzenie alternatywne względem $$ B  $$</li>
+<li>$$ P(B|A)  $$ - liczone prawdopodobieństwo <em>a posteriori</em> wydarzenia $$ B  $$ jeśli się wydarzy $$ A  $$.</li>
+<li>$$ P(A|B)  $$ - prawdopodobieństwo warunkowe wydarzenia $$ A  $$ jeśli  $$ B  $$</li>
+<li>$$ P(B)  $$ - prawdopodobieństwo <em>a priori</em> wydarzenia  $$ B  $$</li>
+<li>$$ P(B')  $$ - prawdopodobieństwo wydarzenia alternatywnego względem  $$ B  $$</li>
+</ul>
+<p>Zobaczmy jak to działa na przykładzie.</p>
+<p>Przypuśćmy, że badamy pacjenta na obecność wirusa. Test dał wynik pozytywny ale chcemy policzyć z jakim prawdopodobieństwem pacjent jest rzeczywiście zakażony. Używamy testu, który w przypadku obecności wirusa daje wynik pozytywny w 99%, natomiast u zdrowych ludzi daje (prawidłowy) wynik negatywny w 95% (czyli dla 5% mimo braku patogenu, da wynik fałszywy pozytywny). Wiemy też, że w badanej populacji odsetek osób zakażonych wynosi 2%.</p>
+<ul>
+<li>$$ B  $$ - pacjent jest naprawdę zakażony</li>
+<li>$$ B'  $$ - pacjent nie jest zakażony</li>
+<li>$$ A  $$ - test dał wynik pozytywny</li>
+<li>$$ P(B)  $$ - prawdopodobieństwo, że losowy człowiek jest zakażony wirusem = 0,02</li>
+<li>$$ P(B')  $$ - prawdopodobieństwo, że losowy człowiek nie jest zakażony wirusem = 0,98</li>
+<li>$$ P(B|A)  $$ - liczone przez nas prawdopodobieństwo, że pacjent jest chory jeśli test dał wynik pozytywny</li>
+<li>$$ P(A|B)  $$ - prawdopodobieństwo, że test dał wynik pozytywny, jeśli pacjent jest zakażony = 0,99</li>
+<li>$$ P(A|B')  $$ - prawdopodobieństwo, że test dał wynik pozytywny, jeśli pacjent nie jest zakażony = 0,05</li>
+</ul>
+<p>Postawmy teraz dane do wzoru:</p>
+<p>$$ P(B|A)={\frac {P(A|B)P(B)}{P(A|B)P(B)+P(A|B')P(B')} }= {\frac {0,99 \cdot 0,02}{0,99 \cdot 0,02 + 0,05 \cdot 0,98} } = {\frac {0,0198}{0,0198 + 0,049}} = 0,289 $$</p>
+<p>Czyli wbrew temu co może nam podpowiadać intuicja, nawet jeśli w opisanej sytuacji test wyszedł pozytywnie, istnieje mniej niż 30% szans, że pacjent jest naprawdę zakażony.</p>
+<p>Metody bayesowskie zdobyły w ostatnich latach dużą popularność jako stosunkowo szybkie i dające wiarygodne wyniki. Polegają na wyszukiwaniu najbardziej prawdopodobnych drzew dla danego zestawu sekwencji. Proces ten przebiega cyklicznie wg. schematu: Zostaje wybrane drzewo, liczone jest dla niego prawdopodobieństwo. Drzewo jest modyfikowane pod względem topologii lub długości gałęzi i liczone jest dla niego prawdopodobieństwo. Jeśli jest ono wyższe niż poprzednio, kolejny cykl zaczyna się od niego. W końcu zostaje znaleziona grupa drzew o najwyższym prawdopodobieństwie, dla których tworzone jest drzewo konsensusowe. W filogenetycznych badaniach bayesowskich przy obliczaniu prawdopodobieństw <em>a posteriori</em> wykorzystuje się dane dotyczące topologii drzewa, długości gałęzi i modelu ewolucji molekularnej. Tak naprawdę, poszukiwanie optymalnych drzew przebiega jednocześnie wieloma ,,ścieżkami'', które od czasu do czasu wymieniają się danymi. Pozwala to uniknąć pułapki lokalnego optymalnego drzewa.</p>
+<a class="header" href="#szacowanie-wiarygodności" id="szacowanie-wiarygodności"><h2>Szacowanie wiarygodności</h2></a>
+<p>Konstruowaniu drzew towarzyszy zazwyczaj szacowanie ich wiarygodności. W większości przypadków stosuje się tu metodę <strong>bootstrap</strong> (samopróbkowania) a dla metod bayesowskich wyliczane jest prawdopodobieństwo bayesowskie.</p>
+<p>Samopróbkowanie w podstawowej formie polega na tym, że po utworzeniu optymalnego drzewa, z zestawu dopasowanych sekwencji losuje się kolumny zasad i tworzy się z nich kolejne zestawy ,,sekwencji'' o takiej samej długości jak sekwencje wyjściowe. Jest to losowanie ze zwracaniem, co oznacza, że te same kolumny mogą zostać wylosowane wielokrotnie a inne nie pojawiają się w ogóle w generowanych zestawach.</p>
+<p>Na przykład dla przyrównania:</p>
+<pre><code>0123456789
+CAGTCCGATG
+TAATCTGATA
+TAGTTTGATA
+TAGTTTGATA
+TAGTTTGATA
+TAGTTTGATA
+</code></pre>
+<p>można stworzyć m. in. takie pseudosekwencje:</p>
+<pre><code>1735320955   8327248441   3124291662
+AATCTGCGCC   TTGAGCTCCA   TAGCGGAGGG
+AATTTATATT   TTAAACTCCA   TAACAAAGGA
+AATTTGTATT   TTGAGTTTTA   TAGTGAAGGG
+AATTTGTATT   TTGAGTTTTA   TAGTGAAGGG
+AATTTGTATT   TTGAGTTTTA   TAGTGAAGGG
+AATTTGTATT   TTGAGTTTTA   TAGTGAAGGG itd...
+</code></pre>
+<p>Dla każdego ,,pseudoprzyrównania'' liczone jest drzewo w taki sam sposób jak drzewo główne, a następnie sprawdzana jest obecność poszczególnych kladów na obu drzewach. Każdemu kladowi, który występuje na drzewie oryginalnym i wygenerowanym w procesie samopróbkowania przypisywany jest punkt. Im większa suma punktów, tym dany klad na drzewie jest bardziej wiarygodny. Wartości bootstrap przedstawia się zwykle w zakresie wartości 0-100, przy węzłach, co odpowiada procentowi wygenerowanych drzew w których występował dany klad.</p>
+<p>Liczba bootstrapów, który jest zazwyczaj jednym z parametrów ustawianych w programach generujących drzewa, powinna wynosić minimum 100 a najlepiej osiągać 1000-2000. Ponieważ dla każdego zestawu pseudosekwencji generowane jest drzewo, w zależności od stosowanej metody, proces samopróbkowania może zająć mniej lub więcej czasu. Im metoda bardziej wymagająca obliczeniowo, tym wartości bootstrap będą liczone dłużej.</p>
+<p>W przypadku metody bayesowskiej, prawdopodobieństwo <em>a posteriori</em> jest liczone przy okazji generowania drzew, wynikają z udziału drzew w których obecny jest badany klad. Ocena wiarygodności poszczególnych węzłów nie wymaga więc dodatkowych złożonych obliczeń. Jako wartości prawdopodobieństwa mieszczą się zakresie 0-1. Wartości liczone w ten sposób (przy uwzględnieniu innej skali) są zwykle wyższe niż uzyskane dla danego zestawu sekwencji za pomocą bootstrapu, należy jednak pamiętać, że wynikają one z wartości uzyskanych w dużej mierze z drzew znajdujących się blisko drzewa optymalnego i nie są to wartości w pełni porównywalne.</p>
+<a class="header" href="#format-newick-i-wartości-dodatkowe-na-drzewie" id="format-newick-i-wartości-dodatkowe-na-drzewie"><h2>Format Newick i wartości dodatkowe na drzewie</h2></a>
+<p>Po zakończeniu obliczeń otrzymujemy wynik zazwyczaj w formie pliku tekstowego, który jest sformatowany w taki sposób, że zawiera informacje na temat relacji pomiędzy badanymi taksonami a także inne parametry drzew (np. wartości bootstap).</p>
+<p>Poniżej znajduje się przykładowy plik kladogramu zapisanego w formacie <code>newick</code>.</p>
+<pre><code>((((B,((C,D),(E,F))),G),(H,I)),A);
+</code></pre>
+<p>Po przekształceniu go w formę graficzną uzyskujemy taki obraz:</p>
+<p><img src="pics-drzewa/simple.png" alt="Kladogram prosty" /></p>
+<p>Porównując powyższy plik w formacie <code>newick</code> z kladogramem można zrozumieć zasadę kodowania informacji w pierwszym z nich. W parze nawiasów zamykane się taksony należącego do wspólnego kladu.</p>
+<p>W formacie <code>newick</code> można też zapisać inne dane, na przykład dotyczące długości gałęzi i wartości bootstrapu:</p>
+<pre><code>(A:0.0611905636,((B:0.0271634370,((C:0.0024799833,D:0.0082762103)100:0.011585,
+(E:0.0047747513,F:0.0060564542)81:0.002943)54:0.002522)95:0.009753,
+G:0.0145402289)100:0.073576,(H:0.0374628169,I:0.0498809623)100:0.157039);
+</code></pre>
+<p>Poniżej znajduje się odpowiedni dendrogram:</p>
+<p><img src="pics-drzewa/drzewo_z_oznaczeniami.png" alt="Dendrogram z oznaczeniami" /></p>
+<p>Na zielono zaznaczono długości gałęzi (odpowiadające liczbie mutacji na miejsce), zaokrąglone do trzech miejsc po przecinku.
+Na czerwono wartości bootstrap. W lewym dolnym rogu widać skalę drzewa, którą można odnieść do długości gałęzi (zwłaszcza gdy ich wartości nie są zaznaczone).</p>
+<a class="header" href="#wizualizacja-drzew" id="wizualizacja-drzew"><h2>Wizualizacja drzew</h2></a>
+<p>Forma graficzna drzewa filogenetycznego jest znacznie bardziej przejrzysta dla człowieka niż prezentowany powyżej zapis tekstowy. Pozwała łatwo uchwycić pokrewieństwa i odległości ewolucyjne pomiędzy badanymi organizmami, choć ich prawidłowe odczytanie wymaga jednak nieco wiedzy i wprawy.</p>
+<p>Trzeba pamiętać, że opierając się na tych samych danych, można utworzyć bardzo różnie wyglądające drzewa.</p>
+<p>Poniżej znajduje się zawartość pliku w formacie <code>newick</code> opisująca drzewo i kilka przykładów je przedstawić:</p>
+<pre><code>((((B:0.027163437,((C:0.0024799833,D:0.00827621):0.011585,
+(E:0.004774751,F:0.006056454):0.002943):0.002522):0.009753,G:0.014540229):0.073576,
+(H:0.037462816,I:0.049880963):0.157039):0.003059528,A:0.058131035);
+</code></pre>
+<p><img src="pics-drzewa/tree-0.png" alt="Drzewo 1" />
+<img src="pics-drzewa/tree-1.png" alt="Drzewo 2" />
+<img src="pics-drzewa/tree-2.png" alt="Drzewo 3" />
+<img src="pics-drzewa/tree-3.png" alt="Drzewo 4" />
+<img src="pics-drzewa/tree-4.png" alt="Drzewo 5" />
+<img src="pics-drzewa/tree-5.png" alt="Drzewo 6" />
+<img src="pics-drzewa/tree-6.png" alt="Drzewo 7" /></p>
+<p>Nie ma ,,najlepszej'' formy drzewa. To jakiej należy użyć, zależy od tego co i w jaki sposób chcemy pokazać, liczby danych, rodzaju odbiorcy itp. W pewnych sytuacjach najlepiej sprawdzi się forma drzewa ,,prostokątnego'' w innej drzewo ,,okrągłe''.</p>
+<p>Na stronie <a href="http://itol.embl.de/itol.cgi">Interactive Tree of Life</a> można znaleźć, jak sama nazwa wskazuje, ,,drzewo życia&quot; które można modyfikować on-line, m. in. zmieniając jego formę, wyświetlane informacje itp.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../wyklady/04-Modele_ewolucji_molekularnej.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../wyklady/06-HGT.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="../wyklady/04-Modele_ewolucji_molekularnej.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="../wyklady/06-HGT.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3001");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload(true); // force reload from server (not from cache)
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        
+
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

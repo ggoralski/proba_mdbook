@@ -1,0 +1,341 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>BLAST - wyszukiwanie podobnych sekwencji - Próba mdbook</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="../wyklady/02-Podstawy_filogenetyki.html"><strong aria-hidden="true">1.</strong> Wstęp do filogenetyki molekularnej i tworzenia drzew filogenetycznych</a></li><li><a href="../wyklady/03-Dopasowanie_sekwencji.html"><strong aria-hidden="true">2.</strong> Dopasowanie sekwencji</a></li><li><a href="../wyklady/04-Modele_ewolucji_molekularnej.html"><strong aria-hidden="true">3.</strong> Modele ewolucji molekularnej</a></li><li><a href="../wyklady/05-Drzewa_filogenetyczne.html"><strong aria-hidden="true">4.</strong> Drzewa filogenetyczne</a></li><li><a href="../wyklady/06-HGT.html"><strong aria-hidden="true">5.</strong> Horyzontalny transfer genów (HGT)</a></li><li><a href="../cwiczenia/11-praca_w_linuksie.html"><strong aria-hidden="true">6.</strong> Podstawy pracy w systemie Linux</a></li><li><a href="../cwiczenia/12-pliki_tekstowe.html"><strong aria-hidden="true">7.</strong> Praca z plikami tekstowymi w linii komend</a></li><li><a href="../cwiczenia/13-edytory_tekstu.html"><strong aria-hidden="true">8.</strong> Edytory tekstu</a></li><li><a href="../cwiczenia/14-skrypty.html"><strong aria-hidden="true">9.</strong> Skrypty powłoki</a></li><li><a href="../cwiczenia/15-warsztat.html"><strong aria-hidden="true">10.</strong> Warsztat pracy</a></li><li><a href="../cwiczenia/16-genbank-www.html"><strong aria-hidden="true">11.</strong> Bazy sekwencji DNA, GenBank</a></li><li><a href="../cwiczenia/17-genbank-cli.html"><strong aria-hidden="true">12.</strong> Pobieranie sekwencji z bazy GenBank i praca w plikami FASTA przy pomocy linii komend</a></li><li><a href="../cwiczenia/18-blast.html" class="active"><strong aria-hidden="true">13.</strong> BLAST - wyszukiwanie podobnych sekwencji</a></li><li><a href="../cwiczenia/19-dopasowanie_sekwencji.html"><strong aria-hidden="true">14.</strong> Dopasowanie sekwencji</a></li><li><a href="../cwiczenia/20-dopasowanie_modelu.html"><strong aria-hidden="true">15.</strong> Dopasowanie modelu substytucji</a></li><li><a href="../cwiczenia/21-konstruowanie-drzew.html"><strong aria-hidden="true">16.</strong> Konstruowanie drzew</a></li><li><a href="../cwiczenia/22-wizualizacja-drzew.html"><strong aria-hidden="true">17.</strong> Wizualizacja drzew</a></li><li><a href="../cwiczenia/23-zegar-molekularny.html"><strong aria-hidden="true">18.</strong> Drzewa filogenetyczne i zegar molekularny</a></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Próba mdbook</h1> 
+
+                        <div class="right-buttons">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="#blast---wyszukiwanie-podobnych-sekwencji" id="blast---wyszukiwanie-podobnych-sekwencji"><h1>BLAST - wyszukiwanie podobnych sekwencji</h1></a>
+<a class="header" href="#czym-jest-blast-i-do-czego-służy" id="czym-jest-blast-i-do-czego-służy"><h2>Czym jest BLAST i do czego służy?</h2></a>
+<p><a href="https://blast.ncbi.nlm.nih.gov">BLAST</a> to narzędzie, dostępne przez stronę internetową pozwalające znaleźć w bazie danych sekwencje nukleotydowe lub proteinowe podobne do szukanej. Można je znaleźć pod adresem: <a href="https://blast.ncbi.nlm.nih.gov">https://blast.ncbi.nlm.nih.gov</a>. Jak widać w adresie strony, podobnie jak GenBank, BLAST jest udostępniany przez NCBI, oba narzędzia są ze sobą ściśle powiązane. Istnieje także BLAST w formie programu obsługiwanego z linii komend, ale nim nie będziemy posługiwać się na kursie.</p>
+<p>BLAST jest potężnym narzędziem o wielu możliwościach. Na kursie poznamy tylko podstawowe funkcje, ograniczone do pracy z sekwencjami DNA.</p>
+<a class="header" href="#wyszukanie-podobnej-sekwencji-dna" id="wyszukanie-podobnej-sekwencji-dna"><h2>Wyszukanie podobnej sekwencji DNA</h2></a>
+<p>Po wejściu <a href="https://blast.ncbi.nlm.nih.gov">na witrynę BLAST</a> widzimy taką stronę:</p>
+<p><img src="blast/blast-start.png" alt="Strona główna BLAST" /></p>
+<p>Można na niej wybrać wyszukiwanie sekwencji nukleotydów na podstawie sekwencji nukleotydów, wyszukiwanie sekwencji aminokwasów na podstawie sekwencji aminokwasów, wyszukiwanie sekwencji aminokwasów na podstawie sekwencji nukleotydów lub odwrotnie. Skupimy się na pierwszej możliwości (<code>blastn</code>), kliknij na ,,Nucleotide BLAST'':</p>
+<p><img src="blast/nucleotide-blast.png" alt="Wyszukiwanie sekwencji nukleotydów na podstawie sekwencji nukleotydów" />.</p>
+<p>Pokazuje się strona wyszukiwarki:</p>
+<p><img src="blast/blastn-start.png" alt="BLASTN" /></p>
+<p>Pierwsza część służy wprowadzeniu zapytania.</p>
+<p><img src="blast/enter-query.png" alt="Wprowadzanie zapytania" /></p>
+<p>Jak widać, można przesłać plik z sekwencją w formacie <code>FASTA</code> albo użyć okienka ,,<em>Enter accession number(s), gi(s), or FASTA sequence(s)</em>'' do wprowadzenia sekwencji lub numeru identyfikacyjnego używanego przez GenBank.</p>
+<p>Wklej do niego sekwencję:</p>
+<pre><code>GGATCTACTGATCGAGGTCACCTTAGAATGGGGTTGTTTTACGGCGTACCTCCCGAACACCCTTTAGCGA
+ATAGTTTCCACAACGCTTAGGGGACAGAAGACCCAGCCGGACGATTTGAGGCACGCGGCGGACCGCGTTG
+CCCAATACCAAGCGAGGCTTGAGTGGTGAAATGACGCTCGAACAGGCATGCCCCCCGGAATACCAGGGGG
+CGCAATGTGCGTTCAAAGATTCRATGATTCACTGAATTCTGCAATTCACATTACTTATCGCATTTCGCTG
+CGTTCTTCATCGATGCCAGAACCAAGAGATCCGTTGTTAAAAGTTTTAATTTATTAATTAAGTTTACTCA
+GACTGCAAAGTTACGCAAGAGTTTGAAGTGTCCACCCGGAGCCCCCGCCCGAAGGCAGGGTCGCCCCGGA
+GGCAACAGAGTCGGACAACAAAGGGTTATGAATAACCAGGCCGAAGCCCGGGCGTTCTTGKAATGATCCC
+TCCGCAGGTTCACCTACGGAGACCTTGTTACGACTG
+</code></pre>
+<p>Jest to fragment sekwencji <a href="https://en.wikipedia.org/wiki/Internal_transcribed_spacer">ITS</a> jednego z gatunków rodzaju <em>Phelipanche</em>. Podczas badań filogenetycznych okazało się, że jedna z otrzymanych sekwencji (którą właśnie umieściliśmy w okienku wyszukiwarki) wyraźnie różni się od pozostałych. Teraz spróbujemy sprawdzić jakie może być jej pochodzenie. Między innymi do takich zadań stworzony został BLAST.</p>
+<p>W okienku ,,<em>Job Title</em>'' możemy nadać naszemu wyszukiwaniu jakąś nazwę.
+Przy okazji zauważ, że w wielu miejscach znajdują ikony z pytajnikiem, kierujące nas do pomocy.</p>
+<p><img src="blast/enter-query-wypelnione.png" alt="Zapytanie" /></p>
+<p>Pominiemy sekcję ,,Choose Search Set'', która pozwala zawęzić obszar poszukiwań i przejdziemy do kolejnej ,,Program selection''.</p>
+<p><img src="blast/program-selection.png" alt="Wybór programu" /></p>
+<p>Tutaj wybieramy stopień podobieństwa wyszukiwanych sekwencji (i używany algorytm). W zależności od tego jaki stopień podobieństwa nas interesuje wybieramy jedną z trzech opcji. Zostawiamy pierwszą, domyślną.</p>
+<p>Poniżej znajdujemy przycisk ,,BLAST'', który uruchamia wyszukiwanie oraz, poniżej link ,,<em>Algorithm parameters</em>''. Jak można się domyślić, rozwija on menu pozwalające ustawić parametry wyszukiwania.</p>
+<p><img src="blast/algorithm-parameters.png" alt="Parametry algorytmu wyszukiwania" /></p>
+<p>Zostawimy domyślne ustawienia i wciskamy przycisk ,,BLAST''.</p>
+<p>Pokazuje się strona wyświetlająca postęp wyszukiwania, nie należy jej odświeżać, robi to sama.</p>
+<p><img src="blast/blast-postep.png" alt="Wyszukiwanie w toku" /></p>
+<p>W końcu otwiera się strona z wynikami. Na górze znajdują się informacje dotyczące wyszukiwania oraz linki do różnych opcji, narzędzi, pobrania wyników  w różnych formatach oraz innych rodzajów podsumowania wyszukiwania.</p>
+<p><img src="blast/blast-wynik-naglowek.png" alt="Wynik wyszukiwania - informacje" /></p>
+<p>Poniżej widzimy wyniki w formie graficznej:</p>
+<p><img src="blast/blast-wynik-grafika.png" alt="Wynik wyszukiwania w formie graficznej" /></p>
+<p>Zielonkawy pasek przedstawia sekwencję, którą wysłaliśmy jako zapytanie (,,Query''). Powyżej znajduje się skala wyjaśniająca związek koloru pasków wyników z ich jakością. Poniżej znajdują się paski przedstawiające dopasowane do wyszukiwania sekwencje. Jak widać jakość wszystkich wyników znajduje się w przedziale &gt;200 - co oznacza wysoki stopień dopasowania, co więcej większość z nich obejmuje całą długość wyszukiwanej sekwencji.
+Po najechaniu kursorem na pasek z wynikiem pojawia się krótka informacja o sekwencji.</p>
+<p><img src="blast/blast-wynik-info.png" alt="Informacja o sekwencji" /></p>
+<p>Klikając na pasku, możemy uzyskać nieco więcej informacji w tym numer GenBank-u znalezionej sekwencji a także link do dopasowania sekwencji o czym za chwilę.</p>
+<p><img src="blast/blast-wynik-wiecej-informacji.png" alt="Więcej informacji o sekwencji" /></p>
+<p>Poniżej sekcji z graficznym przedstawieniem wyników znajduje się sekcja ,,<em>Descriptions</em>'' czyli z opisem wyników wyszukiwania.</p>
+<p><img src="blast/blast-wynik-opisy.png" alt="Opis wyników" /></p>
+<ul>
+<li>Pierwsza kolumna służy do zaznaczania poszczególnych wyników, np. w celu ich pobrania.</li>
+<li>Druga (,,<em>Description</em>'') to oczywiście informacja na temat znalezionej sekwencji. Klikając na nią, przechodzimy do przyrównania obu sekwencji w kolejnej sekcji.</li>
+<li>Trzecia i czwarta (,,<em>Max score</em>'' i ,,<em>Total score</em>'') to punktacje wyniku, nie będziemy w nie wnikać.</li>
+<li>Piąta (,,<em>Query cover</em>'') oznacza stopień pokrycia zapytania przez wynik.</li>
+<li>Szósta (,,<em>E-value</em>'') przedstawia ,,znaczenie'' dopasowania (w sensie zbliżonym do terminu ,,znaczący statystycznie''). Wartość E mieści się między 0 a 1. Wartość 1 odpowiada losowemu podobieństwu. Im mniejsza wartość, tym wynik jest bardziej ,,znaczący''. Zauważ, że jest wynik przedstawiany jest w notacji naukowej, więc np. ,,1e-21'' to mniej niż ,,6e-20'' (akurat w tym wyniku dopasowane sekwencje mają wartość 0.0). Domyślnie tabela jest sortowana wg. tej wartości od najmniejszej do największej. Więc na górze znajdują się najbardziej ,,znaczące'' wyniki.</li>
+<li>Siódma (,,<em>Ident</em>'') to oczywiście stopień identyczności obu sekwencji</li>
+<li>Ósma (,,<em>Accession</em>'') zawiera numer dostępowy Gen-Banku. Klikając na niego, wchodzimy na stronę GenBank-u sekwencji.</li>
+</ul>
+<p>Zwróć uwagę, jakie organizmy znalazły się na liście. Są to grzyby. Pierwszy wynik należy do <em>Davidella tassiana</em> (inaczej <em>Cladosporium herbarum</em>), który infekuje wiele gatunków roślin, kolejne do znanego alergikom rodzaju <em>Cladosporium</em> obejmujący grzyby rozkładające martwe szczątki organiczne oraz pasożytujące na roślinach. W zasadzie zagadka została już rozwiązana - najprawdopodobniej tajemnicza sekwencja pochodzi od grzyba, który zanieczyścił próbkę. Przyjrzyjmy się  jednak jeszcze niektórym innym informacjom, które dostarcza nam BLAST.</p>
+<p>Kolejna sekcja zawiera znalezione przyrównania. Pierwszy rekord wygląda tak:</p>
+<p><img src="blast/blast-wynik1-alignments.png" alt="Pierwsze przyrównanie" /></p>
+<p>Na samej górze widzimy ikonę umożliwiającą nam pobranie znalezionej sekwencji w całości w formacie <code>FASTA</code>, tylko fragmentu dopasowanego w formacie <code>FASTA</code> lub całej sekwencji w formacie <code>GenBank</code> a także linki do strony GenBank sekwencji i widoku graficznego przyrównania.</p>
+<p><img src="blast/blast-wynik-download.png" alt="Pobranie znalezionej sekwencji" /></p>
+<p>Dalej umieszczone są informacje na temat sekwencji (z bazy GenBank), jego numer, funkcjonujący jako link do strony z informacjami na temat tej sekwencji w GenBank-u oraz dodatkowe informacje na temat przyrównania. Jak widać jest to sekwencja ITS (18S ribosomal RNA gene, partial sequence; internal transcribed spacer 1, 5.8S ribosomal RNA gene, and internal transcribed spacer 2, complete sequence; and 28S ribosomal RNA gene, partial sequence) należący (co stwierdziliśmy już wcześniej, do <em>Davidiella tassiana</em>.</p>
+<p>Poniżej znajduje się informacja dotycząca długości przyrównania oraz linki do strony GenBank-u sekwencji oraz przedstawienia graficznego przyrównania. Po kliknięciu na ten drugi, pokazuje się taki widok.</p>
+<p><img src="blast/blast-graphics.png" alt="Widok graficzny przyrównania" /></p>
+<p>Nie będziemy go teraz analizować.</p>
+<p>Poniżej widać dalsze informacje na temat przyrównania: wynik punktowy (<em>Score</em>), wartość E (<em>Expect</em>), liczby miejsc identycznych (<em>Identities</em>), liczba i udział indeli (<em>Gaps</em>) oraz orientację obu sekwencji (<em>Strand</em>). W tym przypadku orientacja jednej nici jest odwrócona względem drugiej. Warto na to zwrócić uwagę - jak widać BLAST wyszukuje sekwencje niezależnie od ich orientacji. Po wejściu na stronę dopasowanej sekwencji widać, że występuje ona tam w formie odwróconej i komplementarnej względem szukanej.</p>
+<p>Poniżej widać przyrównanie obu sekwencji wraz z numerami nukleotydów rozpoczynających i kończących każdy z odcinków. Po numerach widać, że jedna sekwencja jest odwrócona względem drugiej. Linie pionowe łączące nukleotydy oznaczają ich zgodność.</p>
+<p>Jeśli nie znamy pozycji systematycznej znalezionych dopasowań, można na stronie sekwencji kliknąć w nazwę organizmy w polu <code>ORGANISM</code>:</p>
+<p><img src="blast/organism.png" alt="Pole ORGANISM" /></p>
+<p>Zauważ, że nazwa gatunkowa w tym polu nie jest taka sama jak w opisie. Taka rozbieżność nie musi wynikać z błędu ale z różnego nazewnictwa taksonu. Przy okazji ważna uwaga: taksonomia, którą znajdziesz w GenBank-u nie powinna być uważana za oficjalne źródło nazewnictwa i klasyfikacji organizmów, ma ona charakter wyłącznie pomocniczy. Widać to zresztą w uwadze, którą możemy przeczytać na stronie, która otworzy się po kliknięciu:</p>
+<p><img src="blast/wynik-taksonomia.png" alt="Pozycja taksonomiczna organizmu" /></p>
+<p>Znajdziemy tam także opis pozycji taksonomicznej organizmu. Strona na której znaleźliśmy się jest częścią kolejnej bazy <code>NCBI</code> związanej z GenBankiem. Umożliwia ona m. in. wyszukiwanie sekwencji wg. pozycji taksonomicznej organizmów. Nie będziemy jednak tego tematu teraz rozwijać.</p>
+<a class="header" href="#pozycja-taksonomiczna-wyników" id="pozycja-taksonomiczna-wyników"><h2>Pozycja taksonomiczna wyników</h2></a>
+<p>Jeśli nie wiemy jaka jest pozycja taksonomiczna organizmów, które znalazły się na liście znalezionych dopasowań można skorzystać z ,,Raportu taksonomicznego''. W tym celu wracamy na górę strony z wynikami i klikamy na <code>Taxonomy report</code>:</p>
+<p><img src="blast/blast-wynik-naglowek2.png" alt="Link do Taxonomy report" /></p>
+<p>Otrzymujemy raport pokazujący położenie systematyczne organizmów:</p>
+<p><img src="blast/blast-taxonomy-report.png" alt="Taxonomy report" /></p>
+<a class="header" href="#fragment-genomu" id="fragment-genomu"><h2>Fragment genomu</h2></a>
+<p>Wyszukaj następującą sekwencję:</p>
+<pre><code>CATGTTAGTGTGCTGTTCATCGACTAGAAGGTGATGGGCGTTCGGATTGACTTCTGAAACGCTTAAGATA
+TAGTCAGACTCTACTTGAAAAAGTACAGGGTATCGAAAGAATATCTGTTTATTGGATATTGTAATGAATG
+TTACAGCTATTTAGAGGGAAAGTCCTATAATAGGATGAATTCGTATCTGGGATTACTCCAAGCCTTCGCG
+GATGCACTAAAGCTTATATTAAAAGAGTACGTAT
+</code></pre>
+<p>Opis znalezionego dopasowania wygląda tak:</p>
+<p><img src="blast/claviceps-sekwencja.png" alt="Dopasowanie sekwencji" /></p>
+<p>Jak widać, jest to fragment genomu (40310 do 40553) mitochondrialnego <em>Claviceps purpurea</em> (Buławinki czerwonej). Nie wiemy jednak nic więcej na temat tej sekwencji. W takim przypadku może pomóc przestudiowanie opisu sekwencji na stronie GenBank-u. Nie należy jednak otwierać strony całego genomu ale dopasowanego fragmentu. W Tym celu kliknij na link <code>GenBank</code> we wskazanym miejscu:</p>
+<p><img src="blast/claviceps-do-GB.png" alt="Link do dopasowanego fragmentu w GenBank-u" /></p>
+<p>Otwiera się strona GenBank z dopasowanym fragmentem i jego opisem:</p>
+<p><img src="blast/claviceps-dopasowanie-GB.png" alt="Strona dopasowanego fragmentu w GenBank-u" /></p>
+<p>Można z niego wyczytać, że szukana sekwencja należy do genu <code>NAD1</code>.</p>
+<a class="header" href="#zadanie" id="zadanie"><h2>Zadanie</h2></a>
+<p>Sprawdź do jakich genów (sekwencji) i jakich organizmów należą następujące sekwencje:</p>
+<p>Sekwencja 1:</p>
+<pre><code>CTACTCACTCTCAGTTTGGTCCTACTTTTTGTTCATTTTGTTACTAAAAAGGGAGGAGGAAAGTCAGTAC
+CAAATGCTTTTCAATCCGTGTTAGAGCTTATTTATGATTTTGTGCCGAACCTGGTAAACGAACAAATAGG
+TGGTCTTTCCGGAAATGTGAAACAACAGTTTTTCCCTTGCATCTCGGTTACTTTTACTTTTTCGTTATTT
+CGTAATCTTCAGGGTATGATACCTTATAGCTTCACAGTAACAAGTCATTTTATCGTTACTTTGGGTCTCT
+CATTTTCTCTTTTTATTGGCATTACTATAGTGGGATTTCAAAAAAATGGGCTTCATTTTTTAAGCTTCTC
+ATTACCCGCAGGAGTCCCACTGCCGTTAGCACCTTTTTTAGTACTCCTTGAGCTAATCCCTCATTGTTTT
+CGCGCATTAAGCTTAGGAATACGTTTATTTGCTAATATGATGGCCGGTCATAGTTTAGTAAAGATTTTAA
+GTGGGTTCGCTTGGACTATGCTATGTATGAATGATCTTTTATATTTCATAGGGGATCCTGGTCCTTTATT
+TATAGTTCTTGCATTAACCGGTCTTGAATTAGGTGTAGCTATATCACAAGCTCATGTTTCTACGATCTCA
+ATCTGTATTTAC
+</code></pre>
+<p>Sekwencja 2:</p>
+<pre><code>GGGGCTGCGTGCAGACACACCAAGGAAAAAGCTCCAGGAACCAAATGAATAACATTGTGTTGGGGTGGAA
+CTCCCTCGAAATTAGGAAAGAAGGGCTTTATACATATAATGCACACGTATAAATACTGACATAGCAAACG
+ATTAATCACGGAACCCATATCATAATATAGGTTCTTTATTT
+</code></pre>
+<p>Sekwencja 3:</p>
+<pre><code>AATAAATCCAGTTTACTGATTGTGAAACGATTAATTACTCGAATGTATCAACAGAATTATTGGATTATTT
+CTACTAATGATTCATCGAATCAAAATAGATTTTGGGCGCGCAACAATAATTTGTATTCTCAAATCATATC
+AGAGGGGTTTGCTTTTATTGTGGAAATTCCATTTAATCTACGATTAATATCTTGTCTAGAAGGGAAAAAT
+CAAAAGATAGTAAAATCTCAGAATTTACGATCAATTCATTCAATATTTCCCTTTTTAGAGGACAATTTTT
+CACATTTAAATTTTTTATTAGATATACTAATACCCCACCCTGTCCATGGGGAAATCTTGGTTCAAACTCT
+TCGCTATTGGGTAAAAGATGCTTCTTCTTTGCATTTATTACGATTCTTTCTCAACAAGTATTGGAGTCTT
+ATTACTCCAAAGAAAGCCAGTTCCTTTTTTTCAAAAAGGAATCAAAGATTATTCTTATTCTTATATAATT
+CTCATGTATGTGAATATGAATCTATTTTAGTCTTTCTACGTAACCAATCTTCTCATTTACGATCAACATC
+TTTTGGAGTTCTTCTTGAACGAATCTATTTCTATGGAAAAATAGAACGTCTTGTGAACCTTTTTGTTAAG
+GTTAAGGGTTTTCGGGCGAACCTATGGTTGTTCAAGGAACCTTGTATGCATTCTATTAGGTATCAAAGAA
+AATCTATTCTGGCTTTAAAAGGGACGTC
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../cwiczenia/17-genbank-cli.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../cwiczenia/19-dopasowanie_sekwencji.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="../cwiczenia/17-genbank-cli.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="../cwiczenia/19-dopasowanie_sekwencji.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3001");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload(true); // force reload from server (not from cache)
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        
+
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

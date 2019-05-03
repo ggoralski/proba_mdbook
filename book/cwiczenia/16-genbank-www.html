@@ -1,0 +1,325 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Bazy sekwencji DNA, GenBank - Próba mdbook</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="../wyklady/02-Podstawy_filogenetyki.html"><strong aria-hidden="true">1.</strong> Wstęp do filogenetyki molekularnej i tworzenia drzew filogenetycznych</a></li><li><a href="../wyklady/03-Dopasowanie_sekwencji.html"><strong aria-hidden="true">2.</strong> Dopasowanie sekwencji</a></li><li><a href="../wyklady/04-Modele_ewolucji_molekularnej.html"><strong aria-hidden="true">3.</strong> Modele ewolucji molekularnej</a></li><li><a href="../wyklady/05-Drzewa_filogenetyczne.html"><strong aria-hidden="true">4.</strong> Drzewa filogenetyczne</a></li><li><a href="../wyklady/06-HGT.html"><strong aria-hidden="true">5.</strong> Horyzontalny transfer genów (HGT)</a></li><li><a href="../cwiczenia/11-praca_w_linuksie.html"><strong aria-hidden="true">6.</strong> Podstawy pracy w systemie Linux</a></li><li><a href="../cwiczenia/12-pliki_tekstowe.html"><strong aria-hidden="true">7.</strong> Praca z plikami tekstowymi w linii komend</a></li><li><a href="../cwiczenia/13-edytory_tekstu.html"><strong aria-hidden="true">8.</strong> Edytory tekstu</a></li><li><a href="../cwiczenia/14-skrypty.html"><strong aria-hidden="true">9.</strong> Skrypty powłoki</a></li><li><a href="../cwiczenia/15-warsztat.html"><strong aria-hidden="true">10.</strong> Warsztat pracy</a></li><li><a href="../cwiczenia/16-genbank-www.html" class="active"><strong aria-hidden="true">11.</strong> Bazy sekwencji DNA, GenBank</a></li><li><a href="../cwiczenia/17-genbank-cli.html"><strong aria-hidden="true">12.</strong> Pobieranie sekwencji z bazy GenBank i praca w plikami FASTA przy pomocy linii komend</a></li><li><a href="../cwiczenia/18-blast.html"><strong aria-hidden="true">13.</strong> BLAST - wyszukiwanie podobnych sekwencji</a></li><li><a href="../cwiczenia/19-dopasowanie_sekwencji.html"><strong aria-hidden="true">14.</strong> Dopasowanie sekwencji</a></li><li><a href="../cwiczenia/20-dopasowanie_modelu.html"><strong aria-hidden="true">15.</strong> Dopasowanie modelu substytucji</a></li><li><a href="../cwiczenia/21-konstruowanie-drzew.html"><strong aria-hidden="true">16.</strong> Konstruowanie drzew</a></li><li><a href="../cwiczenia/22-wizualizacja-drzew.html"><strong aria-hidden="true">17.</strong> Wizualizacja drzew</a></li><li><a href="../cwiczenia/23-zegar-molekularny.html"><strong aria-hidden="true">18.</strong> Drzewa filogenetyczne i zegar molekularny</a></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Próba mdbook</h1> 
+
+                        <div class="right-buttons">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="#bazy-sekwencji---wyszukiwanie-genbank" id="bazy-sekwencji---wyszukiwanie-genbank"><h1>Bazy sekwencji - wyszukiwanie (GenBank)</h1></a>
+<a class="header" href="#czym-jest-genbank" id="czym-jest-genbank"><h2>Czym jest GenBank?</h2></a>
+<p><a href="https://www.ncbi.nlm.nih.gov/genbank/">GenBank</a> jest jedną z baz <a href="https://www.ncbi.nlm.nih.gov">The National Center for Biotechnology Information</a> (NCBI) gromadzącą i udostępniającą publicznie sekwencje DNA. W ramach <a href="http://www.insdc.org/">International Nucleotide Sequence Database Collaboration</a> współpracuje z <a href="http://www.ddbj.nig.ac.jp">DNA DataBank of Japan</a> (DDBJ) oraz <a href="https://www.ebi.ac.uk">European Nucleotide Archive</a> (ENA) z którymi regularnie wymienia dane. Zachęcam do odwiedzenia i sprawdzenia możliwości pozostałych dwu baz danych, jednak na naszych zajęciach zajmiemy się bazą GenBank.</p>
+<p>Najpierw pokażę podstawy pobierania sekwencji DNA przez stronę internetową GenBank-u, później zaprezentuję kilka sposobów pobierania danych z linii komend.</p>
+<a class="header" href="#proste-wyszukiwanie-danych-z-bazy-genbank-przez-stronę-www" id="proste-wyszukiwanie-danych-z-bazy-genbank-przez-stronę-www"><h2>Proste wyszukiwanie danych z bazy GenBank przez stronę WWW</h2></a>
+<p>W przeglądarce internetowej wejdź na stronę <a href="https://www.ncbi.nlm.nih.gov/genbank">https://www.ncbi.nlm.nih.gov/genbank</a>.
+Pokaże się strona początkowa z paskiem wyszukiwania u góry:</p>
+<p><img src="genbank/GB-start.png" alt="Strona startowa GenBank" /></p>
+<p>Po lewej stronie paska wyszukiwania, znajduje się rozwijane menu, gdzie można wybrać bazę danych NCBI, z której chcemy korzystać.</p>
+<p><img src="genbank/GB-menu-bazy.png" alt="Bazy NCBI" /></p>
+<p>Jak widać jest ich wiele, m. in. baza zawierająca sekwencje proteinowe czy baza taksonomiczna. Nas teraz interesuje ,,Nucleotide'', która odpowiada bazie GenBank.</p>
+<p>Wpisz w pasku wyszukiwania atp6 i kliknij ,,Search''.</p>
+<p>Po chwili pokazuje się okno z wynikami wyszukiwania:</p>
+<p><img src="genbank/GB-wynik-wyszukiwania.png" alt="Wyniki wyszukiwania" /></p>
+<p>Poniżej paska wyszukiwania, strona jest podzielona na trzy kolumny. Oprócz samych wyników wyszukiwania w kolumnie środkowej, na stronie widzimy wiele dodatkowych informacji a także dodatkowych narzędzi. Krótko omówię niektóre z nich.</p>
+<p>Na górze środkowego panelu mamy możliwość zmiany sposobu wyświetlania wyników a także eksportu pliku np. do pliku czy schowka.</p>
+<p><img src="genbank/GB-srodkowy-panel-top.png" alt="Środkowy panel - góra" /></p>
+<p>Na przykład zmieniając sposób wyświetlania ,,Summary'' na ,,FASTA''...</p>
+<p><img src="genbank/GB-wybierz-fasta.png" alt="Zmiana formatu wyników" /></p>
+<p>... uzyskujemy w wynikach podgląd sekwencji w formacie <code>FASTA</code>.</p>
+<p><img src="genbank/GB-wyszukiwanie-opcje-fasta.png" alt="Wyniki w formacie FASTA" /></p>
+<p>Wyniki (wszystkie lub wybrane przez zaznaczenie odpowiednich rekordów) można skopiować do schowka na stronie (tu są pewne limity), dodać do kolekcji na swoim koncie albo zachować w pliku o wybranym formacie, np. <code>FASTA</code>:</p>
+<p><img src="genbank/GB-send-to-fasta.png" alt="Eksport wyników" /></p>
+<p>Poniżej znajduje się ramka z pełniejszą nazwą sekwencji i linkiem do informacji o niej.</p>
+<p>Przyjrzyjmy się teraz jak wygląda pojedynczy rekord wyświetlany w formacie domyślnym - ,,Summary'':</p>
+<p><img src="genbank/GB-rekord.png" alt="Rekord" /></p>
+<p>Na górze znajduje się opis sekwencji, który jest linkiem do szczegółowych informacji wyświetlanych w formacie <code>GenBank</code>. Następna linia informuje o długości i rodzaju sekwencji.
+Następnie widać numer dostępowy (,,Accession''), który jest unikalnym numerem danej sekwencji. Po tym numerze można ją jednoznacznie zidentyfikować, toteż zazwyczaj podaje się go w publikacjach, drzewach filogenetycznych itp. Drugi z podanych numerów (,,GI'') jest numerem identyfikacyjnym GenBank i ma mniejsze znaczenie z naszego punktu widzenia.</p>
+<p>W kolejnej linii wyświetlone są odsyłacze do innych baz, można dzięki nim sprawdzić sekwencję aminokwasów dla danego genu (,,Protein''), zobaczyć powiązaną publikację (,,PubMed'') czy poznać pozycję systematyczną organizmu (,,Taxonomy'').</p>
+<p>Na dole umieszczone są linki, które pozwalają wyświetlić wynik w formacie <code>GenBank</code> i <code>FASTA</code>, w sposób graficzny i w końcu (,,PopSet'') wyświetlić listę sekwencji, które były wysłane do GenBank-u razem z daną sekwencją a więc są na ogół w jakiś sposób z nią powiązane.</p>
+<p>W lewym panelu znajdują się informacje na temat liczby znalezionych sekwencji w różnych kategoriach, wydzielonych na podstawie grupy organizmów (,,Species''), rodzaju cząsteczek (,,Molecule types''), źródła danych (,,Source databases'') czy rodzaju genomu (,,Genetic compartments''). Klikając na odpowiednie kategorie można zawęzić wyniki np. do roślin czy genomów mitochondrialnych. Można kategorie łączyć. Na przykład klikając w ,,Plants'' i ,,Mitochondrion'' otrzymujemy wyniki dla roślinnych sekwencji mitochondrialnych.</p>
+<p><img src="genbank/GB-plants-mitochondrion.png" alt="Sekwencje roślinne, mitochondrialne" /></p>
+<p>Na dole lewego panelu można także zawęzić wyszukiwanie sekwencji do konkretnego zakresu długości sekwencji, czasu publikacji czy daty aktualizacji. Najbardziej przydatna wydaje się być pierwsza możliwość, pozwala wyeliminować zbyt krótkie sekwencje.</p>
+<p><img src="genbank/GB-range.png" alt="Wybór zakresu długości sekwencji" /></p>
+<p>Teraz przenieśmy się na prawy panel. Przy zawężonym zakresie wyszukiwania teraz wygląda tak (porównaj z poprzednim wyglądem):</p>
+<p><img src="genbank/GB-prawy-panel.png" alt="Prawy panel" /></p>
+<p>Sekcja ,,Results by taxon'' pokazuje organizmy o największej liczbie wyników. Klikając na ,,Tree'' otrzymujemy widok drzewa.</p>
+<p><img src="genbank/GB-by-taxon-tree.png" alt="Widok drzewa" /></p>
+<p>Klikając na odpowiednie pozycje możemy zawęzić wyniki do określonej grupy organizmów, drzewo można także rozwijać do mniejszych jednostek taksonomicznych.</p>
+<p>Teraz przejdźmy nieco niżej do sekcji ,,Search details''. Tam w okienku widzimy w formie tekstowej treść naszego zapytania, razem z ustawionymi filtrami ograniczającymi zakres wyszukiwania. Zauważ, że w parach nawiasów kwadratowych znajdują się nazwy pól wyszukiwania, tak więc np. <code>atp6</code> wyszukiwane jest we wszystkich polach a <code>plants</code> i <code>mitochondrion</code> w polu <code>Filter</code>, ograniczenie do grupy organizmów można uzyskać używając pola <code>porgn</code>. Jeśli zechcesz się pokusić o ręczne wpisywanie zapytań (lub ich części) to warto zapoznać się ze znaczeniem nazw pól, które można znaleźć w dokumentacji pod adresem <a href="https://www.ncbi.nlm.nih.gov/books/NBK49540/">https://www.ncbi.nlm.nih.gov/books/NBK49540/</a>. Warto też zwracać uwagę jak zmienia się tekst zapytania w zależności od zmian w ustawianych filtrach. Poszczególne części zapytania można łączyć za pomocą operatorów <code>AND</code>, <code>OR</code> oraz <code>NOT</code> a także grupować za pomocą nawiasów.</p>
+<p>Zapytanie można oczywiście wpisywać także w pasek wyszukiwania u góry strony. Warto też obserwować jak zmienia się treść zapytania w polu ,,Search details'' w zależności od tego co wpisujemy w pasek wyszukiwania.</p>
+<p>Na przykład wpisując w pasku wyszukiwania <code>atp6 Orobanche</code> widzimy w okienku ,,Search details'' zapytanie: <code>atp6[All Fields] AND (&quot;Orobanche&quot;[Organism] OR Orobanche[All Fields])</code>. Operator <code>AND</code> oznacza, że oba łączone nim wyrażenia powinny być spełnione. Jak widać, jest to domyślny operator wyszukiwania. Zauważ też, że słowo <code>Orobanche</code> jest wyszukiwane nie tylko w polu <code>Organism</code> (które oczywiście oznacza konkretny organizm) ale we wszystkich polach danego rekordu, co może tłumaczyć dlaczego w wynikach widzimy także sekwencje innych gatunków.</p>
+<p>Teraz wpisz zapytanie: <code>atp6[All Fields] AND &quot;Orobanche&quot;[Organism]</code> i sprawdź jakie będą wyniki.</p>
+<p>Jeśli chcemy wykluczyć część wyników, użyjemy operatora <code>NOT</code>. Zapytanie <code>atp6[All Fields] NOT &quot;Orobanche&quot;[Organism]</code> zwróci sekwencje <code>atp6</code> nienależące do <code>Orobanche</code>.</p>
+<p>Działanie ostatniego z operatorów <code>OR</code> pokażę na przykładzie, razem z zastosowaniem nawiasów. Zapytanie <code>atp6[All Fields] AND (&quot;Orobanche&quot;[Organism] OR &quot;Phelipanche&quot;[Organism])</code> pozwoli znaleźć sekwencje <code>atp6</code> należące do <code>Orobanche</code> lub <code>Phelipanche</code>. Otrzymamy więc sekwencje roślin należących do obu rodzajów.</p>
+<p>Na dole prawego panelu znajdziemy linki do poprzednich wyszukiwań.</p>
+<p>Przy wyszukiwaniu danych w GenBank-u należy pamiętać o tym, że w przeciwieństwie do popularnych wyszukiwarek internetowych, które tolerują literówki tu trzeba być bardzo dokładnym, nie otrzymamy pomocy w postaci linku ,,Czy chodziło Ci o....?&quot;.</p>
+<p>Poniżej pasku wyszukiwania na górze znajduje się link <code>Advanced</code>. Jak można się domyślić, znajdziemy tam narzędzie pozwalające tworzyć złożone i/lub precyzyjne zapytania:</p>
+<p><img src="genbank/GB-advanced-search.png" alt="Tworzenie złożonych i precyzyjnych zapytań" /></p>
+<p>Jeśli znasz numer GenBank-u szukanej sekwencji to dobrym pomysłem jest wpisanie go (zamiast gatunku i nazwy sekwencji) do paska wyszukiwań. Wtedy, jeśli numer jest prawidłowy od razu przejdziesz do strony z wynikiem, tej samej, którą otworzysz klikając w wynik wyszukiwania.</p>
+<p>Wpisz numer <code>KU180474</code>.</p>
+<a class="header" href="#sekwencja---informacje-i-pobieranie" id="sekwencja---informacje-i-pobieranie"><h2>Sekwencja - informacje i pobieranie</h2></a>
+<p>Strona z wynikiem składa się z dwu paneli (pomijając pasek wyszukiwania). W prawym znajdują się narzędzia, które teraz pominiemy, choć do niektórych jeszcze wrócimy. Przeanalizujmy panel lewy z informacjami dotyczącymi sekwencji.</p>
+<p>Na górze znajduje się nagłówek z opisem sekwencji, numerem GenBank i linkami, które już omawialiśmy przy okazji listy wyników wyszukiwania.</p>
+<p><img src="genbank/GB-wynik-top.png" alt="Wynik - nagłówek" /></p>
+<p>Poniżej znajduje się sekcja z polami opisującymi ogólnie sekwencje. Odpowiadają one polom używanym w trakcie wyszukiwania. W zasadzie nie wymagają one wyjaśnienia. Warto zwrócić uwagę, że często można znaleźć tam nazwę artykułu w którym opublikowano badania dotyczące sekwencji. Trzeba jednak uważać - autorzy wprowadzają do bazy sekwencje zwykle przed opublikowaniem artykułu, jest to więc zazwyczaj tytuł roboczy. Co prawda po ukazaniu się publikacji powinni dane zaktualizować, ale nie zawsze tak się dzieje.</p>
+<p><img src="genbank/GB-wynik-informacje.png" alt="Wynik - opis sekwencji" /></p>
+<p>Następne pole <code>FEATURES</code> zawiera kolejne pola dokładniej opisujące sekwencje, łącznie z genami i innymi specyficznymi fragmentami DNA, miejscami kodującymi i translacją sekwencji. Jest ona zwłaszcza przydatna, gdy chcemy pobrać jedynie część sekwencji. Sekwencja nie musi bowiem odpowiadać jednemu genowi - może to być np. genom mitochondrialny czy sekwencja całego chromosomu. Wtedy możemy chcieć np wyciąć z niej jeden gen. Wrócimy jeszcze do tego tematu.</p>
+<p><img src="genbank/GB-wynik-features.png" alt="Wynik - szczegóły sekwencji" /></p>
+<p>Dalej znajduje się sekwencja nukleotydów, czyli to czego zazwyczaj szukamy w GenBank-u.</p>
+<p><img src="genbank/GB-wynik-sekwencja.png" alt="Wynik - sekwencja nukleotydów" /></p>
+<p>Mogłoby się wydawać, że teraz można zaznaczyć fragment z sekwencją nukleotydów, skopiować i wkleić do edytora tekstu aby po uzupełnieniu linii z opisem sekwencji (zaczynającej się od znaku <code>&gt;</code>) otrzymać plik <code>FASTA</code>. Można, ale nie jest to najlepszy pomysł. Przede wszystkim ze względu na to, że skopiowany tekst zawiera numery i spacje, które trzeba by usunąć. Jak zatem otrzymać sekwencje w formacie <code>FASTA</code>? Na górze strony znajdują się linki <code>FASTA</code> oraz <code>Send to</code>. Po kliknięciu pierwszego z nich uzyskujemy stronę z wynikiem w tym właśnie formacie, który można skopiować i wkleić do edytora tekstu, łącznie z linią opisu sekwencji.</p>
+<p><img src="genbank/GB-wynik-fasta.png" alt="Wynik w formacie FASTA" /></p>
+<p>Klikając w <code>Send to</code> otwiera się okienko, które pozwala m. in. zapisać sekwencję do pliku <code>FASTA</code> (patrz wyżej).</p>
+<p>Dużo dokładniejszy opis poszczególnych pól opisujących sekwencję można znaleźć w dokumentacji GenBank-u pod adresem <a href="https://www.ncbi.nlm.nih.gov/Sitemap/samplerecord.html">https://www.ncbi.nlm.nih.gov/Sitemap/samplerecord.html</a>.</p>
+<a class="header" href="#zadanie" id="zadanie"><h3>Zadanie</h3></a>
+<p>Utwórz plik <code>atp6.fasta</code> w którym umieść następujące sekwencje:</p>
+<pre><code>Artemisia campestris KU180471
+Centaurea scabiosa KU180476
+Helianthus annuus FJ595983
+Magnolia stellata KC879635
+Mimulus guttatus HQ593782
+Orobanche alba KU180469
+Orobanche grenieri KU180474
+Peucedanum cervaria KU180475
+Phelipanche purpurea KU180468
+Phelipanche ramosa KU180466
+Solanum tuberosum AF095276
+</code></pre>
+<a class="header" href="#pobieranie-sekwencji-genu-z-genomu" id="pobieranie-sekwencji-genu-z-genomu"><h2>Pobieranie sekwencji genu z genomu</h2></a>
+<p>Dotychczas wyszukiwaliśmy sekwencje, które zostały umieszczone w GenBank-u jako oddzielne sekwencje genów. Nie zawsze jednak sytuacja jest tak wygodna. W wielu przypadkach sekwencje genów są częścią dużo dłuższych odcinków DNA, na przykład chromosomów, genomów plastydowych czy mitochondrialnych. Pokażę teraz jak z nich wydobyć interesujące nas sekwencje.</p>
+<p>Wyszukaj w GenBank-u sekwencję 'NC_001284'. Pokaże się taki wynik:</p>
+<p><img src="genbank/GB-genom.png" alt="Sekwencja genomu mitochondrialnego" /></p>
+<p>Jak widać z opisu oraz informacji poniżej znaleźliśmy sekwencję genomu mitochondrialnego <em>Arabidopsis thaliana</em>. Teraz wyszukajmy w niej sekwencję genu <code>cox3</code>. W tym celu w sekcji <code>FEATURES</code> należy znaleźć pole <code>gene</code> z wartością <code>\gene=&quot;cox3&quot;</code>. Ponieważ liczba opisanych sekwencji jest bardzo długa, nie ma sensu przeglądać całości w poszukiwaniu żądanego genu.</p>
+<p>Jednym ze sposobów znalezienia go jest użycie wbudowanej w wyszukiwarce internetowej wyszukiwarce tekstu, wywoływanej skrótem &lt;Ctrl+F&gt;. W okienku wpisujemy <code>cox3</code> i szukamy odpowiedniej części wyniku.</p>
+<p><img src="genbank/GB-gen-w-genomie.png" alt="Gen w genomie" /></p>
+<p>Pole <code>gene</code> odnosi się do regionu oznaczonego jako gen, niekoniecznie zawierający wyłącznie miejsca kodujące. Te są opisane w części oznaczonej jako <code>CDS</code> (<em>coding sequence</em>).</p>
+<p>Przy <code>gene</code> mamy podany zakres odcinka <code>217631..217639</code>, dla <code>CDS</code> jest to <code>218280..219077</code>. Mamy też podane inne, dotyczące genu informacje jak miejsce zajmowane przez promotor czy miejsca edycji RNA. Dla <code>CDS</code> jest także pokazana sekwencja aminokwasów.</p>
+<p>Kliknij teraz na <code>gene</code>.</p>
+<p><img src="genbank/GB-gen.png" alt="Fragment gene" /></p>
+<p>Pokazuje się, zaznaczony na brązowo, fragment genomu mitochondrialnego odpowiadający żądanej sekwencji. Na dole pojawia się także pasek nawigacyjny pomiędzy cechami (<code>Features</code>), ,,dymek'' z różnymi informacjami a także linki umożliwiające wyświetlenie sekwencji w odpowiednim formacie, w tym <code>FASTA</code>.</p>
+<p>Jeśli zamiast <code>gene</code> klikniemy <code>CDS</code> otrzymamy podobny wynik, ale z informacjami charakterystycznymi dla sekwencji kodującej:</p>
+<p><img src="genbank/GB-CDS.png" alt="Fragment CDS" /></p>
+<p>Po kliknięciu w link <code>FASTA</code>  na dole ekranu pojawia się sekwencja w formacie <code>FASTA</code>.</p>
+<p><img src="genbank/GB-CDS-FASTA.png" alt="Fragment CDS w formacie FASTA" /></p>
+<p>Podobny widok widzieliśmy wcześniej ale zwróć uwagę, ze po prawej znajduje się okienko, w którym znajdują się edytowalne pola z zakresem wyświetlanej sekwencji. Czasem chcemy pobrać nieco dłuższy (lub krótszy) fragment niż wyświetlany domyślnie, wtedy można zmienić numery i kliknąć <code>Update View</code>. Wyświetli się zmodyfikowany zakres nici DNA.</p>
+<p><img src="genbank/GB-CDS-FASTA-zmieniony.png" alt="Fragment CDS w formacie FASTA - poszerzony zakres" /></p>
+<p>Sekwencję można pobrać tak jak opisywałem poprzednio.</p>
+<a class="header" href="#sekwencje-komplementarne" id="sekwencje-komplementarne"><h2>Sekwencje komplementarne</h2></a>
+<p>Czasem przy opisie sekwencji znajdujemy informację, że jest ona komplementarna (<code>complement</code>), co oznacza, że znajduje się ona na nici komplementarnej. Znajdź gen <code>rpl16</code>.</p>
+<p><img src="genbank/GB-complement.png" alt="Sekwencja na nici komplementarnej" /></p>
+<p>Taka sekwencja przy dopasowaniu do innych powinna być przekształcona w sekwencję odwróconą komplementarną. Na szczęście jeśli wyświetlimy ten fragment w formacie <code>FASTA</code> otrzymamy od razu sekwencję w odpowiedniej formie. Zauważ, że zakres sekwencji jest podany w odwrotnej kolejności:</p>
+<p><img src="genbank/GB-comlement-FASTA.png" alt="Sekwencja odwrócona komplementarna" /></p>
+<a class="header" href="#sekwencje-we-fragmentach" id="sekwencje-we-fragmentach"><h2>Sekwencje we fragmentach</h2></a>
+<p>Znajdź teraz gen <code>nad2</code>.</p>
+<p><img src="genbank/GB-join.png" alt="Gen we fragmentach" /></p>
+<p>Zauważ, że przy opisie genu znajduje się nie tylko informacja, że jest ona komplementarna ale, że aby uzyskać sekwencję genu (lub <code>CDS</code>) trzeba połączyć kilka fragmentów (<code>join</code>). Czasem niektóre fragmenty są komplementarne inne nie, mogą też pochodzić z różnych sekwencji w bazie (np. rożnych chromosomów). Sprawdź na przykład gen <code>nad1</code> w sekwencji <code>KF754803</code>.  Kompletna, złożona sekwencja powinna pokazać się po kliknięciu linku <code>FASTA</code> w lewym dolnym rogu, ale nie zawsze to działa. W takim wypadku można po kolei wyświetlać kolejne fragmenty genomu w formacie <code>FASTA</code> (jak pokazałem powyżej) a następnie je łączyć w edytorze tekstu lub programie do obróbki sekwencji. Jeśli sekwencja jest komplementarna, jak w przypadku <code>nad2</code>, trzeba będzie ją zmienić na odwróconą, komplementarną. Łączenie fragmentów może być nużące, jest to jeden z przypadków, w których wygodniejsze może być użycie narzędzi działających w linii komend.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../cwiczenia/15-warsztat.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../cwiczenia/17-genbank-cli.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="../cwiczenia/15-warsztat.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="../cwiczenia/17-genbank-cli.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3001");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload(true); // force reload from server (not from cache)
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        
+
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

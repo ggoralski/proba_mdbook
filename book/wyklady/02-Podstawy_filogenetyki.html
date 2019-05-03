@@ -1,0 +1,380 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Wstęp do filogenetyki molekularnej i tworzenia drzew filogenetycznych - Próba mdbook</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="../wyklady/02-Podstawy_filogenetyki.html" class="active"><strong aria-hidden="true">1.</strong> Wstęp do filogenetyki molekularnej i tworzenia drzew filogenetycznych</a></li><li><a href="../wyklady/03-Dopasowanie_sekwencji.html"><strong aria-hidden="true">2.</strong> Dopasowanie sekwencji</a></li><li><a href="../wyklady/04-Modele_ewolucji_molekularnej.html"><strong aria-hidden="true">3.</strong> Modele ewolucji molekularnej</a></li><li><a href="../wyklady/05-Drzewa_filogenetyczne.html"><strong aria-hidden="true">4.</strong> Drzewa filogenetyczne</a></li><li><a href="../wyklady/06-HGT.html"><strong aria-hidden="true">5.</strong> Horyzontalny transfer genów (HGT)</a></li><li><a href="../cwiczenia/11-praca_w_linuksie.html"><strong aria-hidden="true">6.</strong> Podstawy pracy w systemie Linux</a></li><li><a href="../cwiczenia/12-pliki_tekstowe.html"><strong aria-hidden="true">7.</strong> Praca z plikami tekstowymi w linii komend</a></li><li><a href="../cwiczenia/13-edytory_tekstu.html"><strong aria-hidden="true">8.</strong> Edytory tekstu</a></li><li><a href="../cwiczenia/14-skrypty.html"><strong aria-hidden="true">9.</strong> Skrypty powłoki</a></li><li><a href="../cwiczenia/15-warsztat.html"><strong aria-hidden="true">10.</strong> Warsztat pracy</a></li><li><a href="../cwiczenia/16-genbank-www.html"><strong aria-hidden="true">11.</strong> Bazy sekwencji DNA, GenBank</a></li><li><a href="../cwiczenia/17-genbank-cli.html"><strong aria-hidden="true">12.</strong> Pobieranie sekwencji z bazy GenBank i praca w plikami FASTA przy pomocy linii komend</a></li><li><a href="../cwiczenia/18-blast.html"><strong aria-hidden="true">13.</strong> BLAST - wyszukiwanie podobnych sekwencji</a></li><li><a href="../cwiczenia/19-dopasowanie_sekwencji.html"><strong aria-hidden="true">14.</strong> Dopasowanie sekwencji</a></li><li><a href="../cwiczenia/20-dopasowanie_modelu.html"><strong aria-hidden="true">15.</strong> Dopasowanie modelu substytucji</a></li><li><a href="../cwiczenia/21-konstruowanie-drzew.html"><strong aria-hidden="true">16.</strong> Konstruowanie drzew</a></li><li><a href="../cwiczenia/22-wizualizacja-drzew.html"><strong aria-hidden="true">17.</strong> Wizualizacja drzew</a></li><li><a href="../cwiczenia/23-zegar-molekularny.html"><strong aria-hidden="true">18.</strong> Drzewa filogenetyczne i zegar molekularny</a></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Próba mdbook</h1> 
+
+                        <div class="right-buttons">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="#wstęp-do-filogenetyki-molekularnej-i-tworzenia-drzew-filogenetycznych" id="wstęp-do-filogenetyki-molekularnej-i-tworzenia-drzew-filogenetycznych"><h1>Wstęp do filogenetyki molekularnej i tworzenia drzew filogenetycznych</h1></a>
+<a class="header" href="#czym-się-zajmuje-filogenetyka-molekularna" id="czym-się-zajmuje-filogenetyka-molekularna"><h2>Czym się zajmuje filogenetyka molekularna?</h2></a>
+<p><strong>Filogenetyka</strong> to nauka zajmująca się badaniem historii ewolucyjnej (filogenezy) organizmów lub ich grup z użyciem różnych metod w tym paleontologicznych, anatomii porównawczej, genetyki itd. <strong>Filogenetyka molekularna</strong>, jak wskazuje nazwa, skupia się na badaniach cząsteczek (DNA, białek) w celu rekonstrukcji filogenezy. W dalszej części mówiąc o filogenetyce będę miał na myśli głównie filogenetykę molekularną. Zwykle badania filogenetyczne zmierzają do stworzenia <strong>drzewa filogenetycznego</strong>, które w formie wizualnej pozwala przedstawić pokrewieństwa taksonów (zwykle gatunków) w badanej grupie, kolejność ich wyodrębniania oraz szacowane różnice genetyczne między nimi.</p>
+<a class="header" href="#etapy-tworzenia-drzew-filogenetycznych" id="etapy-tworzenia-drzew-filogenetycznych"><h2>Etapy tworzenia drzew filogenetycznych</h2></a>
+<p>Proces tworzenia drzew filogenetycznych składa się z kilku etapów:</p>
+<ul>
+<li>Wybór rodzaju sekwencji odpowiedniej dla zestawu badanych taksonów (zmienność, dostępność sekwencji etc.)</li>
+<li>Zebranie sekwencji (sekwencje własne, bazy danych)</li>
+<li>Wybór algorytmów/oprogramowania do dopasowania sekwencji, budowy drzewek oraz ich wizualizacji</li>
+<li>Wstępne automatyczne dopasowanie sekwencji</li>
+<li>Ręczne poprawki: dokładniejsze dopasowanie sekwencji, przycięcie</li>
+<li>Wybranie modelu ewolucji molekularnej</li>
+<li>Budowanie drzewa</li>
+<li>Tworzenie filogramu/kladogramu</li>
+<li>Poprawki: wskazanie outgrupy, obracanie gałęzi, wybór typu drzewa itp.</li>
+</ul>
+<p>Teraz omówimy szerzej pierwszy etap, pozostałe tylko w zarysie, wrócimy do nich osobno w części teoretycznej i/lub praktycznej.</p>
+<a class="header" href="#wybór-sekwencji-do-badań" id="wybór-sekwencji-do-badań"><h2>Wybór sekwencji do badań</h2></a>
+<p>Pierwszym krokiem w badaniach filogenetycznych jest wybór odpowiednich sekwencji do analiz.
+Tego typu analizy opierają się na założeniu, że jeśli porównuje się odpowiadające sobie sekwencje (na przykład konkretnego genu) to u organizmów bliżej ze sobą spokrewnionych powinny być one bardziej podobne do siebie niż w przypadku taksonów bardziej odległych ewolucyjnie. Wynika to z losowego gromadzenia mutacji - im więcej czasu minęło od rozdzielenia się w toku ewolucji badanych grup, tym więcej mutacji powinno się skumulować w DNA. Takie porównania sekwencji mają oczywiście sens tylko wtedy, gdy pochodzą one od wspólnego ,,molekularnego'' przodka, czyli są <strong>homologiczne</strong>. Na tym jednak nie koniec. Sekwencje homologiczne można bowiem podzielić na dwie kategorie:</p>
+<ul>
+<li><strong>ortologi</strong>: sekwencje, które miały wspólnego przodka zaraz przed procesem specjacji</li>
+<li><strong>paralogi</strong>: sekwencje, które powstały w skutek duplikacji, czyli miały wspólnego przodka przed zduplikowaniem.
+Do badań filogenetycznych należy wybierać ortologi.</li>
+</ul>
+<p>Trzeba pamiętać, że samo podobieństwo badanych odcinków DNA jeszcze nie przesądza o ich homologiczności. Podobne sekwencje mogą bowiem powstać z niespokrewnionych sekwencji
+w wyniku dostosowania genów do pełnienia tych samych funkcji. Takie podobieństwo nazywamy <strong>homoplazją</strong> a geny <strong>analogicznymi</strong>. Oczywiście nie nadają się one do badań filogenetycznych.</p>
+<p>Kolejnym aspektem, który należy wziąć pod uwagę przy wyborze sekwencji jest ich tempo ewolucji. Różne sekwencje DNA mają różne tempo gromadzenia mutacji. Generalnie niekodujące sekwencje DNA zmieniają się w toku ewolucji dużo szybciej niż geny. Przyczyną tej różnicy nie jest różne tempo mutacji ale presja selekcyjna. Drobne zmiany fragmentów nieaktywnych DNA nie mają na ogół wpływu na organizm. Mutacje w ich obrębie mogą się więc kumulować w kolejnych pokoleniach praktycznie bez przeszkód. W przypadku sekwencji kodujących mutacje nawet pojedynczych nukleotydów, zwłaszcza jeśli są to delecje lub insercje (zbiorczo nazywane <strong>indelami</strong>) często wpływają negatywnie na funkcjonowanie produkowanych przez gen białek lub cząsteczek RNA, zmniejszając szanse lub uniemożliwiając nosicielowi mutacji przetrwanie i przekazanie mutacji następnym pokoleniom. Mutacje genów są więc w pewnym stopniu usuwane przez dobór. W jakim stopniu - to zależy od rodzaju genu.</p>
+<p>Geny różnią się ,,wrażliwością'' na mutacje. W niektórych z nich niemal każda zmiana prowadzi do upośledzenia właściwego funkcjonowania kodowanego białka - są to <strong>geny konserwatywne</strong>. Do najbardziej skrajnych przykładów należą białka histonowe odpowiedzialne za strukturę chromatyny - nawet mała zmiana w ich strukturze ma niekorzystny wpływ na funkcjonowanie całego aparatu genetycznego, kluczowego dla działania komórki i organizmu. Inne geny wykazują większą tolerancję. Zatem im bardziej gen jest konserwatywny tym mniej różnic zauważymy między sekwencjami pochodzącymi od badanych organizmów.</p>
+<p>Ważną konsekwencją omawianych różnic w tempie ewolucji jest to, że przy podejmowaniu decyzji którą sekwencję będzie się badać, należy wziąć pod uwagę stopień pokrewieństwa badanej grupy organizmów. Ogólna zasada jest taka, że im bliżej są one spokrewnione tym bardziej zmienne sekwencje należy wybrać. Tak więc na przykład przy badaniu gatunków w obrębie rodzaju praktyczniej jest wybrać sekwencję niekodującą lub mało konserwatywny gen, natomiast do analizy powiązań filogenetycznych pomiędzy przedstawicielami rodzin czy wyższych jednostek taksonomicznych raczej będą przydatne mniej zmienne geny. Jest to oczywiste w przypadku wyboru zbyt konserwatywnych genów. Jeśli wybierze się sekwencję o zbyt małej zmienności, może okazać się, że nie ma różnic między badanymi cząsteczkami u blisko spokrewnionych organizmów albo jest ich zbyt mało aby wyciągnąć sensowne wnioski. Mniej oczywiste są konsekwencje wyboru zbyt zmiennej sekwencji. Mogłoby się wydawać, że nie powinno to szkodzić badaniom. W końcu im więcej mutacji tym więcej informacji którą można wykorzystać przy badaniach. Kłopot w tym, że także w tym wypadku nadmiar może być szkodliwy - zbyt wiele zmian może na tyle zatrzeć podobieństwa a także poprzednie mutacje, że sekwencje nie będą się nadawać do badań filogenetycznych. Wrócimy tego tematu przy okazji omawiania modeli ewolucji molekularnej.</p>
+<p>Przy wyborze rodzaju sekwencji do badań należy także wziąć pod uwagę aspekty praktyczne związane z sekwencjonowaniem DNA a także dostępność sekwencji w bazach danych (wtedy nie trzeba ich sekwencjonować we własnym zakresie).</p>
+<a class="header" href="#zbieranie-sekwencji" id="zbieranie-sekwencji"><h2>Zbieranie sekwencji</h2></a>
+<p>Sekwencje używane w badaniach pochodzą zazwyczaj z dwóch źródeł:</p>
+<ul>
+<li>badania własne</li>
+<li>bazy danych</li>
+</ul>
+<p>Z punktu widzenia ekonomicznego i praktycznego im więcej sekwencji można pobrać z baz danych tym lepiej. Z drugiej strony, sekwencje pochodzące z własnych badań mogą wzbogacić dostępne dla innych badaczy bazy danych, co samo w sobie jest jakimś wkładem w naukę.</p>
+<a class="header" href="#badania-własne" id="badania-własne"><h3>Badania własne</h3></a>
+<p>W badaniach własnych zazwyczaj otrzymuje się badane sekwencje w laboratorium a następnie DNA albo analizuje się w posiadanym sekwencjonatorze albo przesyła się próbki do wyspecjalizowanej firmy, która udostępnia wyniki sekwencjonowania. Zwykle to drugie podejście jest tańsze.</p>
+<a class="header" href="#internetowe-bazy-danych" id="internetowe-bazy-danych"><h3>Internetowe bazy danych</h3></a>
+<a class="header" href="#genbank-i-inne-bazy-sekwencji" id="genbank-i-inne-bazy-sekwencji"><h4>Genbank i inne bazy sekwencji</h4></a>
+<p>Trzy najbardziej znane, dostępne publicznie bazy danych sekwencji DNA (oraz RNA i białek) to:</p>
+<ul>
+<li><a href="https://www.ncbi.nlm.nih.gov/genbank/"><strong>GenBank</strong></a> utrzymywany przez National Center for Biotechnology Information (NCBI)</li>
+<li><a href="http://www.ddbj.nig.ac.jp">DNA DataBank of Japan</a> (DDBJ),</li>
+<li><a href="http://www.ebi.ac.uk/ena">The European Nucleotide Archive</a> (ENA)</li>
+</ul>
+<p>Wszystkie trzy bazy współpracują ze sobą w ramach (International Nucleotide Sequence Database Collaboration](http://insdc.org)(INSDC) synchronizując dane. W dalszej części kursu skupimy się na bazie GenBank.</p>
+<p>GenBank jako otwarta baza danych rozpoczęła swoją historię w 1982 roku. <a href="https://www.ncbi.nlm.nih.gov/genbank/statistics/">Statystyki podają</a>, że w grudniu pierwszego roku działalności zawierała 606 sekwencji o łącznej długości (680 338) nukleotydów. Dziesięć lat później było ich już 97 084 (120 242 234), po kolejnej dekadzie 22 318 883 (28 507 990 166) a w grudniu 2012 r. już 161 140 325 (148 390 863 904). Dzisiaj (stan na czerwiec 2017) w GenBanku zebrano 201 663 568 sekwencji odpowiadających 234 997 362 623 zasadom. Ocenia się, że liczba sekwencji w GenBanku podwaja się średnio co ok. 18 miesięcy.</p>
+<p>Jak widać ilość danych gwałtownie wzrasta. W dodatku wraz z rozwojem możliwości badań materiału genetycznego organizmów w bazie pojawia się coraz więcej sekwencji genomów wirusowych, bakteryjnych, jądrowych, mitochondrialnych i plastydowych.  Efektywne zbieranie i wyszukiwanie takich ilości danych nie byłoby możliwe, gdyby nie komputerowe, dostępne publicznie repozytoria danych. Do najbardziej niezbędnych umiejętności w badaniach filogenetycznych należy zatem przynajmniej podstawowa umiejętność wyszukiwania i pobierania danych z tego typu baz.</p>
+<p>Baza GenBank pozwala wyszukiwać sekwencje na kilka sposobów. Zapewne najczęściej używana jest metoda zbliżona do wyszukiwarek internetowych, polegająca na wpisywaniu tekstu, np. nazw organizmów czy sekwencji, w okienko i przeglądaniu wyników wyszukiwania. Można przy tym wybierać spośród wielu dostępnych kategorii, m. in. sekwencje nukleotydów, genomy, taksony, białka. Przykładowo, jeśli chcemy wyszukać sekwencje ITS dla rodzaju <em>Rumex</em>, możemy wpisać <code>Rumex ITS</code>:</p>
+<p><img src="pics-podstawy/genbank-wyszukiwanie.png" alt="Proste wyszukiwanie" /></p>
+<p>Trzeba jednak uważać na kilka potencjalnych problemów. Po pierwsze przynajmniej obecnie, baza GenBank nie jest tak ,,domyślna'' jak np. wyszukiwarka Google. Przykładowo jeśli zrobimy literówkę, i zamiast <code>Rumex ITS</code> wpiszemy <code>Ramex ITS</code> to nie ujrzymy podpowiedzi w rodzaju <code>Czy chodziło Ci o Rumex ITS?</code>, tylko baza nie zwróci żadnych wyników.</p>
+<p><img src="pics-podstawy/genbank-literowka.png" alt="Genbank - literówka" /></p>
+<p>Jeśli wyszukiwanie nie zwraca wyników a jesteśmy pewni, że wpisaliśmy zapytanie prawidłowo, można spróbować inaczej je sformułować, na przykład zamiast używania skróconych nazw sekwencji wpisać pełną nazwę, lub jej fragment. Dzięki temu można czasem znaleźć to o co chodziło ale wyniki mogą też zaskakiwać. Przykładowo wpisanie zapytania <code>Rumex rbcL</code> zwraca 196 wyników:</p>
+<p><img src="pics-podstawy/genbank-nazwa-skrot.png" alt="Genbank - nazwa skrótowa" /></p>
+<p>Wpisane długiej nazwy, którą widać w opisie pierwszych sekwencji (<code>Rumex ribulose-1,5-bisphosphate carboxylase/oxygenase large subunit</code>) nie przynosi żadnych wyników:</p>
+<p><img src="pics-podstawy/genbank-nazwa-pelna.png" alt="Genbank - nazwa pełna" /></p>
+<p>Natomiast zapytanie <code>Rumex biposphate large subunit</code> zwraca 147 sekwencji:</p>
+<p><img src="pics-podstawy/genbank-nazwa-czesciowa.png" alt="Genbank - nazwa częściowa" /></p>
+<a class="header" href="#blast" id="blast"><h4>Blast</h4></a>
+<p>GenBank i inne podobne do niego bazy sprawdzają się dobrze, gdy wyszukujemy sekwencje po ich nazwie, opisie czy nazwie taksonu. Ale często trzeba podejść do problemu z drugiej strony - mamy sekwencję nukleotydów i chcemy znaleźć inne, podobne do niej. Jest tak na przykład gdy nie wiemy czy odpowiada ona jakiemuś konkretnemu genowi albo gdy chcemy sprawdzić u jakiego organizmu występuje sekwencja najbardziej podobna (np. jeśli badamy odcinek DNA niewiadomego pochodzenia). W takich sytuacjach z pomocą przychodzi <a href="https://blast.ncbi.nlm.nih.gov">Blast</a> (Basic Local Alignment Search Tool).</p>
+<p><img src="pics-podstawy/blast.png" alt="Blast" /></p>
+<p>Jak widać serwis umożliwia wyszukiwanie sekwencji nukleotydowych a także białkowych. W najprostszym przypadku na stronie wyszukiwania w odpowiednim okienku wpisujemy szukaną sekwencję i wciskamy przycisk ,,Blast'' na dole strony. Po dłuższej lub krótszej chwili oczekiwania wyświetlane są wyniki. Na górze strony mają one postać graficzną:</p>
+<p><img src="pics-podstawy/blast-wyniki-graficzne.png" alt="Blast - wyniki graficzne" /></p>
+<p>Poniżej widnieje lista z krótką informacją na temat znalezionych sekwencji</p>
+<p><img src="pics-podstawy/blast-wyniki-tekstowe.png" alt="Blast - wyniki tekstowe" /></p>
+<p>Pod nimi znajdują się dokładniejsze dane, schematyczne przedstawienie przyrównania sekwencji szukanej i znalezionej a także odsyłacze prowadzące do dalszych informacji dotyczących sekwencji w bazie GenBank.</p>
+<p><img src="pics-podstawy/blast-wyniki-szczegoly.png" alt="Blast - wyniki szczegółowe" /></p>
+<p>Do dokładniejszego omówienia korzystania z obu baz a także pobierania z nich danych wrócimy w części praktycznej.</p>
+<a class="header" href="#zbieranie-sekwencji-1" id="zbieranie-sekwencji-1"><h3>Zbieranie sekwencji</h3></a>
+<p>Do badań filogenetycznych sekwencje zapisuje się zwykle w plikach tekstowych w formacie <strong>FASTA</strong>. Zapis danych w pliku tekstowym ma wiele zalet. Może być edytowany w dowolnym edytorze tekstu (np. Vim, Emacs, Notepad++, Atom, TextMate, Jed, Pico), a także łatwo używać do pracy z nimi licznych dostępnych w systemach Uniksowych (np. w Linuksie) narzędzi ułatwiających na przykład wyciąganie z nich konkretnych danych. Z niektórymi z nich zapoznamy się w części praktycznej. Uwaga: Word NIE jest edytorem tekstu, plik zapisany w formacie Worda NIE jest plikiem tekstowym.</p>
+<p>Plik zawierający sekwencje nukleotydów w formacie  FASTA może wyglądąć np. tak:</p>
+<pre><code>&gt;KC879635_Magnolia_stellata             
+CTGCTAACTCTCAGTTTGGTCCTACTTCTGGTTCATTTTGTTACTAAAAACGGAGGGGGAA
+ACTCAGTACCAAATGCTTGGCAATCCTTGGTAGAGCTTATTCATGATTTCGTGCCGAACCC
+GGTAAACGAACAAATAGGTGGTCTTTCCGGAAATGTTCAACAAAAGTTTTCCCCTCGCATC
+TCGGTCACTTCTACTTTTTCGTTATTTCGTAATCCCCAGGGTATGATACCTTATAGCTTCA
+CAGTCACAAGTCATTTTCTCATTACTTTGGGTCTCTCATTTCCGATTTTTATTGGCATTAC
+TATAGTGGGATTTCAAAGAAATGGGCTTCATTTTTTAAGCATCTCATTACCCGCAGGAGTC
+CCACTGCCGTTAGCACCTTTTTTAGTACTCCTTGAGCTAATCCCTCATTGTTTTCGCGCAT
+TAAGCTCAGGAATACGTTTATTTGCTAATATGATGGCCGGTCATAGTTCAGTAAAGATTTT
+AAGTGGGTCCGCTTGGACTATGCTATGTATGAATGATCTTTTTTATTTCATAGGAGATCCT
+GGTCCTTTATTTATAGTTCTTGCATTAACCGGTCCGGAATTAGGTGTAGCTATATCACAAG
+CTCATGTTTCTACGATCTCAATCTGTATTTAC
+&gt;AF095276_Solanum_tuberosum             
+CTACTAACTCTCAGTTTGGTCCTACTTTTGGTTTATTTTGTTACTAAAAAGGGAGGAGGAA
+ACTCAGTACCAAATGCTTGGCAATCCTTGGTAGAGCTTATTTATGATTTCGTGCTGAACCC
+GGTAAACGAACAAATAGGTGGTCTTTCCGGAAATGTTAAACAAAAGTTTTCCCCTCGCATC
+TCGGTCACTTTTACTTTTTCGTTATTTTGTAATCCCCAGGGTATGATACCTTATAGCTTCA
+CAGTTACAAGTCATTTTCTCATTACTTTGGGTCTCTCATTTTCTATTTTTATTGGCATTAC
+TATAGTGGGATTTCAAAAAAATGGGCTTCATTTTTTAAGCTTCTTATTACCCGCGGGAGTC
+CCGCTGCCATTAGCACCTTTTTTAGTACTCCTTGAGCTAATCCCTTATTGTTTTCGAGCAT
+TAAGCTCAGGAATACGTTTATTTGCTAATATGATGGCCGGTCATAGTTCAGTAAAGATTTT
+AAGTGGGTTCGCTTGGACTATGCTATGTATGAATGATCTTTTCTATTTCATAGGGGATCTT
+GGTCCTTTATTTATAGTTCTTGCATTAACCGGTCTGGAATTAGGTGTAGCTATATCACAAG
+CTCATGTTTCTACGATCTTAATCTGTATTTAC
+&gt;JN098455_Mimulus_guttatus              
+CTACTCACTCTCAGTTTGGTCCTACTTTTTGTTCATTTTGTTACTAAAAAGGGAGGAGGAA
+ACTCAGTACCAAATGCTTGGCAATCCTTGGTAGAGCTTATTTATGATTTCGTGCCGAACCT
+GGTAAACGAACAAATAGGTGGTCTTTCCGGAAATGTGAAACAAAAGTTTTTCCCTTGCATC
+TCGGTTACTTTTACTTTTTCGTTATTTCGTAATCTTCAGGGTATGATACCTTATAGCTTCA
+CAGTTACAAGTCATTTTCTCATTACTTTGGGTCTCTCATTTTCTCTTTTTATTGGCATTAC
+TATAGTGGGATTTCAAAAAAATGGGCTTCATTTTTTAAGCTTCTCATTACCCGCAGGAGTC
+CCACTGCCGTTAGCACCTTTTTTAGTACTACTTGAGCTAATCCCTCATTGTTTTCGCGCAT
+TAAGCTTAGGAATACGTTTATTTGCTAATATGATGGCCGGTCATAGTTCAGTAAAGATTTT
+AAGTGGGTCCGCTTGGACTATGCTATGTATGAATGATCTTTTCTATTTCATAGGGGATCCT
+GGTCCTTTATTTATAGTTCTTGCATTAACCGGTCTGGAATTAGGTGTAGCTATATCACAAG
+CTCATGTTTCTACGATCTCAATCTGTATTTAC
+</code></pre>
+<p>Każda sekwencja nukleotydów poprzedzona jest linią zaczynającą się znakiem <code>&gt;</code>. Po tym znaku powinien znajdować się opis sekwencji. W powyższym przykładzie jest on dość lakoniczny, zawiera tylko numer dostępowy GenBank oraz nazwę taksonu, ale można tam zawrzeć też dużo więcej informacji. Tak na przykład wygląda nagłówek jednej z sekwencji pobranej z bazy GenBank:</p>
+<p><code>&gt;KX282989.1 Rumex vesicarius voucher EDNA15-0042869 ribulose-1,5-bisphosphate carboxylase/oxygenase large subunit (rbcL) gene, partial cds; chloroplast</code></p>
+<p>Po linii z opisem zapisana jest sekwencja nukleotydów lub aminokwasów. Może ona znajdować się w jednej lub wielu liniach, zasada jest taka, że wszystkie linie aż do następnego znaku <code>&gt;</code> na początku linii powinny zawierać tylko i wyłącznie sekwencję. Niekoniecznie musi ona zawierać wyłącznie litery oznaczające nukleotydy lub aminokwasy, mogą tam także znajdować się dodatkowe oznaczenia np. niejednoznacznych lub nieznanych nukleotydów czy miejsc delecji. Stosuje się tu konwencję oznaczeń <a href="http://www.iupac.org">IUPAC</a>.</p>
+<table><thead><tr><th align="center"> <strong>Symbol IUPAC</strong> </th><th align="center">    <strong>znaczenie</strong></th></tr></thead><tbody>
+<tr><td align="center">        A         </td><td align="center">       Adenina</td></tr>
+<tr><td align="center">        C         </td><td align="center">      Cytozyna</td></tr>
+<tr><td align="center">        G         </td><td align="center">       Guanina</td></tr>
+<tr><td align="center">    T (lub U)     </td><td align="center"> Tymina (lub Uracyl)</td></tr>
+<tr><td align="center">        R         </td><td align="center">       A lub G</td></tr>
+<tr><td align="center">        Y         </td><td align="center">       C lub T</td></tr>
+<tr><td align="center">        S         </td><td align="center">       G lub C</td></tr>
+<tr><td align="center">        W         </td><td align="center">       A lub T</td></tr>
+<tr><td align="center">        K         </td><td align="center">       G lub T</td></tr>
+<tr><td align="center">        M         </td><td align="center">       A lub C</td></tr>
+<tr><td align="center">        B         </td><td align="center">    C lub G lub T</td></tr>
+<tr><td align="center">        D         </td><td align="center">    A lub G lub T</td></tr>
+<tr><td align="center">        H         </td><td align="center">    A lub C lub T</td></tr>
+<tr><td align="center">        V         </td><td align="center">     A or C or G</td></tr>
+<tr><td align="center">        N         </td><td align="center"> nieznany nukleotyd</td></tr>
+<tr><td align="center">     - lub .      </td><td align="center">   brak nukleotydu</td></tr>
+</tbody></table>
+<p>Czasem pomiędzy końcem sekwencji a nagłówkiem kolejnej dodawana jest pusta linia co może zwiększać czytelność dla człowieka.</p>
+<p>Format FASTA jest najprostszy i najpopularniejszy ale istnieją także inne, np. phylip, nexus, fastq.</p>
+<a class="header" href="#dopasowanie-sekwencji" id="dopasowanie-sekwencji"><h2>Dopasowanie sekwencji</h2></a>
+<p>Jak wspomniałem wcześniej sekwencje używane do badan filogenetycznych powinny być homologiczne. Dopasowanie wybranych sekwencji polega na tym aby ustawione w kolejnych liniach sekwencje miały w kolejnych kolumnach <strong>homologiczne</strong> względem siebie <strong>nukleotydy</strong>.</p>
+<p>Dopasowanie sekwencji składa się zwykle z dwóch etapów:</p>
+<ul>
+<li>Wstępne dopasowanie automatyczne dokonywane przez odpowiednie programy</li>
+<li>Poprawki dokonywane przez człowieka</li>
+</ul>
+<p>Do wstępnego automatycznego wyrównania stosowanych jest wiele programów, które używają różnych algorytmów. W dodatku na sposób i efektywność działania każdego z nich duży wpływ mają parametry, które ustawia się przy ich uruchamianiu. Dlatego na pytania w rodzaju ,,<em>który program jest najlepszy do dopasowania sekwencji?</em>'' nie ma dobrej odpowiedzi. Bardzo duże znaczenie ma tu rodzaj dopasowywanych sekwencji i ustawienia programów. Do najpopularniejszych programów tego typu należą m. in. <code>clustalw</code>, <code>muscle</code>, <code>mafft</code>, <code>probcons</code>.</p>
+<p>Jeśli porównywane sekwencje są stosunkowo mało zmienne i nie mają indeli (insercji i/lub delecji) automatyczne dopasowanie może nie wymagać ręcznych poprawek albo są one ograniczone do przycięcia końców sekwencji tak aby miały równą długość. Jeśli jednak tak nie jest,etap ręcznych poprawek może być długi i żmudny a  końcowy efekt może być w większym lub mniejszym stopniu niepewny.</p>
+<p>Do pracy nad wstępnie wyrównanym zestawem sekwencji używać można edytorów tekstu, najlepiej z odpowiednimi skryptami/wtyczkami ułatwiającymi czytelne przedstawienie wyrównywanych sekwencji co związane jest z ich odpowiednim wyświetleniem oraz zwykle kolorowaniem. Na poniższej ilustracji przedstawiony jest edytor Vim (MacVim) z odpowiednimi udogodnieniami zaprogramowanymi przez autora tego tekstu:</p>
+<p><img src="pics-podstawy/vim-fasta.png" alt="Vim i FASTA" /></p>
+<p>Częściej jednak, używa się w tym celu dedykowanych programów, które zwykle są wzbogacone w wiele dodatkowych funkcji ułatwiających pracę z plikami FASTA jak wyrównywanie sekwencji, zmiana na sekwencje odwrócone komplementarne, eksport do innych formatów  a także dodatkowymi czynnościami jak wyszukiwanie sekwencji w bazach czy tworzenie drzewek filogenetycznych. Przykładami są program AliView i Jalview:</p>
+<p><img src="pics-podstawy/aliview-fasta.png" alt="AliView - wyrównane sekwencje" /></p>
+<p><img src="pics-podstawy/jalview-fasta.png" alt="Jalview - wyrównane sekwencje" /></p>
+<a class="header" href="#wybór-modelu-ewolucji-molekularnej" id="wybór-modelu-ewolucji-molekularnej"><h2>Wybór modelu ewolucji molekularnej</h2></a>
+<p>Kolejnym etapem w drodze do stworzenia drzewa filogenetycznego powinien być wybór modelu ewolucji molekularnej. Modele ewolucji molekularnej a dokładniej modele substytucji (podstawień) nukleotydów, opisują w jaki sposób mogły ewoluować badane sekwencje. Główne znaczenie ma tu prawdopodobieństwo zmian jednych nukleotydów w inne. W najprostszych modelach szansa na zajście każdej z możliwych substytucji jest taka sama, w bardziej złożonych, jak łatwo się domyślić, prawdopodobieństwa różnią się.</p>
+<p>Wybór modelu odpowiedniego dla badanego zestawu sekwencji odbywa się za pomocą odpowiednich programów. Niektóre z nich dedykowane są wyłącznie do tego zadania, na przykład <code>jModelTest 2</code>, ale niektóre programy przeznaczone do obliczania drzew, (np. <code>IQTree</code>) mogą automatycznie dobrać model.</p>
+<a class="header" href="#konstruowanie-drzew-i-szacowanie-ich-wiarygodności" id="konstruowanie-drzew-i-szacowanie-ich-wiarygodności"><h2>Konstruowanie drzew i szacowanie ich wiarygodności</h2></a>
+<p>Mając dopasowane sekwencje nukleotydów oraz znaleziony model podstawień nukleotydów można przystąpić do konstruowania drzewa. Także na tym etapie napotykamy na dość duży wybór metod i programów, które służą wyliczeniu najbardziej prawdopodobnych związków filogenetycznych pomiędzy badanymi organizmami, które w kolejnym kroku będzie można przedstawić w formie graficznej.</p>
+<p>Najbardziej znane metody używane przy konstruowaniu drzew to:</p>
+<ul>
+<li>UPGMA (Unweighted Pair-Group Method using arithmetic Averages)</li>
+</ul>
+<!---
+  * Metoda minimalnej ewolucji (ME - Minimum Evolution)
+-->
+  * Metoda najbliższego sąsiada (NJ - NeighborJoining)
+  * Metoda największej oszczędności (MP - Maximum Parsimony)
+  * Metoda największej wiarygodności (ML - Maximum Likelihood)
+  * Metody bayesowskie (Bayesian Methods)
+<p>Możemy je wykorzystać w programach, które zazwyczaj implementują jedną z metod, choć często z pewnymi modyfikacjami i dodatkami. Należą do nich <code>PhyML</code>, <code>IQ-tree</code>, <code>RAxML</code>, <code>PHYLIP</code>, <code>PAUP*</code>, <code>mrBAYES</code>, <code>BEAST</code>. Istnieją także ,,kombajny'', jak np. <code>MEGA</code>, które pozwalają liczyć drzewa na kilka sposobów.</p>
+<p>Konstruowaniu drzew towarzyszy zazwyczaj szacowanie ich wiarygodności. W większości przypadków stosuje się tu metodę <strong>bootstrap</strong> (samopróbkowania), dla metod bayesowskich wyliczane jest prawdopodobieństwo bayesowskie.</p>
+<p>Po zakończeniu obliczeń otrzymujemy wynik zazwyczaj w formie pliku tekstowego, który jest sformatowany w taki sposób, że zawiera informacje na temat relacji pomiędzy badanymi taksonami a także inne parametry drzew (np. wartości bootstap).</p>
+<a class="header" href="#wizualizacja-drzew" id="wizualizacja-drzew"><h2>Wizualizacja drzew</h2></a>
+<p>Forma graficzna drzewa filogenetycznego jest znacznie bardziej przejrzysta dla człowieka niż prezentowany powyżej zapis tekstowy. Pozwała łatwo uchwycić pokrewieństwa i odległości ewolucyjne pomiędzy badanymi organizmami, choć ich prawidłowe odczytanie wymaga jednak nieco wiedzy i wprawy.</p>
+<p><img src="pics-podstawy/circle.png" alt="Drzewa filogenetyczne" /></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+
+                        
+                            <a rel="next" href="../wyklady/03-Dopasowanie_sekwencji.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+
+                
+                    <a href="../wyklady/03-Dopasowanie_sekwencji.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3001");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload(true); // force reload from server (not from cache)
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        
+
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

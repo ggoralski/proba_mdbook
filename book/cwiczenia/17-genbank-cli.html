@@ -1,0 +1,543 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Pobieranie sekwencji z bazy GenBank i praca w plikami FASTA przy pomocy linii komend - Próba mdbook</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="../wyklady/02-Podstawy_filogenetyki.html"><strong aria-hidden="true">1.</strong> Wstęp do filogenetyki molekularnej i tworzenia drzew filogenetycznych</a></li><li><a href="../wyklady/03-Dopasowanie_sekwencji.html"><strong aria-hidden="true">2.</strong> Dopasowanie sekwencji</a></li><li><a href="../wyklady/04-Modele_ewolucji_molekularnej.html"><strong aria-hidden="true">3.</strong> Modele ewolucji molekularnej</a></li><li><a href="../wyklady/05-Drzewa_filogenetyczne.html"><strong aria-hidden="true">4.</strong> Drzewa filogenetyczne</a></li><li><a href="../wyklady/06-HGT.html"><strong aria-hidden="true">5.</strong> Horyzontalny transfer genów (HGT)</a></li><li><a href="../cwiczenia/11-praca_w_linuksie.html"><strong aria-hidden="true">6.</strong> Podstawy pracy w systemie Linux</a></li><li><a href="../cwiczenia/12-pliki_tekstowe.html"><strong aria-hidden="true">7.</strong> Praca z plikami tekstowymi w linii komend</a></li><li><a href="../cwiczenia/13-edytory_tekstu.html"><strong aria-hidden="true">8.</strong> Edytory tekstu</a></li><li><a href="../cwiczenia/14-skrypty.html"><strong aria-hidden="true">9.</strong> Skrypty powłoki</a></li><li><a href="../cwiczenia/15-warsztat.html"><strong aria-hidden="true">10.</strong> Warsztat pracy</a></li><li><a href="../cwiczenia/16-genbank-www.html"><strong aria-hidden="true">11.</strong> Bazy sekwencji DNA, GenBank</a></li><li><a href="../cwiczenia/17-genbank-cli.html" class="active"><strong aria-hidden="true">12.</strong> Pobieranie sekwencji z bazy GenBank i praca w plikami FASTA przy pomocy linii komend</a></li><li><a href="../cwiczenia/18-blast.html"><strong aria-hidden="true">13.</strong> BLAST - wyszukiwanie podobnych sekwencji</a></li><li><a href="../cwiczenia/19-dopasowanie_sekwencji.html"><strong aria-hidden="true">14.</strong> Dopasowanie sekwencji</a></li><li><a href="../cwiczenia/20-dopasowanie_modelu.html"><strong aria-hidden="true">15.</strong> Dopasowanie modelu substytucji</a></li><li><a href="../cwiczenia/21-konstruowanie-drzew.html"><strong aria-hidden="true">16.</strong> Konstruowanie drzew</a></li><li><a href="../cwiczenia/22-wizualizacja-drzew.html"><strong aria-hidden="true">17.</strong> Wizualizacja drzew</a></li><li><a href="../cwiczenia/23-zegar-molekularny.html"><strong aria-hidden="true">18.</strong> Drzewa filogenetyczne i zegar molekularny</a></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Próba mdbook</h1> 
+
+                        <div class="right-buttons">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="#pobieranie-sekwencji-z-bazy-genbank-i-praca-w-plikami-fasta-przy-pomocy-linii-komend" id="pobieranie-sekwencji-z-bazy-genbank-i-praca-w-plikami-fasta-przy-pomocy-linii-komend"><h1>Pobieranie sekwencji z bazy GenBank i praca w plikami <code>FASTA</code> przy pomocy linii komend</h1></a>
+<a class="header" href="#dlaczego-linia-komend" id="dlaczego-linia-komend"><h2>Dlaczego linia komend?</h2></a>
+<p>Pobieranie sekwencji przy użyciu narzędzi uruchamianych z linii komend jest w niektórych sytuacjach łatwiejsze, zwłaszcza gdy wiemy, które sekwencje (albo ich fragmenty) i/lub chcemy pobrać ich wiele.</p>
+<a class="header" href="#dostęp-do-genbank-u-przy-pomocy-narzędzi-entrez-direct" id="dostęp-do-genbank-u-przy-pomocy-narzędzi-entrez-direct"><h2>Dostęp do GenBank-u przy pomocy narzędzi Entrez Direct</h2></a>
+<p>,,Entrez Direct'' to grupa programów opublikowanych przez NCBI umożliwiających dostęp do baz danych tej organizacji. Podręcznik do pakietu (wraz z instrukcją instalacji) pt. <a href="https://www.ncbi.nlm.nih.gov/books/NBK179288/">Entrez Direct: E-utilities on the UNIX Command Line</a> można znaleźć pod adresem <a href="https://www.ncbi.nlm.nih.gov/books/NBK179288/">https://www.ncbi.nlm.nih.gov/books/NBK179288/</a>. Nie będziemy oczywiście poznawać dogłębnie wszystkich narzędzi ale pokażę kilka przydatnych komend i sposobów ich wykorzystania.</p>
+<a class="header" href="#wyszukiwanie-sekwencji---esearch" id="wyszukiwanie-sekwencji---esearch"><h3>Wyszukiwanie sekwencji - <code>esearch</code></h3></a>
+<p>Do wyszukiwania informacji w bazach danych służy narzędzie <code>esearch</code>. Przy podstawowym użyciu, przyjmuje dwa argumenty:</p>
+<ul>
+<li><code>-db</code> - określający bazę do której zostanie wysłane zapytanie</li>
+<li><code>-query</code> - zapytanie</li>
+</ul>
+<p>Wywołanie programu będzie wyglądało tak:</p>
+<pre><code>esearch -db identyfikator_bazy -query zapytanie
+</code></pre>
+<p>Jeśli zapytanie składa się z wielu słów, należy je zamknąć w cudzysłowach.</p>
+<p>Lista identyfikatorów wybranych baz danych znajduje się pod adresem <a href="https://www.ncbi.nlm.nih.gov/books/NBK25497/table/chapter2.T._entrez_unique_identifiers_ui/?report=objectonly">https://www.ncbi.nlm.nih.gov/books/NBK25497/table/chapter2.T._entrez_unique_identifiers_ui/?report=objectonly</a>. Jak widać jest ich wiele. Nas będzie interesowała teraz baza ,,Nucleotide'', która ma identyfikator <code>nuccore</code> lub <code>nucleotide</code>. To właśnie z niej wcześniej korzystaliśmy przez stronę internetową.</p>
+<p>Warto też przejrzeć wbudowaną pomoc programu, gdzie znajdziemy nie tylko identyfikatory baz ale też opisy innych opcji programu. Uruchamiamy ją wpisując:</p>
+<pre><code>$: esearch -h
+</code></pre>
+<p>Uruchom  polecenie:</p>
+<pre><code>$: esearch -db nucleotide -query &quot;atp6 Orobanche&quot;
+</code></pre>
+<p>Pokaże się wynik:</p>
+<pre><code>&lt;ENTREZ_DIRECT&gt;
+  &lt;Db&gt;nucleotide&lt;/Db&gt;
+  &lt;WebEnv&gt;NCID_1_33234224_130.14.18.34_9001_1517069868_100176055_0MetA0_S_MegaStore_F_1&lt;/WebEnv&gt;
+  &lt;QueryKey&gt;1&lt;/QueryKey&gt;
+  &lt;Count&gt;17&lt;/Count&gt;
+  &lt;Step&gt;1&lt;/Step&gt;
+&lt;/ENTREZ_DIRECT&gt;
+</code></pre>
+<p>Nie wydaje się zbyt przydatny, ale można zrozumieć, że znaleziono 17 wyników. Nie widać żadnych sekwencji. Zaraz pokażę jak uzyskać bardziej użyteczny rezultat.</p>
+<a class="header" href="#pobieranie-sekwencji---efetch" id="pobieranie-sekwencji---efetch"><h3>Pobieranie sekwencji - <code>efetch</code></h3></a>
+<p>Drugim narzędziem pakietu Entrez Direct z którego będziemy korzystać jest <code>efetch</code> służący, jak wskazuje nazwa, do pobierania danych.</p>
+<p>Znając numer dostępowy sekwencji można ją pobrać w ten sposób:</p>
+<pre><code>efetch -db identyfikator_bazy -format format_wyniku -id numer_dostępowy
+</code></pre>
+<p>Na przykład:</p>
+<pre><code>$: efetch -db nucleotide -id KU180461 -format fasta
+</code></pre>
+<p>Wynik jest zgodny z oczekiwaniami:</p>
+<pre><code>&gt;KU180461.1 Orobanche coerulescens clone 12 ATPase subunit 6 (atp6) gene, partial cds; mitochondrial
+CTGCTAACTCTCAGTTTGGTCCTACTTCTGATTCATTTTGTTACTAAAAAGGGAGGAGGAAACTCAGTAC
+CAAATGCTTGGCAATCCGTGGTAGAGTTTATTTATGATTTCGTGCTGAACCTGGTAAACGAACAAATAGG
+GGGTCTTTCCGGAAATGTTAAACAAAAGTTTTTCCCTTGCATCTTGGTCACTTTTACTTTTTTGTTATTT
+TGTAATCTTCAGGGTATGATACCTTATAGCTTCACAGTTACAAGTCATTTTCTCATTACTTTAGGTCTCT
+CATTTTCTCTTTTTATTGGCATTACTATAGTGGGATTTCAAAGAAATGGGCTTCATTTTTTAAGCTTCTT
+ATTACCCGCAGGAGTCCCACTGCCATTAGCACCTTTTTTAGTACTCCTTGAGCTAATTTCTTATTGTTTT
+CGCGCATTAAGCTTAGGAATACGTTTATTTGCTAATATGATGGCCGGTCATAGTTTAGTAAAGATTTTAA
+GTGGGTTCGCTTGGACTATGCTATGTATGAATGATCTTTTGTATTTTATAGGGGATCTTGGTCCTTTATT
+TATAGTTCTTGCATTAACCGGTCTTGAATTAGGTGTAGCTATATCACAAGCTCATGTTTCTACGATCTCA
+ATCTGTATTTAC
+</code></pre>
+<p>Wynik oczywiście możemy zapisać w pliku używając znaku <code>&gt;</code>:</p>
+<pre><code>efetch -db nucleotide -id KU180461 -format fasta &gt; atp6.fasta
+</code></pre>
+<p>Przejrzyj pomoc programu, którą wywołasz komendą:</p>
+<pre><code>efetch -h
+</code></pre>
+<p>Poeksperymentuj z różnymi formatami wyniku.</p>
+<p>Teraz sprobujemy użyć polecenia <code>efetch</code> do pobrania serii sekwencji, tych samych, które należało pobrać przy pomocy przeglądarki w poprzedniej części.
+Zapisz ich numery, po jeden w każdej linii w pliku <code>atp6_numery.txt</code></p>
+<pre><code>KU180471
+KU180476
+FJ595983
+KC879635
+HQ593782
+KU180469
+KU180474
+KU180475
+KU180468
+KU180466
+AF095276
+</code></pre>
+<p>Teraz napiszemy skrypt (<code>, który w pętli będzie kolejno odczytywał numery sekwencji i przekazywał je do polecenia</code>efetch`, które będzie je pobierało i zapisywało w pliku. Nazwę pliku z danymi i nazwę pliku wynikowego będziemy podawać jako argumenty przy wywoływaniu skryptu.</p>
+<pre><code>#!/bin/bash
+
+# Nazwa pliku z danymi podana jako pierwszy argument
+dane=$1
+# Nazwa pliku wynikowego podana jako drugi argument
+fileout=$2
+
+# Tworzony jest plik wynikowy, jeśli istnieje zostaje nadpisany
+echo &gt; $fileout
+
+# Pętla odczytująca numery sekwencji z pliku $dane,
+# są one przechowywane w zmiennej nrGB
+while read nrGB
+do
+    # Informacje o obieraniu i zapisywaniu sekwencji
+    echo &quot;Pobieram sekwencję $nrGB i zapisuję do pliku $fileout&quot;
+    # Pobieranie i zapisywanie sekwencji
+    efetch -db nucleotide -id $nrGB -format fasta &gt;&gt; $fileout
+done &lt; $dane
+</code></pre>
+<p>Następnie uruchamiamy skrypt:</p>
+<pre><code>$: ./pobierz_sekwencje.sh atp6_numery.txt atp6_sekwencje.fasta
+
+Pobieram sekwencję KU180471 i zapisuję do pliku atp6_sekwencje.fasta
+Pobieram sekwencję KU180476 i zapisuję do pliku atp6_sekwencje.fasta
+Pobieram sekwencję FJ595983 i zapisuję do pliku atp6_sekwencje.fasta
+Pobieram sekwencję KC879635 i zapisuję do pliku atp6_sekwencje.fasta
+Pobieram sekwencję HQ593782 i zapisuję do pliku atp6_sekwencje.fasta
+Pobieram sekwencję KU180469 i zapisuję do pliku atp6_sekwencje.fasta
+Pobieram sekwencję KU180474 i zapisuję do pliku atp6_sekwencje.fasta
+Pobieram sekwencję KU180475 i zapisuję do pliku atp6_sekwencje.fasta
+Pobieram sekwencję KU180468 i zapisuję do pliku atp6_sekwencje.fasta
+Pobieram sekwencję KU180466 i zapisuję do pliku atp6_sekwencje.fasta
+Pobieram sekwencję AF095276 i zapisuję do pliku atp6_sekwencje.fasta
+</code></pre>
+<p>Sprawdź zawartość pliku wynikowego.</p>
+<a class="header" href="#efetch---pobieranie-fragmentów-sekwencji" id="efetch---pobieranie-fragmentów-sekwencji"><h2><code>efetch</code> - pobieranie fragmentów sekwencji</h2></a>
+<p>Dzięki programowi <code>efetch</code> można też uzyskać fragment sekwencji podając miejsce pierwszego i ostatniego nukleotydu żądanego fragmentu. Służą do tego opcje: <code>-seq_start</code> i <code>-seq_stop</code>.</p>
+<p>Na przykład wytnijmy sekwencję genu <code>nad2</code> z genomu mitochondrialnego <em>Arabidopsis thaliana</em> o identyfikatorze <code>NC_001284</code>. Miejsca początku i końca genu odczytamy z wyniku wyszukiwania:</p>
+<p><img src="genbank_cli/start_stop.png" alt="Zakres genu" /></p>
+<p>Teraz przekażmy je do polecenia:</p>
+<pre><code>efetch -db nuccore -id NC_001284 -format fasta -seq_start 134071 -seq_stop 138153
+</code></pre>
+<p>Otrzymamy żądany fragment genomu.</p>
+<p>Teraz powróćmy do problemu pobieraniu sekwencji we fragmentach z którym zetknęliśmy się <a href="16-genbank.html">w lekcji poświęconej pobieraniu sekwencji z GenBank-u przy pomocy strony internetowej</a>. Sekwencja genu <code>nad2</code> w genomie <em>Arabidopsis thaliana</em> (nr. NC_001284) występowała tam w dwu, oddzielonych od siebie fragmentach, przy czym część kodująca (<code>CDS</code>) miała aż pięć części.</p>
+<p><img src="genbank/GB-join.png" alt="nad2 u Arabidopsis thaliana" /></p>
+<p>W dodatku były to sekwencje komplementarne (i odwrócone). Teraz pokażę jak używając prostego skryptu pobrać żądane fragmenty i połączyć je w jedną sekwencję.</p>
+<p>Można oczywiście po kolei wykonywać polecenia pobierania fragmentów z sekwencji, za pomocą narzędzia <code>efetch</code> jak pokazałem powyżej i dołączać wyniki do pliku <code>FASTA</code>.</p>
+<pre><code>efetch -db nuccore -id NC_001284 -format fasta -seq_start 327890 -seq_stop 328078 &gt; nad2_A_thaliana.fasta
+efetch -db nuccore -id NC_001284 -format fasta -seq_start 329735 -seq_stop 330306 &gt;&gt; nad2_A_thaliana.fasta
+efetch -db nuccore -id NC_001284 -format fasta -seq_start 332945 -seq_stop 333105 &gt;&gt; nad2_A_thaliana.fasta
+efetch -db nuccore -id NC_001284 -format fasta -seq_start 79740 -seq_stop 80132 &gt;&gt; nad2_A_thaliana.fasta
+efetch -db nuccore -id NC_001284 -format fasta -seq_start 81113 -seq_stop 81297 &gt;&gt; nad2_A_thaliana.fasta
+</code></pre>
+<p>Komendy możesz wpisywać i uruchamiać w terminalu, albo umieścić je w skrypcie (np. <code>pobierz_odcinki.sh</code>) i go uruchomić.</p>
+<p>Otrzymany plik będzie miał taką zawartość:</p>
+<pre><code>
+&gt;NC_001284.2:327890-328078 Arabidopsis thaliana mitochondrion, complete genome
+TTAAAGATATGAACTGAGTGCCATTTGATGAGTAACTGAGAACAAAGGAGAGGGGTATAGCAAGGATGAA
+GTAATGAAAAAGGAAGTCATTGCTAGTAGTAACGACTTATTACGATCCATTGGTTCATATAGAATCCATG
+TCCTAGGTGTATCAAAAAACATTCTTTTCACTAAGCGTATATAATAAAA
+&gt;NC_001284.2:329735-330306 Arabidopsis thaliana mitochondrion, complete genome
+ACGACCTATAACGCTAGTCACTACTCCCACTGGGGCTAGAAAGTAAGCCCCACAACCCAAAGCGGCGAAG
+AACAAATAGAATTTGCTACAAAAGCCGGCTAACGGGGGTATTCCTGCGTATGAGAACATAGTAATGGAGA
+AGGTAATAGCCGAAATAGGATTCGTTTTGGCTAGAGCGCCCAAATCCGCTATATATTTGACACGGGTTTG
+CCGTAATGCTGAAACTATGGCGAATGCATCCATCGTCATTAATGCATAAATAAAGATACCAATTAGTAGT
+GATTGAATTCCTTCTATGGTTCCACATGAGAAACCAGTACGAATATAACCTACATGTCCAATTGAACTAT
+GAGCTAGAGGTCTTTTGACTTTCGTTTGGGCCATGGCGGCCAGTGCTCCTAAGATCATAGAAGCAATGCT
+GCAGAAAAAGAAGATTTGTTGCAATGTAGCTCCATAGGAACCATAAATAGAAACACGTAAAATATTAGCA
+GAAATAGAGATTTTAGGCGCAATAGAAAGGAATGCTGTAACCGGGGTGGGTGAACCCTCATAGATATCTG
+GTGCCCACATAT
+&gt;NC_001284.2:332945-333105 Arabidopsis thaliana mitochondrion, complete genome
+GAAAAGGAACTGCAGTGATCTTGAATAGGAATCCTACAGCGATAGACAGAATCCCCATAAAAATACCACT
+AGATCGAGCACCAGTGATTTCGTATCCGGTCAAAATCTTGGCTAATTGATCGAAGTGGGTAGCTCCAGTA
+GACCCATAGATCATGGAACAA
+&gt;NC_001284.2:79740-80132 Arabidopsis thaliana mitochondrion, complete genome
+CCAAACAATAATATTCCAGAGGAAAATGCACCTAAGATCAAATATTTCGAGCCGGCTTCCGTGGAAAATT
+CAGACTTTCTTTTTGATGCTGCGATTACATAAAAACATAAACTTTGAGGCTCAATAGCTAAATACATGGC
+AATTAAATCATGAGCCGAGATCATAAAGAGCATACCGCGAGTAGGAAGTGGAATTAATACAATGAATTCA
+AAAGCATCAAACCTCTCTTGGTCGGAAGAATCGAAACACATCGAAATGGTACCAGCCGTACTTAATAATA
+GAAAGATTTGGCAGAAATATGTAAAATTGTCCCTCCTAAAAAGATTATTCCAGAATAAATGGGCAATAGT
+TAGGAGAGGTGCGCCAGCGGCGAGCAGAAGCAAGGTTATTAGA
+&gt;NC_001284.2:81113-81297 Arabidopsis thaliana mitochondrion, complete genome
+ACACTAAGTAATCCAAGCCAACCCACATTACTGGCTAACGGCGGATAATCATATTTCTTAGAGGTACTAA
+ATACAACTCCATGAATGAGCAAAATGGAGGTTGCATTAATGATAAAGATCTCTGGGGAAACCGCTAAAAA
+AAGATTGAACATGTGTGGGAGGATCCGAACGAATTCTGCTTTCAT
+</code></pre>
+<p>Zamiast uruchamiać wielokrotnie tą samą komendę, można utworzyć plik tekstowy z miejscami początku i końca fragmentów sekwencji a następnie stworzyć skrypt, który w pętli po kolei je pobierze i umieści w pliku.</p>
+<p>Najpierw utworzymy plik, w którym zapiszemy kolejne miejsca początku i końca fragmentów sekwencji oddzielone znakiem tabulatora (<code>odcinki.tsv</code>).</p>
+<pre><code>327890	328078
+329735	330306
+332945	333105
+79740	80132
+81113	81297
+</code></pre>
+<p>Teraz skrypt:</p>
+<pre><code>#!/bin/bash
+# Plik z danymi podany jako argument 1 przy uruchamianiu skryptu
+data=$1
+# Plik wyjściowy podany jako argument 2 przy uruchamianiu skryptu
+fileout=$2
+# Numer sekwencji w GenBank-u podany jako argument 3
+nrGB=$3
+
+# Tworzymy plik wejściowy, jeśli już istnieje to jego zawartość zostaje usunięta
+echo &gt; $fileout
+
+# Pętla. Wartości start i stop odczytywane są z pliku $data
+while read start stop
+do
+    # Skrypt informuje, który fragment pobiera
+    echo &quot;Pobieram fragment: $start - $stop z sekwencji $nrGB i zapisuję do pliku $fileout&quot;
+    # Pobranie fragmentu i zapisanie do pliku
+    efetch -db nuccore -id $nrGB -format fasta -seq_start $start -seq_stop $stop &gt;&gt; $fileout
+done &lt; $data
+</code></pre>
+<pre><code>$: ./pobierz_odcinki_petla.sh odcinki.tsv nad2_A_thaliana.fasta NC_001284 
+
+Pobieram fragment: 327890 - 328078 z sekwencji NC_001284 i zapisuję do pliku nad2_A_thaliana.fasta
+Pobieram fragment: 329735 - 330306 z sekwencji NC_001284 i zapisuję do pliku nad2_A_thaliana.fasta
+Pobieram fragment: 332945 - 333105 z sekwencji NC_001284 i zapisuję do pliku nad2_A_thaliana.fasta
+Pobieram fragment: 79740 - 80132 z sekwencji NC_001284 i zapisuję do pliku nad2_A_thaliana.fasta
+Pobieram fragment: 81113 - 81297 z sekwencji NC_001284 i zapisuję do pliku nad2_A_thaliana.fasta
+</code></pre>
+<p>Sprawdź plik wynikowy.</p>
+<a class="header" href="#Łączymy-efetch-sed-tr-i-rev" id="Łączymy-efetch-sed-tr-i-rev"><h2>Łączymy <code>efetch</code>, <code>sed</code>, <code>tr</code> i <code>rev</code></h2></a>
+<p>Jak widać poszczególne fragmenty występują oddzielnie. Teraz powinniśmy połączyć je w jedną sekwencję. Można to zrobić w edytorze tekstu ale od czego mamy linię komend i narzędzia <a href="12-pliki_tekstowe.html"><code>sed</code>, <code>tr</code> i <code>rev</code></a>?</p>
+<p>Zadanie wykonamy w pięciu etapach:</p>
+<ol>
+<li>Usuniemy linie z opisami sekwencji</li>
+<li>Połączymy fragmenty w jedną sekwencję</li>
+<li>Przekształcimy ją w sekwencję komplementarną</li>
+<li>Odwrócimy sekwencje</li>
+<li>Dodamy opis w pierwszej linii pliku</li>
+</ol>
+<p>Zastanów się, najpierw ogólnie, jak te zadania zrealizować używając programów <code>sed</code>, <code>tr</code> i <code>rev</code>?</p>
+<ol>
+<li>Usunąć linie zaczynające się od znaku <code>&gt;</code>: <code>tr</code> lub <code>sed</code></li>
+<li>Usunąć wszystkie znaki końca linii: <code>\n</code>: <code>tr</code></li>
+<li>Zmienić na sekwencję komplementarną: <code>tr</code></li>
+<li>Odwrócić sekwencję: <code>rev</code></li>
+<li>Wprowadzić do pierwszej linii pliku opis sekwencji</li>
+</ol>
+<p>Teraz przekształćmy pomysł w konkretny kod. Utwórz skrypt <code>polacz_odcinki.sh</code>:</p>
+<pre><code>#!/bin/bash
+
+# Nazwa pliku z sekwencjami
+surowy=nad2_A_thaliana.fasta
+# Plik wyjściowy
+file=polaczony_$surowy
+
+# Kopiujemy plik z sekwencjami do pliku wyjściowego, 
+# który będziemy modyfikować
+cp $surowy $file
+
+# Usuwanie linii z opisami, czyli linii zaczynających się od znaku &gt; 
+sed -i '/^&gt;/d' $file
+
+# Łączymy wszystkie linie w jedną, usuwając oznaczenia końca linii
+# Wynik umieszczamy w pliku tymczasowym
+cat $file | tr -d &quot;\n&quot; &gt; $file.tmp
+
+# Zmieniamy na sekwencję komplementarną, wynik umieszczamy 
+# w drugim pliku wyjściowym
+
+cat $file.tmp | tr &quot;ACGT&quot; &quot;TGCA&quot; &gt; $file.tmp2
+# Odwracamy sekwencję, wynik umieszczamy w pliku wyjściowym 
+# zmieniając jego zawartość
+
+cat $file.tmp2 | rev &gt; $file
+
+# Wstawiamy pierwszą linię z opisem i znak nowej linii
+sed -i '1s/^/&gt;NC_001284_Arabidopsis_thaliana_nad2\n/' $file
+
+# Usuwamy pliki tymczasowe
+rm $file.tmp*
+
+</code></pre>
+<p>Można też skonstruować ,,jednolinijkowca'':</p>
+<pre><code>cat nad2_A_thaliana.fasta | sed '/^&gt;/d' | tr -d &quot;\n&quot; | tr &quot;ACGT&quot; &quot;TGCA&quot; | rev | sed '1s/^/&gt;NC_001284_Arabidopsis_thaliana_nad2\n/' &gt; polaczony_RC_nad2_A_thaliana.fasta
+</code></pre>
+<a class="header" href="#Łączymy-esearch-i-efetch" id="Łączymy-esearch-i-efetch"><h2>Łączymy <code>esearch</code> i <code>efetch</code></h2></a>
+<p>Dotychczas używaliśmy dwu narzędzi: służący do wyszukiwania <code>esearch</code> i pobierający sekwencje <code>efetch</code> oddzielnie. Ale możemy je razem połączyć za pomocą potoku tak aby wyszukiwanie połączyć z pobieraniem.</p>
+<pre><code>esearch -db nucleotide -query &quot;atp6[All Fields] AND Orobanche[Organism]&quot; | efetch -format fasta &gt; atp6_Orobanche.fasta
+</code></pre>
+<a class="header" href="#samtools-faidx--pobieranie-sekwencji-z-pliku-fasta" id="samtools-faidx--pobieranie-sekwencji-z-pliku-fasta"><h2><code>samtools faidx</code>- pobieranie sekwencji z pliku <code>FASTA</code></h2></a>
+<p>Pobierz plik <code>http://ggoralski.pl/files/filogenetyka-data/Orobanchaceae-trnL-trnF-aligned.fasta</code></p>
+<p>Sprawdź jego zawartość. Używaliśmy go już we wcześniejszych ćwiczeniach, zawiera wyrównane sewkencje <code>trnL-trnF</code>.</p>
+<p>Teraz sprawdź nazwy sekwencji używając komendy <code>grep</code>:</p>
+<pre><code>$: grep &quot;&gt;&quot; Orobanchaceae-trnL-trnF-aligned.fasta 
+
+&gt;KY484464_O._teucrii
+&gt;KY484493_O._flava
+&gt;KY484489_O._mayeri
+&gt;KY484471_O._kochii
+&gt;KY484474_O._elatior
+&gt;KU238865_O._coerulescens
+&gt;KY484502_P._ramosa
+&gt;KY484503_P._purpurea
+&gt;KX524675_Lindenbergia_siniaca
+</code></pre>
+<p>Teraz będziemy chcieli pobrać z pliku sekwencję o nazwie <code>KX524675_Lindenbergia_siniaca</code>. Można to zrobić oczywiście używając edytora tekstu lub programu do pracy z plikami <code>FASTA</code>, ale czasem wygodniej to zrobić używając linii komend. Użyjemy do tego zadania programu <code>faidx</code>, który jest częścią pakietu <code>samtools</code>.</p>
+<p>Pakiet <code>samtools</code> zawiera wiele przydatnych programów do pracy z sekwencjami, przede wszystkim w innych formatach niż <code>FASTA</code>, ale <code>faidx</code> jest dość przydatne w codziennej pracy także w tym formacie.</p>
+<p>Strona domowa projektu znajduje się pod adresem: <a href="http://www.htslib.org/">http://www.htslib.org/</a>. Tam też można przeczytać manuale programów.</p>
+<p>Na Debianie można zainstalować pakiet komendą:</p>
+<pre><code>sudo apt-get install samtools
+</code></pre>
+<p>W innym przypadku, można pobrać pliki źródłowe ze strony i skompilować wg. znajdującej się tam instrukcji.</p>
+<p>Uruchamianie narzędzi z pakietu <code>samtools</code> wygląda następująco:</p>
+<pre><code>samtools nazwa_narzedzia opcje
+</code></pre>
+<p>W przypadku <code>faidx</code> będzie to wyglądało tak:</p>
+<pre><code>samtools faidx opcje
+</code></pre>
+<p>Opcjami, które użyjemy będzie kolejno nazwa pliku, z którego pobierzemy sekwencję i nazwa sekwencji.
+Uruchom:</p>
+<pre><code>samtools faidx Orobanchaceae-trnL-trnF-aligned.fasta KX524675_Lindenbergia_siniaca
+</code></pre>
+<p>Na ekranie wyświetli się żądana sekwencja, oczywiście można ją zapisać w pliku używając <code>&gt;</code>.</p>
+<p>Zauważ, że podajemy pełną nazwę sekwencji (bez znaku <code>&gt;</code>), wpisanie jej fragmentu nie zadziała. Może to być pewnym mankamentem, na przykład gdy nazwy są długie albo gdy chcemy pobrać wiele sekwencji, których nazwy mają jakąś część wspólną (np. nazwę rodzaju.). W taki przypadku pomocne będzie polecenie <code>grep</code>.</p>
+<p>Uruchom:</p>
+<pre><code>$: grep &quot;O.&quot; Orobanchaceae-trnL-trnF-aligned.fasta
+
+&gt;KY484464_O._teucrii
+&gt;KY484493_O._flava
+&gt;KY484489_O._mayeri
+&gt;KY484471_O._kochii
+&gt;KY484474_O._elatior
+&gt;KU238865_O._coerulescens
+</code></pre>
+<p>W ten sposób otrzymujemy pełne nazwy wszystkich sekwencji należących do <em>Orobanche</em>. Teraz powinniśmy je przekazać do polecenia <code>faidx</code>, ale najpierw musimy pozbyć się znaków <code>&gt;</code>:</p>
+<pre><code>$: grep &quot;O.&quot; Orobanchaceae-trnL-trnF-aligned.fasta | sed 's/&gt;//'
+
+KY484464_O._teucrii
+KY484493_O._flava
+KY484489_O._mayeri
+KY484471_O._kochii
+KY484474_O._elatior
+KU238865_O._coerulescens
+</code></pre>
+<p>Czas użyć ich przy wywołaniu <code>faidx</code>. Polecenie:</p>
+<pre><code>grep &quot;O.&quot; Orobanchaceae-trnL-trnF-aligned.fasta | sed 's/&gt;//' | samtools faidx Orobanchaceae-trnL-trnF-aligned.fasta
+</code></pre>
+<p>nie zadziała. Trzeba wykorzystać <code>xargs</code>:</p>
+<pre><code>grep &quot;O.&quot; Orobanchaceae-trnL-trnF-aligned.fasta | sed 's/&gt;//' | xargs samtools faidx Orobanchaceae-trnL-trnF-aligned.fasta &gt; Orobanche-trnL-trnF.fasta
+</code></pre>
+<p>Sprawdź zawartość pliku wynikowego.</p>
+<p>Przy okazji pobierania sekwencji, można je oczywiście zmodyfikować. Na przykład możemy zmienić skrót <code>O.</code> na pełną nazwę rodzajową <code>Orobanche</code> i usunąć wszystkie znaki <code>-</code> oznaczające brak nukleotydu. Użyjemy w tym celu poecenia <code>sed</code>. Przy usuwaniu <code>-</code> pamiętaj o dodaniu <code>g</code>, który pozwala na wykonaniu polecenia na wszystkich znakach w linii.:</p>
+<pre><code>grep &quot;O.&quot; Orobanchaceae-trnL-trnF-aligned.fasta | sed 's/&gt;//' | xargs samtools faidx Orobanchaceae-trnL-trnF-aligned.fasta | sed 's/O\./Orobanche/' | sed 's/-//g' | &gt; Orobanche-trnL-trnF.fasta
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../cwiczenia/16-genbank-www.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../cwiczenia/18-blast.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="../cwiczenia/16-genbank-www.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="../cwiczenia/18-blast.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3001");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload(true); // force reload from server (not from cache)
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        
+
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

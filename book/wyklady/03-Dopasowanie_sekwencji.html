@@ -1,0 +1,374 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Dopasowanie sekwencji - Próba mdbook</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="../wyklady/02-Podstawy_filogenetyki.html"><strong aria-hidden="true">1.</strong> Wstęp do filogenetyki molekularnej i tworzenia drzew filogenetycznych</a></li><li><a href="../wyklady/03-Dopasowanie_sekwencji.html" class="active"><strong aria-hidden="true">2.</strong> Dopasowanie sekwencji</a></li><li><a href="../wyklady/04-Modele_ewolucji_molekularnej.html"><strong aria-hidden="true">3.</strong> Modele ewolucji molekularnej</a></li><li><a href="../wyklady/05-Drzewa_filogenetyczne.html"><strong aria-hidden="true">4.</strong> Drzewa filogenetyczne</a></li><li><a href="../wyklady/06-HGT.html"><strong aria-hidden="true">5.</strong> Horyzontalny transfer genów (HGT)</a></li><li><a href="../cwiczenia/11-praca_w_linuksie.html"><strong aria-hidden="true">6.</strong> Podstawy pracy w systemie Linux</a></li><li><a href="../cwiczenia/12-pliki_tekstowe.html"><strong aria-hidden="true">7.</strong> Praca z plikami tekstowymi w linii komend</a></li><li><a href="../cwiczenia/13-edytory_tekstu.html"><strong aria-hidden="true">8.</strong> Edytory tekstu</a></li><li><a href="../cwiczenia/14-skrypty.html"><strong aria-hidden="true">9.</strong> Skrypty powłoki</a></li><li><a href="../cwiczenia/15-warsztat.html"><strong aria-hidden="true">10.</strong> Warsztat pracy</a></li><li><a href="../cwiczenia/16-genbank-www.html"><strong aria-hidden="true">11.</strong> Bazy sekwencji DNA, GenBank</a></li><li><a href="../cwiczenia/17-genbank-cli.html"><strong aria-hidden="true">12.</strong> Pobieranie sekwencji z bazy GenBank i praca w plikami FASTA przy pomocy linii komend</a></li><li><a href="../cwiczenia/18-blast.html"><strong aria-hidden="true">13.</strong> BLAST - wyszukiwanie podobnych sekwencji</a></li><li><a href="../cwiczenia/19-dopasowanie_sekwencji.html"><strong aria-hidden="true">14.</strong> Dopasowanie sekwencji</a></li><li><a href="../cwiczenia/20-dopasowanie_modelu.html"><strong aria-hidden="true">15.</strong> Dopasowanie modelu substytucji</a></li><li><a href="../cwiczenia/21-konstruowanie-drzew.html"><strong aria-hidden="true">16.</strong> Konstruowanie drzew</a></li><li><a href="../cwiczenia/22-wizualizacja-drzew.html"><strong aria-hidden="true">17.</strong> Wizualizacja drzew</a></li><li><a href="../cwiczenia/23-zegar-molekularny.html"><strong aria-hidden="true">18.</strong> Drzewa filogenetyczne i zegar molekularny</a></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Próba mdbook</h1> 
+
+                        <div class="right-buttons">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="#dopasowanie-sekwencji---zasady-i-algorytmy" id="dopasowanie-sekwencji---zasady-i-algorytmy"><h1>Dopasowanie sekwencji - zasady i algorytmy</h1></a>
+<p>Etap dopasowania sekwencji jest kluczowy dla powodzenia całej procedury tworzenia drzew filogenetycznych. Zadanie polega na tym aby tak dopasować poszczególne nukleotydy (i miejsca gdzie ich brak) aby były względem siebie w kolumnach homologiczne - czyli miały wspólne pochodzenie. Jej trudność i stopień wiarygodności otrzymanych rezultatów zależy przede wszystkim od zróżnicowania porównywanych sekwencji a zwłaszcza od tego czy zawierają one liczne indele (insercje i delecje).</p>
+<a class="header" href="#ogólne-zasady-dopasowania" id="ogólne-zasady-dopasowania"><h2>Ogólne zasady dopasowania</h2></a>
+<p>Rozpatrzmy na początek dwie sekwencje:</p>
+<pre><code>CCCGATAAGGATCAATCACATACAGTT
+CCCAGGATCAATCACATACAACAGTT
+</code></pre>
+<p>Można zauważyć, że mają identyczną część wspólną, więc łatwo je ze sobą zestawić. Znaki <code>-</code> oznaczają brakujący nukleotyd, który odpowiada indelowi:</p>
+<pre><code>CCCGATAAGGATCAATCACATACA---GTT
+CCC----AGGATCAATCACATACAACAGTT
+</code></pre>
+<p>Ale po bliższym przyjrzeniu się, pojawiają się też inne możliwości:</p>
+<pre><code>CCCGATAAGGATCAATCACATA---CAGTT
+CCC-A---GGATCAATCACATACAACAGTT
+</code></pre>
+<p>albo:</p>
+<pre><code>CCC-G-AT-AAGGATCAATCA--CATACAGTT
+CCCAGGATCAA---TCA--CATACA-ACAGTT
+</code></pre>
+<p>itd...</p>
+<p>Jak widać, nawet dwie sekwencje można dopasować na wiele sposobów. Intuicja zapewne podpowiada nam, że spośród pokazanych, ten pierwszy jest ,,najwłaściwszy''. Ale dlaczego właśnie ten a nie inny? To zestawienie jest ,,najprostsze'' - do wyjaśnienia różnic pomiędzy sekwencjami wystarczy przyjąć powstanie dwóch indeli co jest bardziej prawdopodobne niż powstanie ich trzech czy siedmiu. Ale to jest tylko najbardziej prawdopodobne wyjaśnienie co nie musi oznaczać, że jest prawdziwe.
+Ten prosty przykład, w którym przecież nie uwzględniliśmy możliwości substytucji nukleotydów pokazuje, że dopasowanie sekwencji rzeczywiście może być skomplikowane a wynik nie jest pewny. Nie istnieje żaden złoty zestaw reguł, który pozwoliłby uzyskać zawsze najlepsze dopasowanie - gdyby taki istniał nie byłoby konieczności ręcznych poprawek wykonywanych po dopasowaniu automatycznym. Chodzi o to, aby znaleźć takie dopasowanie, które odpowiadałoby najbardziej prawdopodobnej ewolucji obu sekwencji. Kluczowe znaczenie w dokonywaniu dopasowań jest szacowanie prawdopodobieństwa wydarzeń. Przyjmuje się np., że powstanie substytucji jest bardziej prawdopodobne niż powstanie indelu a z kolei powstanie długiego indelu jest częstsze niż powstanie kilku mniejszych. W szacowaniu prawdopodobieństwa poszczególnych wydarzeń pomaga znajomość procesów biorących udział w powstawaniu mutacji. Na przykład indele mogą powstawać na różne sposoby, m.in.:</p>
+<ul>
+<li>pojedyncze nukleotydy mogą wypaść lub być wstawione w wyniku prostych błędów replikacji DNA: <code>ACGAGA</code> -&gt; <code>ACAGAGA</code></li>
+<li>nierówny <em>crossing-over</em> w mejozie może spowodować wstawienie (lub wypadnięcie) szeregu nukleotydów: <code>ACGAGA</code> -&gt; <code>ACGCCATAAGA</code></li>
+<li>,,poślizg'' polimerazy DNA może spowodować powtórzenie danej sekwencji: <code>ACGAGA</code> -&gt; <code>ACGAGA</code> -&gt; <code>ACGAGAAGA</code></li>
+<li>dłuższe fragmenty nici mogą zostać wstawione w wyniku translokacji z innej części tej samej nici czy innego chromosomu a także jako efekt działania transpozonów czy wirusów.</li>
+</ul>
+<p>Istnieje także możliwość, że brakujący lub nadmiarowy nukleotyd pojawił się w sekwencji w wyniku błędu sekwencjonowania lub niewłaściwej interpretacji chromatogramu. Zwłaszcza ,,podejrzane'' są indele o liczbie różnej niż trzy (długość) kodonu w przypadku badania funkcjonujących genów. Jak wiadomo, tego typu mutacje zmieniają sens dalszej części sekwencji co skutkuje zazwyczaj pozbawieniem funkcjonalności białka, które gen koduje. Dlatego w przypadku pojawienia się tego typu indeli w sekwencjach warto, o ile to możliwe, upewnić się, że nie jest to wynik błędu, na przykład poprzez ponowną analizę chromatogramów.</p>
+<a class="header" href="#jak-można-przedstawić-dopasowanie" id="jak-można-przedstawić-dopasowanie"><h2>Jak można przedstawić dopasowanie?</h2></a>
+<p>Najprostszy sposób prezentacji dopasowania sekwencji widać poniżej. Sekwencje znajdują się bezpośrednio pod sobą, w odpowiednich miejscach występują znaki <code>-</code> oznaczające brakujące nukleotydy (lub aminokwasy). W niektórych programach, zwłaszcza z interfejsem graficznym stosuje się kolorowanie poszczególnych zasad co pozwala na łatwiejszą wizualną identyfikację miejsc dopasowanych i niedopasowanych.</p>
+<p><img src="pics-dopasowanie/dopasowanie-kolorowe.png" alt="Dopasowane kolorowane" /></p>
+<p>Dopasowane miejsca mogą być także oznaczone w specjalny sposób, np. za pomocą znaku <code>*</code>:</p>
+<pre><code>AAAGATACTGATA-CTTAG
+ATAGATACT-ATATTTTAG
+* ******* ***  ****
+</code></pre>
+<p>Pomiędzy sekwencjami można także dodać dodatkową linię, w której znak <code>|</code> wskazuje na dopasowanie. Ten sposób nadaje się zwłaszcza do prezentacji przyrównania dwóch sekwencji, przy ich większej liczbie jest raczej nieczytelny. Wykorzystywany jest np. przy prezentacji wyników przez <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a>:</p>
+<pre><code>AAAGATACTGATA-CTTAG
+| ||||||| |||  ||||
+ATAGATACT-ATATTTTAG
+</code></pre>
+<p>Można także dodatkowo oznaczyć kropkami miejsca gdzie nukleotydy nie pasują do siebie:</p>
+<pre><code>AAAGATACTGATA-CTTAG
+|.||||||| ||| .||||
+ATAGATACT-ATATTTTAG
+</code></pre>
+<p>Oczywiście istnieją jeszcze inne sposoby prezentacji wyników dopasowania, których jednak nie będę tu przedstawiał.</p>
+<a class="header" href="#systemy-punktacji" id="systemy-punktacji"><h2>Systemy punktacji</h2></a>
+<p>Wspomniane powyżej zasady przyrównania sekwencji, jakkolwiek przydatne przy ręcznych poprawkach dopasowania sekwencji, muszą zostać skonkretyzowane jeśli mają zostać zastosowane w programach komputerowych. Temu właśnie służą <strong>systemy punktacji</strong>, które pozwalają porównać jakość dopasowań za pomocą liczb. W takim ujęciu porównuje się poszczególne miejsca dopasowania przyznając każdemu z nich odpowiednią liczbę punktów. W najprostszym przypadku można przyjąć, że jeśli dwa nukleotydy są takie same, to przyznany zostaje jeden punkt, jeśli się różnią to punkt nie zostaje przyznany. W najprostszym przypadku zakładamy, że różne substytucje są równie prawdopodobne, ale możemy też przyjąć inne założenia z przyczyn o których będzie mowa przy okazji omawiania modeli substytucji.</p>
+<p>Dla przerw (odpowiadających indelom)  można przyjąć, że liczba karnych punktów za dany indel odpowiada liczbie miejsc w przerwie pomnożonej przez wartość kary. Można także przyznać karę za otwarcie przerwy, czyli samą obecność indelu i karę za każdy kolejny brakujący nukleotyd co pozwala na odróżnienie jednego długiego indelu od wielu krótszych.</p>
+<p>Jeśli badamy funkcjonujące geny to oprócz analizy nukleotydów warto przyjrzeć się sekwencjom aminokwasów, które wynikają z różnych dopasowań. Bardziej prawdopodobne są mutacje, które nie zmieniają znaczenia kodonu (degeneracja kodu genetycznego) a jeśli zmieniają to w taki sposób, który nie wpływa na strukturę białka. Oczywiście sprawdzenie tego ostatniego wymaga użycia dodatkowych narzędzi.</p>
+<p>Bardziej złożone są systemy punktacji przy przyrównywaniu aminokwasów. Opierają się one na właściwościach kodu genetycznego, cechach fizykochemicznych aminokwasów lub na badaniach empirycznych. Przedstawia się je zwykle w postaci macierzy zawierających punkty dla poszczególnych kombinacji aminokwasów. Macierze oparte na badaniach empirycznych uważane są za bardziej wiarygodne, należą do nich macierze <strong>PAM</strong> (Point Accepted Mutation) i <strong>BLOSUM</strong> (BLOcks SUbstitution Matrix).</p>
+<a class="header" href="#dopasowanie-metodą-programowania-dynamicznego" id="dopasowanie-metodą-programowania-dynamicznego"><h2>Dopasowanie metodą programowania dynamicznego</h2></a>
+<p>Poszukiwanie optymalnego dopasowania polega w ogólnym zarysie na porównywaniu wszystkich możliwych dopasowań. Oczywiście proces ten jest tym bardziej czasochłonny im sekwencje są dłuższe. Można to robić metodą <em>brute force</em>, czyli składać sekwencje kolejno na wszelkie możliwe sposoby i za każdym razem obliczać jakość dopasowania. Jest to jednak sposób, który choć gwarantuje znalezienie optymalnego rozwiązania, jest bardzo mało efektywny co jest związane z tym, że wielokrotnie przeprowadzane są te same obliczenia. Jeśli obliczymy wartość jednego dopasowania a potem będziemy oceniać inne dopasowanie, różniące się od poprzedniego tylko położeniem jednonukleotydowej przerwy to i tak trzeba będzie obliczyć wartości dopasowania dla wszystkich pozostałych miejsc.</p>
+<p>Proces ten ułatwiają metody programowania dynamicznego (dynamicznej optymalizacji) polegające na tym, że złożony problem dzieli się na wiele mniejszych, które rozwiązuje się osobno. Rozwiązania mniejszych problemów zostają zapamiętane, kiedy ponownie się na nie natrafia, nie rozwiązuje się ich ponownie ale wykorzystuje wcześniejszy wynik. Pozwala to na znaczną oszczędność w obliczeniach. W bioinformatyce programowanie dynamiczne stosuje się w przy wielu złożonych problemach jak np. przewidywanie struktury białek i RNA, wiązania białek z DNA czy właśnie przyrównanie sekwencji nukleotydów.   Zobaczmy zatem jak to działa na nieco uproszczonym przykładzie.</p>
+<p>Przypuśćmy, że mamy do dopasowania dwie sekwencje:</p>
+<p><img src="pics-dopasowanie/pd-sekwencje.png" alt="Sekwencje, które chcemy dopasować" /></p>
+<p>Zaczynamy od stworzenia tablicy (macierzy). Na górze, w nagłówkach kolumn tabeli, umieszczamy jedną sekwencję, z boku, w kolejnych rzędach, drugą sekwencję:</p>
+<p><img src="pics-dopasowanie/pd-tablica.png" alt="Tabela z sekwencjami" /></p>
+<p>Przyjmujemy punktację:</p>
+<ul>
+<li>dopasowane zasady: 1</li>
+<li>niedopasowane zasady: 0</li>
+<li>indel: -1</li>
+</ul>
+<p>Teraz czas na wypełnienie tablicy wartościami.</p>
+<p><img src="pics-dopasowanie/pd-wypelnianie.png" alt="Wypełnianie tablicy" /></p>
+<ol>
+<li>W lewym górnym rogu zaznaczamy kwadrat obejmujący cztery sąsiednie komórki. Wypełniamy wartości komórek górnych i znajdującej się po lewej stronie w drugim rzędzie wartościami wg. powyższej punktacji. <code>G-G</code> -&gt; 1, <code>G-C</code> -&gt; 0, <code>T-G</code> -&gt; 0. Komórka w dolnym prawym rogu pozostaje na razie pusta.</li>
+<li>Obliczamy wartość dla pustej komórki: znajdujemy najwyższą wartość w sąsiadujących komórkach w szarym kwadracie. Jest to wartość 1 (pomarańczowa strzałka). Następnie dodajemy do niej punkty za dopasowanie (w tym przypadku jest to 0 ponieważ T nie pasuje do C) i wpisujemy otrzymany wynik (1).</li>
+<li>Przesuwamy szary kwadrat w prawo i uzupełniamy brakujące wartości analogicznie to punktu powyżej.</li>
+<li>Podobnie postępujemy z kolejnymi komórkami tabeli. Tu dochodzimy do końca rzędu, ponieważ w ostatniej komórce zasady pasują do siebie, do przepisanej 1 dodajemy 1, otrzymując 2.</li>
+<li>Przesuwamy kwadrat o rząd niżej i uzupełniamy brakujące wartości.</li>
+<li>W kolejnym kroku trzy wartości w kwadracie są takie same, przepisujemy 1.</li>
+<li>Ponieważ <code>A</code> pasuje do <code>A</code> ponownie zwiększamy wartość w prawej dolnej komórce</li>
+<li>Kontynuujemy wypełnianie tabeli do końca</li>
+</ol>
+<p>Po wypełnieniu tablicy czas na ,,odczytanie'' dopasowania. Polega ono na znalezieniu ścieżki o największej liczbie punktów od prawego dolnego do lewego górnego rogu macierzy. Poruszamy się zatem w odwrotnym kierunku niż przy wpisywaniu wartości. Kierunek ruchu wyznacza największa liczba sąsiadująca z daną komórką ale tym razem będziemy przyznawać punkty karne za indele (-1), które oznaczone są poziomymi lub pionowymi czerwonymi strzałkami. Oczywiście nie wolno poruszać się w prawo ani w dół.</p>
+<p><img src="pics-dopasowanie/pd-sciezka1.png" alt="Odczytanie dopasowania" /></p>
+<ol>
+<li>Zaczynamy od ostatniej komórki o wartości 4, sąsiaduje ona z komórkami o wartości 3. Wybieramy drogę na ukos, nieobciążoną karą za indel. Mamy 4 + 3 = 7 punktów. Nasze dopasowanie wygląda tak (pionowa kreska oznacza dopasowane zasady, jej brak wskazuje na brak dopasowania):</li>
+</ol>
+<pre><code>  A T
+  | |
+  A T
+</code></pre>
+<ol start="2">
+<li>Teraz komórka o najwyższej wartości znajduje się po lewej, co będzie oznaczało indel i punkty karne: 7 + 2 - 1 = 8. Uzupełniamy zatem wynik dopasowania:</li>
+</ol>
+<pre><code>  A A T
+    | |
+  - A T
+</code></pre>
+<ol start="3">
+<li>W kolejnym kroku kierujemy się ukośnie w górę na lewo. 8 + 1 = 9.</li>
+</ol>
+<pre><code>  C A A T
+      | |
+  T - A T
+</code></pre>
+<ol start="4">
+<li>Dochodzimy do początku tabeli. 9 + 1 = 10. Otrzymujemy dopasowanie końcowe:</li>
+</ol>
+<pre><code>  G C A A T
+  |     | |
+  G T - A T
+</code></pre>
+<p>Zauważ, że można też wykreślić alternatywną ścieżkę, o takiej samej liczbie punktów:</p>
+<p><img src="pics-dopasowanie/pd-sciezka2.png" alt="Odczytanie dopasowania" /></p>
+<p>W tym wypadku otrzymane dopasowanie będzie wyglądało tak:</p>
+<pre><code>  G C A A T
+  |   |   |
+  G T A - T
+</code></pre>
+<p>Trudno powiedzieć, które z uzyskanych dopasowań jest lepsze, w takim przypadku wybór jest arbitralny.</p>
+<p>Jak wspomniałem powyżej pokazany algorytm jest bardzo uproszczony a co za tym idzie, niedoskonały. Nie uwzględnia na przykład możliwości indeli na końcach dopasowań. Toteż realnie stosowane algorytmy są bardziej złożone.</p>
+<p>[TODO? - może wrzucić bardziej złożony przykład.]</p>
+<a class="header" href="#dopasowanie-globalne-i-lokalne" id="dopasowanie-globalne-i-lokalne"><h2>Dopasowanie globalne i lokalne</h2></a>
+<p>Proste przyrównywanie sekwencji i ocena ich jakości za pomocą nieskomplikowanych systemów punktacji może prowadzić na manowce. Rozważmy na przykład dwie sekwencje:</p>
+<pre><code>&gt;seq1
+AAGACTTCACTAACGTGATTGATAGCATCGAATACTGACGAGACG
+&gt;seq2
+TACTGACTAGCTTCGAATACTGGGATCGTTGAAAATCACCTCCG
+</code></pre>
+<p>Można je przyrównać w ten sposób:</p>
+<pre><code>-A---A--GACTTC-ACTAACGTGATTGATAGCATCGAATACTGACGAGACG
+ |   |    |||| | ||  | ||| | |   |   |   |        ||
+TACTGACTAGCTTCGAATACTGGGATCGTTGAAAATCACCTC--------CG
+</code></pre>
+<p>Jeśli teraz przyjmiemy system punktacji: 1 za dopasowaną parę nukleotydów, -1 za indel. Otrzymamy:</p>
+<p>20 dopasowań - 15 indeli = 5 punktów</p>
+<p>Teraz przyjrzyjmy się alternatywnemu dopasowaniu:</p>
+<pre><code>AAGACTTCACTAACGTGATTGATAGCATCGAATACT--GA-CGA--GA----------CG
+          || | |||    |||| |||||||||  || ||   ||          ||
+----------TA-C-TGA--C-TAGCTTCGAATACTGGGATCG-TTGAAAATCACCTCCG
+</code></pre>
+<p>Co prawda widać, że jest tu więcej pasujących par zasad, ale także znacznie więcej indeli. Policzmy więc punkty:</p>
+<p>27 dopasowań - 32 ideli = -5 punktów</p>
+<p>Z prostego liczenia punktów wynikałoby, że to drugie dopasowanie jest znacznie gorsze. Ale czy tak jest w rzeczywistości?
+Przyjrzyjmy się środkowej części dopasowania. Widać tam wyraźne nagromadzenie pasujących do siebie nukleotydów. Widać, że ten fragment w obu sekwencjach jest mało zmienny. Odpowiada on fragmentowi konserwatywnemu w obu sekwencjach, który otoczony jest przez fragmenty zmienne. Biorąc pod uwagę sens dopasowania sekwencji, polegający na tym aby dopasowane nukleotydy były względem siebie homologiczne, to drugie dopasowanie jest właściwsze.</p>
+<p>Powyższy problem związany jest z dwoma podstawowymi typami dopasowań: globalnym i lokalnym.</p>
+<p>Algorytmy <strong>dopasowania globalnego</strong> służą tworzeniu przyrównania sekwencji na całej długości. Podobnie jak w pokazanym powyżej przykładzie algorytmu programowania dynamicznego, przy szukaniu optymalnej ścieżki w macierzy, poruszamy się od lewego dolnego rogu do prawego górnego. Dopasowanie globalne sprawdza się zatem dobrze gdy przyrównujemy sekwencje o zbliżonej liczbie nukleotydów, podobne (homologiczne) do siebie na całej długości. Przykładem algorytmu przyrównania globalnego jest <a href="https://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm">algorytm Needlemana-Wunscha</a> opublikowany w 1970 roku.</p>
+<p>Jak widać na powyższym przykładzie takie postępowanie nie zawsze się dobrze sprawdza. Na przykład kiedy przyrównujemy sekwencje, które są do siebie podobne tylko w niektórych fragmentach, albo gdy w długim odcinku DNA szukamy miejsca podobnego do danej, znacznie krótszej sekwencji znacznie lepiej sprawdza się <strong>dopasowanie lokalne</strong>. W tym przypadku priorytetem jest wyszukiwanie krótszych odcinków w obu sekwencjach, które są do siebie dobrze dopasowane.  Może natomiast prowadzić do uzyskania kilku dopasowań. Klasycznym przykładem algorytmu dopasowania lokalnego jest <a href="https://en.wikipedia.org/wiki/Smith%E2%80%93Waterman_algorithm">algorytm Smitha-Watermana</a> zaprezentowany w 1981 r. Bazuje on na algorytmie Needlemana-Wunscha ale różni się od niego sposobem punktacji przy wypełnianiu matrycy a także sposobem poszukiwania ścieżki powrotnej. Rozpoczyna się nie od końca tablicy, ale w miejscu o najwyższej punktacji i niekonieczne prowadzi do jej początku ale do miejsca gdzie kończy się lokalne dopasowanie.</p>
+<a class="header" href="#dopasowanie-wielu-sekwencji" id="dopasowanie-wielu-sekwencji"><h2>Dopasowanie wielu sekwencji</h2></a>
+<p>Dopasowanie wielu sekwencji jest zadaniem, co oczywiste, znacznie bardziej skomplikowanym niż powyżej rozpatrywane przyrównanie pary z nich. Istnieją różne algorytmy, które mają za zadanie ten proces usprawnić i możliwie ograniczyć czas niezbędny do obliczeń. Poniżej krótko charakteryzuję kilka z nich, należy jednak pamiętać, że w poszczególnych programach są one w różny sposób implementowane i modyfikowane.</p>
+<ul>
+<li><strong>Metoda progresywna</strong>: Sekwencje są porównywane parami (metodą programowania dynamicznego). Następnie na podstawie ich podobieństw tworzone jest drzewo filogenetyczne, zwane drzewem przewodnim lub naprowadzającym (ang. <em>guide tree</em>). Następnie z blisko spokrewnionych sekwencji tworzy się sekwencję konsensusową. Zawiera ona wspólne/najczęściej spotykane nukleotydy w kolejnych miejscach. Dopasowuje się do niej kolejną, pod względem podobieństwa sekwencję, lub sekwencję konsensusową z innej, pobliskiej filogenetycznie grupy sekwencji. Proces trwa aż zostaną przyrównane wszystkie sekwencje. Opiera się na przyrównywaniu globalnym.</li>
+<li><strong>Przyrówanie iteracyjne</strong>: Jest to <a href="https://pl.wikipedia.org/wiki/Heurystyka_(informatyka)">metoda heurystyczna</a>, zatem nie dająca gwarancji uzyskania optymalnego wyniku. Opiera się na iteracyjnym (powtarzającym się) udoskonalaniu pierwotnego dopasowania. Przy każdej iteracji kolejność przyrównywanych sekwencji jest inna. Podobnie jak metoda progresywna opiera się na przyrównywaniu globalnym.</li>
+<li><strong>Przyrówanie blokowe</strong>: W przeciwieństwie do dwóch powyższych metod opiera się na przyrównywaniu lokalnym. Polega na poszukiwaniu fragmentu sekwencji, która nie zawiera przerw i jest wspólna dla wszystkich sekwencji (blok).</li>
+<li><strong>Metoda dziel i zwyciężaj (<em>divide and conquer</em>)</strong>: Metoda heurystyczna. Sekwencje są dzielone na krótkie odcinki, które są możliwie dokładnie dopasowywane, po czym są z nich z powrotem składane sekwencje wyjściowe. Istotnym krokiem jest znalezienie odpowiednich miejsc ,,cięcia'' sekwencji.</li>
+</ul>
+<p>Do znanych programów komputerowych służących dopasowywaniu wielu sekwencji należą: Clustal W, MAFFT, MUSCLE, T-Coffee czy nowszy PRANK. Ich bardziej kompletną listę można znaleźć np. na <a href="https://en.wikipedia.org/wiki/List_of_sequence_alignment_software">Wikipedii</a></p>
+<a class="header" href="#ręczne-redagowanie-dopasowania" id="ręczne-redagowanie-dopasowania"><h2>Ręczne redagowanie dopasowania</h2></a>
+<p>W zależności od stosowanych algorytmów (programów) oraz sekwencji na których pracują, wyniki dopasowania mogą być mniej lub bardziej optymalne. Zwłaszcza dotyczy do sytuacji gdy sekwencje są wysoce zmienne i zawierają liczne indele. Ludzki mózg w wielu przypadkach pozwala dostrzec pewne podobieństwa między sekwencjami, których nie potrafią zidentyfikować algorytmy. Dlatego przy dopasowywaniu sekwencji konieczne są zwykle poprawki nanoszone bezpośrednio przez badacza. Duże znaczenie ma tu nie tylko wiedza dotycząca mechanizmów ewolucji sekwencji ale także praktyczne doświadczenie.</p>
+<p>Przydatne programy, które mogą ułatwić taką pracę to np. dostępne na główne systemy operacyjne (Linux, macOS, Windows) programy z interfejsem graficznym: <a href="http://www.ormbunkar.se/aliview/">AliView</a>, <a href="http://www.jalview.org/">JalView</a>, <a href="http://ugene.net/">UGENE</a> czy <a href="http://www.megasoftware.net/">MEGA</a>, która jednak posiada wersję z GUI tylko dla Windows i macOS. Posiadają one także możliwość uruchamiania zewnętrznych programów, m. in. dopasowujących sekwencje, co znacznie ułatwia cały proces.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../wyklady/02-Podstawy_filogenetyki.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../wyklady/04-Modele_ewolucji_molekularnej.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="../wyklady/02-Podstawy_filogenetyki.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="../wyklady/04-Modele_ewolucji_molekularnej.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3001");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload(true); // force reload from server (not from cache)
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        
+
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

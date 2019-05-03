@@ -1,0 +1,340 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Dopasowanie sekwencji - Próba mdbook</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="../wyklady/02-Podstawy_filogenetyki.html"><strong aria-hidden="true">1.</strong> Wstęp do filogenetyki molekularnej i tworzenia drzew filogenetycznych</a></li><li><a href="../wyklady/03-Dopasowanie_sekwencji.html"><strong aria-hidden="true">2.</strong> Dopasowanie sekwencji</a></li><li><a href="../wyklady/04-Modele_ewolucji_molekularnej.html"><strong aria-hidden="true">3.</strong> Modele ewolucji molekularnej</a></li><li><a href="../wyklady/05-Drzewa_filogenetyczne.html"><strong aria-hidden="true">4.</strong> Drzewa filogenetyczne</a></li><li><a href="../wyklady/06-HGT.html"><strong aria-hidden="true">5.</strong> Horyzontalny transfer genów (HGT)</a></li><li><a href="../cwiczenia/11-praca_w_linuksie.html"><strong aria-hidden="true">6.</strong> Podstawy pracy w systemie Linux</a></li><li><a href="../cwiczenia/12-pliki_tekstowe.html"><strong aria-hidden="true">7.</strong> Praca z plikami tekstowymi w linii komend</a></li><li><a href="../cwiczenia/13-edytory_tekstu.html"><strong aria-hidden="true">8.</strong> Edytory tekstu</a></li><li><a href="../cwiczenia/14-skrypty.html"><strong aria-hidden="true">9.</strong> Skrypty powłoki</a></li><li><a href="../cwiczenia/15-warsztat.html"><strong aria-hidden="true">10.</strong> Warsztat pracy</a></li><li><a href="../cwiczenia/16-genbank-www.html"><strong aria-hidden="true">11.</strong> Bazy sekwencji DNA, GenBank</a></li><li><a href="../cwiczenia/17-genbank-cli.html"><strong aria-hidden="true">12.</strong> Pobieranie sekwencji z bazy GenBank i praca w plikami FASTA przy pomocy linii komend</a></li><li><a href="../cwiczenia/18-blast.html"><strong aria-hidden="true">13.</strong> BLAST - wyszukiwanie podobnych sekwencji</a></li><li><a href="../cwiczenia/19-dopasowanie_sekwencji.html" class="active"><strong aria-hidden="true">14.</strong> Dopasowanie sekwencji</a></li><li><a href="../cwiczenia/20-dopasowanie_modelu.html"><strong aria-hidden="true">15.</strong> Dopasowanie modelu substytucji</a></li><li><a href="../cwiczenia/21-konstruowanie-drzew.html"><strong aria-hidden="true">16.</strong> Konstruowanie drzew</a></li><li><a href="../cwiczenia/22-wizualizacja-drzew.html"><strong aria-hidden="true">17.</strong> Wizualizacja drzew</a></li><li><a href="../cwiczenia/23-zegar-molekularny.html"><strong aria-hidden="true">18.</strong> Drzewa filogenetyczne i zegar molekularny</a></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Próba mdbook</h1> 
+
+                        <div class="right-buttons">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <p><a href="../README.html">← Spis treści</a></p>
+<a class="header" href="#dopasowanie-sekwencji" id="dopasowanie-sekwencji"><h1>Dopasowanie sekwencji</h1></a>
+<p>Kolejnym etapem budowania drzew filogenetycznych jest dopasowanie sekwencji. Jest to bardzo ważny proces, złe dopasowanie sekwencji skutkuje utworzeniem nieprawidłowych drzew.</p>
+<a class="header" href="#etapy-i-programy" id="etapy-i-programy"><h2>Etapy i programy</h2></a>
+<p>Po zebraniu sekwencji w pliku <code>FASTA</code> przechodzimy do ich dopasowania. Dopasowanie można wykonywać przy pomocy programów uruchamianych z linii komend. Kolejnym etapem jest ręczne poprawianie dopasowania zwykle połączone z przycinaniem zebranych funkcji. Ten etap najwygodniej jest wykonywać używając programów ,,okienkowych''. Programy z interfejsem graficznym zwykle mają także funkcje dopasowania sekwencji, często zresztą poprzez uruchamianie programów działających w linii komend.</p>
+<p>Długą listę takich programów można znaleźć np. na <a href="https://en.wikipedia.org/wiki/List_of_sequence_alignment_software">Wikipedii</a></p>
+<a class="header" href="#programy-dopasowujące-wiele-sekwencji-uruchamiane-z-linii-komend" id="programy-dopasowujące-wiele-sekwencji-uruchamiane-z-linii-komend"><h2>Programy dopasowujące wiele sekwencji uruchamiane z linii komend</h2></a>
+<p>Programów uruchamianych z linii komend jest wiele, zwykle każdy z nich używa osobnego algorytmu dopasowania lub jego modyfikacje. Należą do nich:</p>
+<ul>
+<li><a href="http://www.clustal.org/">Clustal W i Clustal Omega</a></li>
+<li><a href="http://www.drive5.com/muscle/">MUSCLE</a></li>
+<li><a href="https://mafft.cbrc.jp/alignment/software/">MAFFT</a></li>
+<li><a href="http://www.tcoffee.org/Projects/tcoffee/">T-Coffee</a></li>
+<li><a href="http://wasabiapp.org/software/prank/">PRANK</a></li>
+</ul>
+<p>Można je zainstalować na Debianie lub innych debianopodobnych dystybucjach komendą (usuń nazwy programów, których nie chcesz instalować):</p>
+<pre><code>sudo apt-get install clustalw clustalo muscle mafft t-coffee prank
+</code></pre>
+<p>W internecie można także łatwo znaleźć strony, które umożliwiają procesu dopasowania online z wykorzystaniem tych (i innych) programów.</p>
+<a class="header" href="#programy-z-interfejsem-graficznym-do-edycji-dopasowań" id="programy-z-interfejsem-graficznym-do-edycji-dopasowań"><h2>Programy z interfejsem graficznym do edycji dopasowań</h2></a>
+<p>W pracy z zestawami sekwencji praktyczne są programy z interfejsem graficznym, które posiadają szereg użytecznych funkcji ułatwiających ich porządkowanie i edycję.  a także np. uruchamianie programów dopasowujących wstępnie sekwencje czy obliczanie i rysowanie drzew.</p>
+<a class="header" href="#praktyka-proste-dopasowanie-sekwencji-atp6" id="praktyka-proste-dopasowanie-sekwencji-atp6"><h2>Praktyka: Proste dopasowanie sekwencji <code>atp6</code></h2></a>
+<p>Pobierz z GenBank-u następujące sekwencje i zapisz je w pliku <code>atp6-surowe.fasta</code>:</p>
+<pre><code>AY007817 Daucus carota
+AY847285 Brassica juncea
+AY961627 Oryza sativa
+EU882268 Sapria himalayana
+FJ595983 Helianthus annuus
+GU075810 Zea mays
+HQ593780 Ajuga reptans
+HQ593782 Mimulus guttatus
+KC825300 Fragaria virginiana
+KC879635 Magnolia stellata
+KU180476 Centaurea scabiosa
+KX524674 Lindenbergia siniaca
+</code></pre>
+<p>Zmień domyślne nazwy ,,GenBankowe'' na nazwy wg. schematu: <code>nr_rodzaj_gatunek</code>, np: <code>AY007817_Daucus_carota</code>. Wykonaj poprawki w edytorze tekstu. Zapisz jako <code>atp6-surowe.fasta</code>.</p>
+<p>Zanim przejdziemy do dopasowania sekwencji w linii komend, użyjemy programu <em>AliView</em>, który można pobrać ze strony domowej programu: <a href="http://ormbunkar.se/aliview/">http://ormbunkar.se/aliview/</a>. AliView pozwala na wygodne przeglądanie i edycję zestawu sekwencji a także posiada szereg innych przydatnych funkcji do których z pewnością należy możliwość uruchamiania programów dopasowujących sekwencje. Warto zajrzeć na stronę programu <a href="http://ormbunkar.se/aliview/">http://ormbunkar.se/aliview/</a> gdzie przedstawione są jego możliwości.</p>
+<p>Uruchom AliView i otwóż plik z sekwencjami.</p>
+<p><img src="dopasowanie/aliview-01.png" alt="AliView - interfejs" /></p>
+<p>Aliview dopasowuje sekwencje używając zewnętrznych programów.</p>
+<p>Można zmienić uruchamiany program wybierając z menu</p>
+<p><img src="dopasowanie/change-align-program-01.png" alt="AliView - zmiana programu dopasowującego sekwencje - menu" /></p>
+<p>Pokazuje się okno:</p>
+<p><img src="dopasowanie/change-align-program-02.png" alt="AliView - zmiana programu dopasowującego sekwencje" /></p>
+<p>Tu można wybrać program z domyślnie udostępnionych przez program, dodać inne i dostosować opcje ich uruchamiania. Instrukcje można znaleźć na stronie programu. Teraz zmień program na <code>Mutt</code> (ten wyżej).</p>
+<p>Wybierz z paska narzędziowego <code>Align-&gt;Realign everything</code></p>
+<p><img src="dopasowanie/aliview-02.png" alt="AliView - Dopasuj wszystko" /></p>
+<p>Program zapyta czy na pewno dopasować sekwencje, zatwierdzamy. Pokazuje się okno z postępem pracy programu i w końcu widać wynik. Przesuń suwakiem na dole ekranu zestawienie sekwencji w prawo. Przyjrzyj się jak wyglądają dopasowane sekwencje.</p>
+<p>Jak widać mają one różną długość, w końcu jednak znajduje się strefa dopasowania, która obejmuje odcinki wszystkich sekwencji, od 563 miejsca dopasowania. Przy okazji przyjrzyj się informacjom widocznym w pasku na dole okna. Są one dość jasne:</p>
+<p><img src="dopasowanie/aliview-03.png" alt="AliView - dopasowanie" /></p>
+<p>Teraz kliknij na czwartą ikonę od lewej. Zaznaczone zostają kolorami kodony odpowiadające różnym aminokwasom.</p>
+<p><img src="dopasowanie/aliview-translate.png" alt="AliView - ,,translacja''" /></p>
+<p>Pojawiają się także nowe ikony pozwalające na zmianę m. in. sposobu wyświetlania a także ustawienia początkowego nukleotydu dla odczytu kodonów. Domyślnie ,,translacja'' rozpoczyna się od pierwszej pozycji zestawienia. Prawidłową pozycję startu odczytywania kodonu można odczytać np. z GenBanku. Sprawdź dane dla sekwencji <code>KU180476</code>. Sprawdź gdzie zaczyna się prawidłowe miejsce początku pierwszego kompletnego kodonu w części wspólnej dopasowanych sekwencji.</p>
+<p><img src="dopasowanie/start-kodonu.png" alt="AliView - ,,translacja''" /></p>
+<p>Teraz wróć do domyślnego widoku sekwencji i zaznacz wszystkie kolumny na lewo od miejsca, w którym rozpoczyna się wspólna część sekwencji:</p>
+<p><img src="dopasowanie/aliview-04.png" alt="AliView - interfejs" /></p>
+<p>Następnie usuń je używając skrótu klawiszowego <code>&lt;Ctrl&gt;+&lt;Del&gt;</code> (warto go zapamiętać) lub odpowiedniej pozycji w pasku menu: <code>Edit-&gt;Delete selected</code>.</p>
+<p>Podobnie przytnij prawą część dopasowania.</p>
+<p>Teraz znów możesz sprawdzić ,,translację'' sekwencji, przy okazji zauważ, że (co nie jest zaskoczeniem) przy złym ustawieniu miejsca początku kodonu pojawia się wiele miejsc <code>STOP</code> oznaczonych szarym kolorem.</p>
+<p><img src="dopasowanie/aliview-05.png" alt="AliView - zły początek kodonu" /></p>
+<p>Jeśli ustawimy podgląd za pomocą jednoliterowych oznaczeń aminokwasów, miejsca <code>STOP</code> będą wyświetlone jako litera <code>x</code>.</p>
+<p><img src="dopasowanie/aliview-06.png" alt="AliView - oznaczenia jednoliterowe" /></p>
+<p>Teraz zastanów się, jak można znaleźć prawidłowe miejsce początku kodonów w działających genach, jeśli go nie znamy.</p>
+<p>Wróć teraz do standardowego wyświetlania sekwencji i znajdź miejsce, w którym znajdują się indele w dwu sekwencjach. Zauważ, że pierwszym nukleotydem flankującym indel w sekwencji <em>Oryza sativa</em> jest <code>G</code>, który w zasadzie pasowałby równie dobrze po obu stronach indelu. Nieco inaczej jest w <em>Ajuga reptans</em>, tam nukleotyd <code>C</code> nie pasuje do żadnego nukleotydu w innych sekwencjach:</p>
+<p><img src="dopasowanie/aliview-07.png" alt="AliView - indele" /></p>
+<p>W ich prawidłowym umieszczeniu może pomóc podświetlenie kodonów:</p>
+<p><img src="dopasowanie/aliview-08.png" alt="AliView - podświetlenie kodonów" /></p>
+<p>Pamiętając, że indele w działających genach kodujących białka powinny obejmować trójki nukleotydów lub ich wielokrotność (inaczej zmienia się ramka odczytu), widać że <code>G</code> w pierwszej sekwencji zostało umieszczone prawidłowo, natomiast <code>C</code> przy drugim indelu należy przesunąć w lewo. Nukleotydy przesuwamy klikając na nie i przeciągając kursorem myszy, przy więcej niż jednym nukleotydzie należy wcześniej zaznaczyć odcinek, który chcemy przemieścić.</p>
+<p>Teraz kodony są kompletne:</p>
+<p><img src="dopasowanie/aliview-09.png" alt="AliView - indele dopasowane" /></p>
+<p>Zapisz plik jako <code>atp6-dopasowane.fasta</code>.</p>
+<p>Przy pracy z AliView warto korzystać z licznych dostępnych opcji ułatwiających pracę. Przejrzyj te dostępne w menu, zazwyczaj łatwo domyślić się jakie mają zastosowanie.</p>
+<a class="header" href="#dopasowanie-sekwencji-z-linii-komend" id="dopasowanie-sekwencji-z-linii-komend"><h2>Dopasowanie sekwencji z linii komend</h2></a>
+<p>Teraz przyszedł czas na dopasowanie sekwencji z użyciem linii komend. Najpierw użyjemy w tym celu programu <code>muscle</code>. Sprawdź jak go używać używając komendy:</p>
+<pre><code>muscle -h 
+</code></pre>
+<p>lub</p>
+<pre><code>man muscle
+</code></pre>
+<p>W najprostszej formie podajemy plik wejściowy i nazwę pliku wyjściowego:</p>
+<pre><code>muscle -in atp6-surowe.fasta -out atp6-wyrownanie-muscle.fasta
+</code></pre>
+<p>Sprawdź plik wynikowy w <code>Aliview</code>.</p>
+<p>Program <code>mafft</code> oferuje dużo więcej opcji niż <code>muscle</code>, uruchom:</p>
+<pre><code>man mafft
+</code></pre>
+<p>Jak widać można w tym programie ustawiać np. wartości kar za otwieranie czy wydłużanie indeli, co może być przydatne przy sekwencjach, które mają ich wiele, zaraz się z takimi spotkamy, na razie uruchom <code>mafft</code> bez dodatkowych opcji:</p>
+<pre><code>mafft atp6-surowe.fasta &gt; atp6-wyrownanie-mafft.fasta
+</code></pre>
+<p>Po otwarciu pliku wynikowego w <code>Aliview</code> widać, <code>mafft</code> domyślnie zmienia wielkość liter w sekwencjach na małe, raczej tego nie chcemy, dlatego użyjemy opcji <code>--preservecase</code></p>
+<pre><code>mafft --preservecase atp6-surowe.fasta &gt; atp6-wyrownanie-mafft.fasta
+</code></pre>
+<p>Teraz pobierz sekwencje o poniższych numerach i zapisz je w pliku <code>trnL-trnF-GB.fasta</code>:</p>
+<pre><code>JX073793
+KU238878
+GU818008
+KX524675 
+AY743457
+AY575533
+KU238873
+KU238869
+KU238874
+KU238865
+KU238864
+KU238875
+KU238866
+KU238871
+KU238876
+KU238867
+KU238877
+KU238868
+KU238872
+KU238870
+GU323356
+</code></pre>
+<p>Sugeruję zrobić to za pomocą skryptu. W takim wypadku sprawdź czy pierwsza linia pliku <code>FASTA</code> nie jest pusta, jeśli tak to usuń ją.</p>
+<p>Zmień nazwy sekwencji wg. schematu dla sekwencji <code>atp6</code>.</p>
+<p>Teraz spróbuj dopasować sekwencje za pomocą programu <code>muscle</code>.</p>
+<p>Następnie spróbuj <code>mafft</code>, także z opcją <code>--auto</code> oraz <code>--op</code> (sprawdź co oznaczają).</p>
+<p>Porównaj wyniki i spróbuj poprawić wybrane dopasowanie ręcznie.</p>
+<p><a href="../README.html">← Spis treści</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../cwiczenia/18-blast.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../cwiczenia/20-dopasowanie_modelu.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="../cwiczenia/18-blast.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="../cwiczenia/20-dopasowanie_modelu.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3001");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload(true); // force reload from server (not from cache)
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        
+
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
