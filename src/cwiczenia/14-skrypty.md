@@ -11,7 +11,7 @@ Pisanie skryptów jest w zasadzie programowaniem. Będziemy tu używać powłoki
 
 Utwórz plik tekstowy o nazwie `pierwszy_skrypt.sh`. Umieść w nim kilka linii:
 
-```
+```bash
 #!/bin/bash
 
 # Pierwszy skrypt
