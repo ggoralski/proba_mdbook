@@ -50,14 +50,14 @@ Najprostszy model, nazwany od nazwisk autorów **modelem Junkesa-Cantora** (w sk
 ||||||               
 |:---:|:--------------:|:--------------:|:--------------:|:--------------:|
 |     |  T             |  C             |           A    |           G    |
-|  T  | $$     -    $$ | $$ \alpha $$   | $$ \alpha $$   | $$ \alpha $$   |  
+|  T  | \\(     -    \\) | \\( \alpha \\)   | $$ \alpha $$   | $$ \alpha $$   |  
 |  C  | $$ \alpha $$   | $$     -    $$ | $$ \alpha $$   | $$ \alpha $$   |   
 |  A  | $$ \alpha $$   | $$ \alpha $$   | $$     -    $$ | $$ \alpha $$   |   
 |  G  | $$ \alpha $$   | $$ \alpha $$   | $$ \alpha $$   | $$     -    $$ |   
 
 Wartość $$ \alpha $$ oznacza prawdopodobieństwo zmiany jednego nukleotydu w drugi w określonej jednostce czasu na przykład na rok. Wynika z tego, że prawdopodobieństwo zmiany danego nukleotydu w jakikolwiek inny nukleotyd w danym okresie czasu wynosi:
 
-$$ r=3\alpha $$
+\\( r=3\alpha \\)
 
 Z kolei odległość między dwoma sekwencjami po czasie $$ t $$ będzie wynosić:
 

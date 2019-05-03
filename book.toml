@@ -3,3 +3,5 @@ authors = ["Grzegorz"]
 multilingual = false
 src = "src"
 title = "Filogenetyka roślin"
+[output.html]
+mathjax-support = true
