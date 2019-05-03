@@ -1,5 +1,0 @@
-[book]
-authors = ["Grzegorz"]
-multilingual = false
-src = "src"
-title = "Próba mdbook"
